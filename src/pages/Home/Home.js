@@ -6,6 +6,7 @@ import Disney from '../../assets/img/Disney_Logo.svg';
 import HBO from '../../assets/img/HBO-Logo.png';
 
 import IndexFooter from "../../components/Footer/IndexFooter";
+import { FaAngleDoubleRight } from "react-icons/fa";
 
 const Home = (props) => {
     return (
@@ -29,7 +30,7 @@ const Home = (props) => {
                                 >
                                     <span className="text-purple-600">FUN</span>D{" "}
                                 </a>
-                                is an easy interface application to many people, also has some features to make user not input repeatedly for those expense that do repeat payment.
+                                helps people to control their financial expenses.
                             </p>
                             {props.auth ? '' :
                                 <div className="mt-12">
@@ -158,16 +159,16 @@ const Home = (props) => {
                                 Subscriptions Feature
                             </h3>
                             <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
-                                <strong><span className="text-purple-600">FUN</span>D</strong> has a feature to automatically pay for digital products like Spotify, Netflix, HBO, and Disney.
+                                <strong><span className="text-purple-600">FUN</span>D</strong> has a feature to pay digital products like Spotify, Netflix, HBO, and Disney.
                             </p>
                             <a
-                                href="https://www.creative-tim.com/learning-lab/tailwind/react/alerts/notus?ref=nr-index"
+                                href="#"
                                 target="_blank"
                                 rel="noreferrer noopener"
-                                className="font-bold text-gray-800 hover:text-gray-600 ease-linear transition-all duration-150"
+                                className="font-bold text-gray-800 hover:text-gray-600 ease-linear transition-all duration-150 flex items-center"
                             >
-                                View all{" "}
-                                <i className="fa fa-angle-double-right ml-1 leading-relaxed"></i>
+                                View all
+                                <FaAngleDoubleRight className="ml-2"/>
                             </a>
                         </div>
                     </div>
