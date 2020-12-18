@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import githubImg from '../../assets/img/github.svg';
 import googleImg from '../../assets/img/google.svg';
@@ -18,7 +17,7 @@ const Register = (props) => {
                                 </div>
                                 <div className="btn-wrapper text-center">
                                     <button
-                                        className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
+                                        className="bg-white active:bg-gray-100 text-gray-800 px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                                         type="button"
                                     >
                                         <img
@@ -29,7 +28,7 @@ const Register = (props) => {
                                         Github
                                     </button>
                                     <button
-                                        className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
+                                        className="bg-white active:bg-gray-100 text-gray-800 px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                                         type="button"
                                     >
                                         <img
@@ -127,7 +126,7 @@ const Register = (props) => {
                             <div className="w-12/12 text-gray-300">
                                 <small>Do you have an account ? </small>
                                 <Link to="/auth/login" className="text-gray-300">
-                                    <span className="bg-gray-800 px-4 py-2 ml-2 font-normal rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150">Login</span>
+                                    <span className="bg-gray-800 px-4 py-2 ml-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150">Login</span>
                                 </Link>
                             </div>
                         </div>
