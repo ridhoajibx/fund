@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 export default function CardStats({
@@ -36,17 +35,17 @@ export default function CardStats({
                             </div>
                         </div>
                     </div>
-                    <p className="text-sm text-gray-500 mt-4">
-                        <span className={statPercentColor + " mr-2"}>
+                    <p className="flex text-sm text-gray-500 mt-4">
+                        <span className={statPercentColor + " mr-2 flex items-center"}>
                             {
                                 statArrow === "up"
-                                ? <FaArrowUp />
+                                ? <FaArrowUp className="mr-2" />
                                 : statArrow === "down"
-                                    ? <FaArrowDown />
+                                    ? <FaArrowDown className="mr-2" />
                                     : null
-                            }{" "}
+                            }
                             {statPercent}%
-                        </span>{" "}
+                        </span>
                         <span className="whitespace-no-wrap">{statDescripiron}</span>
                     </p>
                 </div>

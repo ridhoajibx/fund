@@ -15,7 +15,7 @@ const HeaderStats = () => {
                             <div className="w-full lg:w-6/12 xl:w-4/12 px-4">
                                 <CardStats
                                     statSubtitle="E-WALLET"
-                                    statTitle="10,000,000.00"
+                                    statTitle="IDR 10,000,000.00"
                                     statArrow="up"
                                     statPercent="3.48"
                                     statPercentColor="text-green-500"
@@ -27,7 +27,7 @@ const HeaderStats = () => {
                             <div className="w-full lg:w-6/12 xl:w-4/12 px-4">
                                 <CardStats
                                     statSubtitle="BUDGET"
-                                    statTitle="10,000,000.00"
+                                    statTitle="IDR 10,000,000.00"
                                     statArrow="down"
                                     statPercent="3.48"
                                     statPercentColor="text-red-500"
@@ -39,7 +39,7 @@ const HeaderStats = () => {
                             <div className="w-full lg:w-6/12 xl:w-4/12 px-4">
                                 <CardStats
                                     statSubtitle="EXPENSE"
-                                    statTitle="1,000,000.00"
+                                    statTitle="IDR 1,000,000.00"
                                     statArrow="down"
                                     statPercent="1.10"
                                     statPercentColor="text-orange-500"
