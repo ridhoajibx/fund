@@ -11,11 +11,11 @@ import { FaAngleDoubleRight } from "react-icons/fa";
 const Home = (props) => {
     return (
         <>
-            <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
+            <section className="header relative items-center flex h-screen max-h-860-px">
                 <div className="container mx-auto items-center flex flex-wrap">
                     <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
                         <div className="">
-                            <h2 className="font-semibold text-4xl text-gray-700">
+                            <h2 className="font-semibold text-2xl md:text-4xl text-gray-700">
                                 <span className="text-purple-600">FUN</span>D
                             </h2>
                             <h2 className="font-semibold text-2xl text-gray-700 underline">
@@ -47,13 +47,13 @@ const Home = (props) => {
                 </div>
 
                 <img
-                    className="absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860px"
+                    className="absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-full max-h-860-px"
                     src={BgImg}
                     alt="..."
                 />
             </section>
 
-            <section className="mt-48 md:mt-40 pb-40 relative bg-gray-200">
+            <section className="mt-0 md:mt-20 pb-20 relative bg-gray-200">
                 <div
                     className="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
                     style={{ transform: "translateZ(0)" }}

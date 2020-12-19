@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Container from '../../components/Container';
 import authBg from '../../assets/img/register_bg_2.png';
 import { FaHome } from 'react-icons/fa';
 

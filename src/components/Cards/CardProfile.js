@@ -14,7 +14,7 @@ const CardProfile = () => {
                                     src={profileImg}
                                     className="shadow-xl rounded-full w-40 h-auto align-middle border-none -my-16 mx-auto max-w-100-px"
                                 />
-                                <button className="absolute right-0 top-10 rounded-full bg-purple-600 hover:bg-purple-700 focus:outline-none text-white text-xl p-3 border-2 mx-auto">
+                                <button className="absolute right-0 top-10 rounded-full bg-purple-600 hover:bg-purple-700 focus:outline-none text-white text-sm p-3 border-2 mx-auto">
                                     <FaCamera />
                                 </button>
                             </div>
@@ -42,7 +42,7 @@ const CardProfile = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="mt-6 flex flex-col items-center">
+                    <div className="mt-6 flex flex-col text-center items-center">
                         <h3 className="text-lg font-semibold leading-normal text-gray-800 mb-2">
                             Jumakri Ridho Fauzi
                         </h3>
@@ -52,7 +52,7 @@ const CardProfile = () => {
                         </div>
                         <div className="flex items-center mb-2 text-gray-700 mt-10 text-sm">
                             <FaBriefcase className="mr-2" />
-                            Front End Developer - Team Leader
+                            Front End Developer
                         </div>
                         <div className="flex items-center mb-2 text-gray-700 text-sm">
                             <FaUniversity className="mr-2" />

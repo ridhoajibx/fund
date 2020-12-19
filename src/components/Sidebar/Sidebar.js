@@ -1,8 +1,7 @@
 import React from "react";
 import { FaClipboardList, FaFingerprint, FaNewspaper, FaTable, FaTools, FaTv, FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-// import NotificationDropdown from "../Dropdown/NotificationDropdown";
-import UserDropdown from "../Dropdown/UserDropdown";
+import User from "../Dropdown/User";
 import Logo from "../Logos/Logo";
 
 export default function Sidebar(props) {
@@ -29,7 +28,7 @@ export default function Sidebar(props) {
                     {/* User */}
                     <ul className="md:hidden items-center flex flex-wrap list-none">
                         <li className="inline-block relative">
-                            <UserDropdown setAuth={props.setAuth} color={`text-gray-800 hover:text-gray-600`} ringImg={`ring-purple-600`} />
+                            <User setAuth={props.setAuth} position={'right-0'} color={`text-gray-800 hover:text-gray-600`} ringImg={`ring-purple-600`} />
                         </li>
                     </ul>
                     {/* Collapse */}

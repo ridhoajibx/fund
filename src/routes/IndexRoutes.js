@@ -10,6 +10,7 @@ import Register from '../pages/Auth/Register';
 import Dashboard from '../pages/Apps/Dashboard';
 import Settings from '../pages/Apps/Settings';
 import NotFound from '../pages/Errors/NotFound';
+import AuthRoutes from './AuthRoutes';
 
 const IndexRoutes = () => {
     const [auth, setAuth] = useState(false);
@@ -23,23 +24,22 @@ const IndexRoutes = () => {
                     <Home auth={auth} />
                 </MainLayouts>
             </Route>
-            {!auth ?
-                <>
-                    <Route exact path="/auth/login">
-                        <AuthLayouts>
-                            <Login setAuth={setAuth} />
-                        </AuthLayouts>
-                    </Route>
 
-                    <Route exact path="/auth/register">
-                        <AuthLayouts>
-                            <Register setAuth={setAuth} />
-                        </AuthLayouts>
-                    </Route>
-                    <Redirect from='/auth' to="/auth/login" />
-                </>:
-                    <Redirect from='/auth' to='/' />
-            }
+            <AuthRoutes exact path="/auth/login"
+                comp={AuthLayouts}
+                child={Login}
+                setAuth={setAuth}
+                auth={auth}
+            >
+            </AuthRoutes>
+            <AuthRoutes exact path="/auth/register"
+                comp={AuthLayouts}
+                child={Register}
+                setAuth={setAuth}
+                auth={auth}
+            >
+            </AuthRoutes>
+            <Redirect from='/auth' to="/auth/login" />
 
             <PrivateRoutes exact path="/dashboard"
                 comp={AppLayouts}

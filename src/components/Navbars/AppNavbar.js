@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaSearch } from 'react-icons/fa';
-import NotificationDropdown from '../Dropdown/NotificationDropdown';
-import UserDropdown from '../Dropdown/UserDropdown';
+import Notification from '../Dropdown/Notification';
+import User from '../Dropdown/User';
 
 const AppNavbar = (props) => {
     return (
@@ -32,8 +32,8 @@ const AppNavbar = (props) => {
                     </form>
                     {/* User */}
                     <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
-                        <NotificationDropdown />
-                        <UserDropdown setAuth={props.setAuth} color={`text-gray-100`} ringImg={`ring-purple-100`} />
+                        <Notification />
+                        <User setAuth={props.setAuth} position={`-right-40 lg:-left-40`} color={`text-gray-100`} />
                     </ul>
                 </div>
             </nav>

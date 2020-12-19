@@ -55,6 +55,7 @@ const Register = (props) => {
                                             Name
                                         </label>
                                         <input
+                                            autoComplete="false"
                                             type="email"
                                             className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                                             placeholder="Name"
@@ -69,6 +70,7 @@ const Register = (props) => {
                                             Email
                                         </label>
                                         <input
+                                            autoComplete="true"
                                             type="email"
                                             className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                                             placeholder="Email"
@@ -83,6 +85,7 @@ const Register = (props) => {
                                             Password
                                         </label>
                                         <input
+                                            autoComplete="false"
                                             type="password"
                                             className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                                             placeholder="Password"
@@ -100,7 +103,7 @@ const Register = (props) => {
                                                 I agree with the{" "}
                                                 <a
                                                     href="#pablo"
-                                                    className="text-blue-500"
+                                                    className="text-purple-500"
                                                     onClick={(e) => e.preventDefault()}
                                                 >
                                                     Privacy Policy

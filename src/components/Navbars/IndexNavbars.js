@@ -3,16 +3,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 // components
 
-import IndexDropdown from "../Dropdown/IndexDropdown";
-import UserDropdown from "../Dropdown/UserDropdown";
+import Dropdown from "../Dropdown/Dropdown";
+import User from "../Dropdown/User";
 import Logo from "../Logos/Logo";
 
 const IndexNavbars = (props) => {
-    console.log(props, 'props');
     const [navbarOpen, setNavbarOpen] = React.useState(false);
-    const btnCollapsed = navbarOpen ?
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg> :
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+    const btnCollapsed = navbarOpen ? 
+        <svg className={`w-6 h-6 duration-500`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg> :
+        <svg className={`w-6 h-6 duration-500 transform rotate-180`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
 
     const guestNav = (<>
         <li className="flex items-center">
@@ -38,12 +37,12 @@ const IndexNavbars = (props) => {
             className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
         >
             Home
-                        </Link>
-        <li className="flex items-center">
-            <IndexDropdown />
+        </Link>
+        <li className="z-50 flex items-center">
+            <Dropdown />
         </li>
         <li className="flex items-center">
-            <UserDropdown setAuth={props.setAuth} color={`text-gray-800 hover:text-gray-600`} ringImg={`ring-purple-600`} />
+            <User setAuth={props.setAuth} color={`text-gray-800 hover:text-gray-600`} ringImg={`ring-purple-600`} />
         </li>
     </>
     return (

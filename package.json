@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/custom-forms": "^0.2.1",
     "tailwind-scrollbar": "^1.0.1"
   }
 }
