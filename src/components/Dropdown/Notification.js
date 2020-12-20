@@ -21,7 +21,7 @@ const Notification = () => {
                             leaveTo="transform opacity-0 scale-95"
                         >
                             <div
-                                className="absolute -right-40 lg:-left-40 w-56 mt-0 md:mt-2 bg-white border-0 md:border border-gray-200 rounded-md md:shadow-lg outline-none"
+                                className="absolute -right-40 md:-left-40 w-48 mt-0 md:mt-2 bg-white border-0 md:border border-gray-200 rounded-md md:shadow-lg outline-none"
                             >
                                 <div className="py-1">
                                     <Menu.Item>

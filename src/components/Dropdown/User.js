@@ -34,7 +34,7 @@ const User = ({
                             leaveTo="transform opacity-0 scale-95"
                         >
                             <Menu.Items
-                                className={`absolute ${position} w-56 mt-0 md:mt-2 bg-white border-0 md:border border-gray-200 rounded-md md:shadow-lg outline-none`}
+                                className={`absolute ${position} w-48 mt-0 md:mt-2 bg-white border-0 md:border border-gray-200 rounded-md md:shadow-lg outline-none`}
                             >
                                 <div className="px-4 py-3">
                                     <p className="text-sm leading-5">Signed in as</p>
