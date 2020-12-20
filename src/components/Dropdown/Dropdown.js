@@ -10,11 +10,14 @@ const Dropdown = () => {
                         <Menu.Button className="hover:text-gray-600 text-gray-800 px-3 py-2 flex items-center text-xs uppercase font-bold transition duration-150 ease-in-out focus:outline-none">
                             <span>Pages</span>
                             <svg 
-                                class={`w-5 h-5 duration-300 ${open && 'transform -rotate-180 duration-300'}`} 
+                                className={
+                                    `w-5 h-5 duration-300 
+                                    ${open ? 'transform -rotate-180' : ''}`
+                                } 
                                 fill="currentColor" 
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
                             >
-                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path>
                             </svg>
                         </Menu.Button>
 
@@ -31,9 +34,7 @@ const Dropdown = () => {
                                 className="absolute -right-40 lg:-left-40 w-56 mt-0 md:mt-2 bg-white border-0 md:border border-gray-200 rounded-md md:shadow-lg outline-none"
                             >
                                 <span
-                                    className={
-                                        "text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-no-wrap bg-transparent text-gray-500"
-                                    }
+                                    className="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-no-wrap bg-transparent text-gray-500"
                                 >
                                     Admin Layout
                                 </span>
@@ -75,9 +76,7 @@ const Dropdown = () => {
                                 <div className="h-0 mx-4 my-2 border border-solid border-gray-200" />
 
                                 <span
-                                    className={
-                                        "text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-no-wrap bg-transparent text-gray-500"
-                                    }
+                                    className="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-no-wrap bg-transparent text-gray-500"
                                 >
                                     Auth Layout
                                 </span>
@@ -103,9 +102,7 @@ const Dropdown = () => {
                                 <div className="h-0 mx-4 my-2 border border-solid border-gray-200" />
 
                                 <span
-                                    className={
-                                        "text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-no-wrap bg-transparent text-gray-500"
-                                    }
+                                    className="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-no-wrap bg-transparent text-gray-500"
                                 >
                                     No Layout
                                 </span>
@@ -128,23 +125,6 @@ const Dropdown = () => {
                                         </Link>
                                     </Menu.Item>
                                 </div>
-
-                                {/* Example */}
-                                {/* <div className="py-1">
-                                    <Menu.Item>
-                                        {({ active }) => (
-                                            <a
-                                                href="#sign-out"
-                                                className={`${active
-                                                    ? "bg-gray-100 text-gray-900"
-                                                    : "text-gray-700"
-                                                    } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
-                                            >
-                                                Sign out
-                                            </a>
-                                        )}
-                                    </Menu.Item>
-                                </div> */}
                             </Menu.Items>
                         </Transition>
                     </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { FaClipboardList, FaFingerprint, FaNewspaper, FaTable, FaTools, FaTv, FaUserCircle } from "react-icons/fa";
+import { FaClipboardList, FaFingerprint, FaGoogleWallet, FaNewspaper, FaTable, FaTools, FaTv, FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import User from "../Dropdown/User";
 import Logo from "../Logos/Logo";
@@ -113,6 +113,50 @@ export default function Sidebar(props) {
                                 <Link
                                     className={
                                         "text-xs uppercase py-3 font-bold block " +
+                                        (window.location.href.indexOf("/expense") !== -1
+                                            ? "text-purple-500 hover:text-purple-600"
+                                            : "text-gray-800 hover:text-gray-600")
+                                    }
+                                    to="/expense"
+                                >
+                                    <span className="flex items-center">
+                                        <FaTable className={`
+                                            mr-2 text-sm 
+                                            ${(window.location.href.indexOf("/expense") !== -1
+                                            ? "opacity-75"
+                                            : "text-gray-400")}
+                                            `} /> {" "}
+                                        Expense
+                                    </span>
+                                </Link>
+                            </li>
+
+                            <li className="items-center">
+                                <Link
+                                    className={
+                                        "text-xs uppercase py-3 font-bold block " +
+                                        (window.location.href.indexOf("/budgets") !== -1
+                                            ? "text-purple-500 hover:text-purple-600"
+                                            : "text-gray-800 hover:text-gray-600")
+                                    }
+                                    to="/budgets"
+                                >
+                                    <span className="flex items-center">
+                                        <FaGoogleWallet className={`
+                                            mr-2 text-sm 
+                                            ${(window.location.href.indexOf("/budgets") !== -1
+                                            ? "opacity-75"
+                                            : "text-gray-400")}
+                                            `} /> {" "}
+                                        Budgets
+                                    </span>
+                                </Link>
+                            </li>
+
+                            <li className="items-center">
+                                <Link
+                                    className={
+                                        "text-xs uppercase py-3 font-bold block " +
                                         (window.location.href.indexOf("/settings") !== -1
                                             ? "text-purple-500 hover:text-purple-600"
                                             : "text-gray-800 hover:text-gray-600")
@@ -122,7 +166,7 @@ export default function Sidebar(props) {
                                     <span className="flex items-center">
                                         <FaTools className={`
                                             mr-2 text-sm 
-                                            ${(window.location.href.indexOf("/dashboard") !== -1
+                                            ${(window.location.href.indexOf("/settings") !== -1
                                             ? "opacity-75"
                                             : "text-gray-400")}
                                             `} /> {" "}
@@ -144,7 +188,7 @@ export default function Sidebar(props) {
                                     <span className="flex items-center">
                                         <FaTable className={`
                                             mr-2 text-sm 
-                                            ${(window.location.href.indexOf("/dashboard") !== -1
+                                            ${(window.location.href.indexOf("/tables") !== -1
                                             ? "opacity-75"
                                             : "text-gray-400")}
                                             `} /> {" "}

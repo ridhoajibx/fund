@@ -33,7 +33,11 @@ const AppNavbar = (props) => {
                     {/* User */}
                     <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
                         <Notification />
-                        <User setAuth={props.setAuth} position={`-right-40 md:-left-40`} color={`text-gray-100`} />
+                        <User 
+                            setAuth={props.setAuth} 
+                            position={`-right-40 md:-left-40`} 
+                            color={`text-gray-100`} 
+                        />
                     </ul>
                 </div>
             </nav>

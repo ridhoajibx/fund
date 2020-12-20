@@ -92,6 +92,5 @@ User.defaultProps = {
 };
 User.propTypes = {
     position: PropTypes.string,
-    ringImg: PropTypes.string,
-    setAuth: PropTypes.bool
+    ringImg: PropTypes.string
 };

@@ -11,6 +11,7 @@ import Dashboard from '../pages/Apps/Dashboard';
 import Settings from '../pages/Apps/Settings';
 import NotFound from '../pages/Errors/NotFound';
 import AuthRoutes from './AuthRoutes';
+import Tables from '../pages/Apps/Tables';
 
 const IndexRoutes = () => {
     const [auth, setAuth] = useState(false);
@@ -51,6 +52,13 @@ const IndexRoutes = () => {
             <PrivateRoutes exact path="/settings"
                 comp={AppLayouts}
                 child={Settings}
+                setAuth={setAuth}
+                auth={auth}
+            />
+
+            <PrivateRoutes exact path="/tables"
+                comp={AppLayouts}
+                child={Tables}
                 setAuth={setAuth}
                 auth={auth}
             />
