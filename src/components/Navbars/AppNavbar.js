@@ -4,6 +4,22 @@ import Notification from '../Dropdown/Notification';
 import User from '../Dropdown/User';
 
 const AppNavbar = (props) => {
+        const NamePath = (location) => {
+        switch (location) {
+            case "/dashboard":
+                return "Dashboard";
+            case "/expense":
+                return "Expense";
+            case "/budget":
+                return "Budgets";
+            case "/settings":
+                return "Settings";
+            case "/tables":
+                return "Tables";
+            default:
+                break;
+        }
+    }
     return (
         <>
             {/* Navbar */}
@@ -15,7 +31,7 @@ const AppNavbar = (props) => {
                         href="#pablo"
                         onClick={(e) => e.preventDefault()}
                     >
-                        Dashboard
+                        {NamePath(window.location.pathname)}
                     </a>
                     {/* Form */}
                     <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
@@ -33,10 +49,10 @@ const AppNavbar = (props) => {
                     {/* User */}
                     <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
                         <Notification />
-                        <User 
-                            setAuth={props.setAuth} 
-                            position={`-right-40 md:-left-40`} 
-                            color={`text-gray-100`} 
+                        <User
+                            setAuth={props.setAuth}
+                            position={`-right-40 md:-left-40`}
+                            color={`text-gray-100`}
                         />
                     </ul>
                 </div>

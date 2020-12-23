@@ -31,7 +31,7 @@ const Dropdown = () => {
                             leaveTo="transform opacity-0 scale-95"
                         >
                             <Menu.Items
-                                className="absolute -right-40 lg:-left-40 w-56 mt-0 md:mt-2 bg-white border-0 md:border border-gray-200 rounded-md md:shadow-lg outline-none"
+                                className="absolute z-50 -right-40 lg:-left-40 w-56 mt-0 md:mt-2 bg-white border-0 md:border border-gray-200 rounded-md md:shadow-lg outline-none"
                             >
                                 <span
                                     className="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-no-wrap bg-transparent text-gray-500"
@@ -50,6 +50,22 @@ const Dropdown = () => {
                                     </Menu.Item>
                                     <Menu.Item>
                                         <Link
+                                            to="/expense"
+                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                                        >
+                                            Expense
+                                        </Link>
+                                    </Menu.Item>
+                                    <Menu.Item>
+                                        <Link
+                                            to="/budget"
+                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                                        >
+                                            Budgets
+                                        </Link>
+                                    </Menu.Item>
+                                    <Menu.Item>
+                                        <Link
                                             to="/settings"
                                             className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
                                         >
@@ -62,14 +78,6 @@ const Dropdown = () => {
                                             className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
                                         >
                                             Tables
-                                        </Link>
-                                    </Menu.Item>
-                                    <Menu.Item>
-                                        <Link
-                                            to="/maps"
-                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
-                                        >
-                                            Maps
                                         </Link>
                                     </Menu.Item>
                                 </div>

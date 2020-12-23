@@ -1,6 +1,6 @@
 import React from 'react';
 import CardBarChart from '../../components/Cards/CardBarChart';
-import CardPageVisits from '../../components/Cards/CardPageVisits';
+import History from '../../components/Cards/Expense/History';
 
 const Dashboard = () => {
     return (
@@ -15,7 +15,7 @@ const Dashboard = () => {
             </div>
             <div className="flex flex-wrap mt-4">
                 <div className="w-full xl:w-12/12 mb-12 xl:mb-0 px-4">
-                    <CardPageVisits />
+                    <History color="light" />
                 </div>
                 {/* <div className="w-full xl:w-4/12 px-4">
                 <CardSocialTraffic />

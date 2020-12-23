@@ -1,7 +1,7 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
 
-const NotificationDropdown = ({color}) => {
+const NotificationDropdown = ({color, id}) => {
     // dropdown props
     const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
     const btnDropdownRef = React.createRef();
@@ -18,7 +18,7 @@ const NotificationDropdown = ({color}) => {
     return (
         <>
             <a
-                className='text-gray-400 py-1 px-3'
+                className={`${color === "light" ? "text-gray-600 ":"text-gray-200 "}py-1 px-3`}
                 href="#pablo"
                 ref={btnDropdownRef}
                 onClick={(e) => {
@@ -38,29 +38,20 @@ const NotificationDropdown = ({color}) => {
                 <a
                     href="#pablo"
                     className={
-                        "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                        "text-sm hover:bg-purple-600 hover:text-white py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
                     }
-                    onClick={(e) => e.preventDefault()}
+                    onClick={(e) => e.preventDefault(id)}
                 >
-                    Action
+                    Edit
                 </a>
                 <a
                     href="#pablo"
                     className={
-                        "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                        "text-sm hover:bg-purple-600 hover:text-white py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
                     }
-                    onClick={(e) => e.preventDefault()}
+                    onClick={(e) => e.preventDefault(id)}
                 >
-                    Another action
-                </a>
-                <a
-                    href="#pablo"
-                    className={
-                        "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
-                    }
-                    onClick={(e) => e.preventDefault()}
-                >
-                    Something else here
+                    Delete
                 </a>
             </div>
         </>

@@ -6,13 +6,13 @@ const NotFound = () => {
     return (
         <section className="relative w-full h-full py-40 min-h-screen">
             <div
-                className="absolute top-0 w-full h-full bg-purple-600 bg-no-repeat bg-full"
+                className="absolute top-0 w-full h-full bg-purple-500 bg-no-repeat bg-full"
                 style={{
                     backgroundImage:
                         "url(" + authBg + ")",
                 }}
             ></div>
-            <div className="container m-auto px-4 h-full">
+            <div className="container m-auto px-4 h-full min-h-screen">
                 <div className="flex content-center items-center justify-center h-full">
                     <div className="w-full lg:w-6/12 px-4">
                         <div className="relative flex flex-col items-center justify-center min-w-0 p-10 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0">

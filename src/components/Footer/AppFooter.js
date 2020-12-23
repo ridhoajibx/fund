@@ -39,7 +39,7 @@ const AppFooter = () => {
                                 </li>
                                 <li>
                                     <a
-                                        href="#"
+                                        href="https://github.com/ridhoajibx/fund/blob/master/LICENSE.md"
                                         className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
                                     >
                                         MIT License

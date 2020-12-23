@@ -67,7 +67,7 @@ const IndexFooter = () => {
                                         <li>
                                             <a
                                                 className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                                href="#"
+                                                href="https://github.com/ridhoajibx/fund/blob/master/LICENSE.md"
                                             >
                                                 MIT License
                                             </a>

@@ -1,13 +1,9 @@
 import React from "react";
-import { FaArrowDown, FaArrowUp } from "react-icons/fa";
+import { formatMoney } from "../../variables/Event";
 
 export default function CardStats({
     statSubtitle,
     statTitle,
-    statArrow,
-    statPercent,
-    statPercentColor,
-    statDescripiron,
     statIconName,
     statIconColor,
 }) {
@@ -21,7 +17,7 @@ export default function CardStats({
                                 {statSubtitle}
                             </h5>
                             <span className="font-semibold text-xl text-gray-800">
-                                {statTitle}
+                                IDR {formatMoney(statTitle)}
                             </span>
                         </div>
                         <div className="relative w-auto pl-4 flex-initial">
@@ -35,19 +31,6 @@ export default function CardStats({
                             </div>
                         </div>
                     </div>
-                    <p className="flex text-sm text-gray-500 mt-4">
-                        <span className={statPercentColor + " mr-2 flex items-center"}>
-                            {
-                                statArrow === "up"
-                                ? <FaArrowUp className="mr-2" />
-                                : statArrow === "down"
-                                    ? <FaArrowDown className="mr-2" />
-                                    : null
-                            }
-                            {statPercent}%
-                        </span>
-                        <span className="whitespace-no-wrap">{statDescripiron}</span>
-                    </p>
                 </div>
             </div>
         </>

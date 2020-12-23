@@ -10,8 +10,8 @@ import Logo from "../Logos/Logo";
 const IndexNavbars = (props) => {
     const [navbarOpen, setNavbarOpen] = React.useState(false);
     const btnCollapsed = navbarOpen ? 
-        <svg className={`w-6 h-6 duration-500`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg> :
-        <svg className={`w-6 h-6 duration-500 transform rotate-180`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        <svg className="w-6 h-6 duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg> :
+        <svg className="w-6 h-6 duration-500 transform -rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
 
     const guestNav = (<>
         <li className="flex items-center">
@@ -32,18 +32,18 @@ const IndexNavbars = (props) => {
         </li>
     </>);
     const userNav = <>
-        <Link
-            to="/"
-            className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-        >
-            Home
-        </Link>
-        <li className="z-50 flex items-center">
-            <Dropdown />
-        </li>
         <li className="flex items-center">
-            <User setAuth={props.setAuth} color={`text-gray-800 hover:text-gray-600`} ringImg={`ring-purple-600`} />
+            <Link
+                to="/"
+                className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+            >
+                Home
+            </Link>
         </li>
+        
+        <Dropdown />
+
+        <User setAuth={props.setAuth} color={`text-gray-800 hover:text-gray-600`} ringImg={`ring-purple-600`} />
     </>
     return (
         <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">

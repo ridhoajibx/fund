@@ -14,8 +14,8 @@ const User = ({
             <Menu>
                 {({ open }) => (
                     <div className="relative block">
-                        <Menu.Button className="hover:text-gray-600 text-gray-800 px-3 py-2 flex items-center text-xs uppercase font-bold transition duration-150 ease-in-out focus:outline-none">
-                            <span className={`w-10 h-10 text-sm ring ${ringImg} text-white bg-gray-300 inline-flex items-center justify-center rounded-full`}>
+                        <Menu.Button className="hover:text-gray-600 text-gray-800 px-3 md:px-2 flex items-center text-xs uppercase font-bold transition duration-150 ease-in-out focus:outline-none">
+                            <span className={`w-8 h-8 text-sm ring ${ringImg} text-white bg-gray-300 inline-flex items-center justify-center rounded-full`}>
                                 <img
                                     alt="..."
                                     className="w-full rounded-full align-middle border-none shadow-lg"

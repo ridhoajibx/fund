@@ -53,7 +53,7 @@ const SmallFooter = (props) => {
                                 </li>
                                 <li>
                                     <a
-                                        href="#"
+                                        href="https://github.com/ridhoajibx/fund/blob/master/LICENSE.md"
                                         className="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3"
                                     >
                                         MIT License
