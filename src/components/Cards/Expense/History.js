@@ -109,7 +109,7 @@ const History = ({ color, action }) => {
                                         </span>
                                     </th>
                                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                                        IDR {formatMoney(item.extendedProps.cost)}
+                                        Rp. {formatMoney(item.extendedProps.cost)}
                                     </td>
                                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                                         {item.extendedProps.repeat}

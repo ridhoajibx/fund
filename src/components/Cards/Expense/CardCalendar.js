@@ -4,11 +4,21 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
-import { Event } from '../../../variables/Event';
+import { Event, formatMoney } from '../../../variables/Event';
+import Swal from 'sweetalert2';
 
 import '../../../assets/css/calendar.css'
 
 const CardCalendar = () => {
+    const handleEventClick = (data) => {
+        Swal.fire({
+            icon: 'info',
+            title: data.event.title,
+            html: ` <b>Rp. ${formatMoney(data.event.extendedProps.cost)}</b> <br/>
+                    Pembayaran: ${data.event.extendedProps.repeat}`,
+            showConfirmButton: true
+        })
+    }
     return (
         <>
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200 border-0">
@@ -29,7 +39,7 @@ const CardCalendar = () => {
                             initialView="dayGridMonth"
                             weekends={true}
                             events={Event}
-                        // eventClick={handleEventClick}
+                            eventClick={handleEventClick}
                         />
                     </div>
                 </div>

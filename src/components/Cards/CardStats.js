@@ -17,7 +17,7 @@ export default function CardStats({
                                 {statSubtitle}
                             </h5>
                             <span className="font-semibold text-xl text-gray-800">
-                                IDR {formatMoney(statTitle)}
+                                Rp. {formatMoney(statTitle)}
                             </span>
                         </div>
                         <div className="relative w-auto pl-4 flex-initial">

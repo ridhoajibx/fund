@@ -9,12 +9,12 @@ const Dropdown = () => {
                     <div className="relative block">
                         <Menu.Button className="hover:text-gray-600 text-gray-800 px-3 py-2 flex items-center text-xs uppercase font-bold transition duration-150 ease-in-out focus:outline-none">
                             <span>Pages</span>
-                            <svg 
+                            <svg
                                 className={
                                     `w-5 h-5 duration-300 
                                     ${open ? 'transform -rotate-180' : ''}`
-                                } 
-                                fill="currentColor" 
+                                }
+                                fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
                             >
                                 <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path>
@@ -72,7 +72,7 @@ const Dropdown = () => {
                                             Settings
                                         </Link>
                                     </Menu.Item>
-                                    <Menu.Item>    
+                                    <Menu.Item>
                                         <Link
                                             to="/tables"
                                             className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
