@@ -7,8 +7,8 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { Event, formatMoney } from '../../../variables/Event';
 import Swal from 'sweetalert2';
 
-import './calendar.css';
-import './Swal.css';
+import './style/Calendar.css';
+import './style/Swal.css';
 
 const CardCalendar = () => {
     const handleEventClick = (data) => {
