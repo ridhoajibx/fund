@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash, FaTimes } from "react-icons/fa";
-import { DangerBtn, PrimaryBtn } from "../../variables/Colors";
 import Button from "../Button/Button";
 
 export default function ModalPassword({ modalHandler }) {
@@ -12,7 +11,7 @@ export default function ModalPassword({ modalHandler }) {
     return (
         <>
             <div
-                className="transform transition-all -rotate-6 hover:rotate-0 flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                className="transform transition -rotate-6 hover:rotate-0 flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
                 onDoubleClick={() => modalHandler()}
             >
                 <div className="relative w-auto my-6 mx-auto max-w-3xl">
@@ -48,7 +47,7 @@ export default function ModalPassword({ modalHandler }) {
                                             <input
                                                 id="password"
                                                 type={hidden ? 'password' : 'text'}
-                                                className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+                                                className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition duration-150"
                                                 defaultValue="password"
                                             />
                                         </div>
@@ -64,14 +63,14 @@ export default function ModalPassword({ modalHandler }) {
                                             <input
                                                 id="password2"
                                                 type={hidden ? 'password' : 'text'}
-                                                className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+                                                className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition duration-150"
                                                 defaultValue="password"
                                             />
                                         </div>
                                     </div>
                                     <div className="flex justify-end">
                                         <Button 
-                                            color={PrimaryBtn}
+                                            color="btn-round p-2 duration-300 transform hover:scale-105"
                                             types="button"
                                             handleClick={showPass}
                                             icon={hidden ? <FaEye /> : <FaEyeSlash />}
@@ -84,13 +83,13 @@ export default function ModalPassword({ modalHandler }) {
                         {/*footer*/}
                         <div className="flex items-center justify-end px-4 lg:px-10 pb-10 border-t border-solid border-gray-200 rounded-b">
                             <Button 
-                                color={DangerBtn}
+                                color="mr-2 btn-danger duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black"
                                 label="close"
                                 handleClick={() => modalHandler()}
                                 types="button"
                             />
                             <Button
-                                color={PrimaryBtn}
+                                color="btn-primary duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black"
                                 label="save"
                                 handleClick={() => modalHandler()}
                                 types="button"

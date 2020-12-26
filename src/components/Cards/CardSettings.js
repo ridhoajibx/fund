@@ -1,4 +1,3 @@
-import { PrimaryBtn } from "../../variables/Colors";
 import Button from "../Button/Button";
 
 const CardSettings = () => {
@@ -9,7 +8,7 @@ const CardSettings = () => {
                     <div className="text-center flex justify-between">
                         <h6 className="text-gray-800 text-lg font-bold uppercase">My account</h6>
                         <Button 
-                            color={PrimaryBtn} 
+                            color="btn-primary duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black" 
                             types="button" 
                             handleClick={(e) => e.preventDefault()} 
                             label="Settings"
@@ -33,7 +32,7 @@ const CardSettings = () => {
                                     <input
                                         id="name"
                                         type="text"
-                                        className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+                                        className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition duration-150"
                                         defaultValue="Jumakri Ridho Fauzi"
                                     />
                                 </div>
@@ -48,7 +47,7 @@ const CardSettings = () => {
                                     </label>
                                     <input
                                         type="date"
-                                        className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+                                        className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition duration-150"
                                         defaultValue="1993-12-10"
                                     />
                                 </div>

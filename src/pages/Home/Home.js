@@ -36,7 +36,7 @@ const Home = (props) => {
                                 <div className="mt-12">
                                     <Link
                                         to="/auth/register"
-                                        className="transform hover:-translate-y-1 hover:scale-110 get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-purple-600 active:bg-purple-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
+                                        className="btn-primary px-6 py-4 duration-300 transition hover:scale-105 hover:shadow-offset-black"
                                     >
                                         Get started
                                     </Link>
@@ -84,7 +84,7 @@ const Home = (props) => {
                                         target="_blank"
                                         rel="noreferrer noopener"
                                     >
-                                        <div className="bg-blue-500 shadow-lg rounded-lg text-center p-8 mt-8">
+                                        <div className="bg-blue-500 shadow-lg rounded-lg text-center p-8 mt-8 transition-all transform hover:shadow-lg -rotate-3 hover:rotate-0">
                                             <img
                                                 alt="..."
                                                 className="shadow-md rounded-full max-w-full w-20 h-20 mx-auto p-2 bg-white"
@@ -100,7 +100,7 @@ const Home = (props) => {
                                         target="_blank"
                                         rel="noreferrer noopener"
                                     >
-                                        <div className="bg-gray-800 shadow-lg rounded-lg text-center p-8 mt-8">
+                                        <div className="bg-gray-800 shadow-lg rounded-lg text-center p-8 mt-8 transition-all transform hover:shadow-lg rotate-3 hover:rotate-0">
                                             <img
                                                 alt="..."
                                                 className="shadow-md rounded-full max-w-full w-20 h-20 mx-auto p-2 bg-white"
@@ -118,7 +118,7 @@ const Home = (props) => {
                                         target="_blank"
                                         rel="noreferrer noopener"
                                     >
-                                        <div className="bg-red-700 shadow-lg rounded-lg text-center p-8 mt-8">
+                                        <div className="bg-red-700 shadow-lg rounded-lg text-center p-8 mt-8 transition-all transform hover:shadow-lg rotate-3 hover:rotate-0">
                                             <img
                                                 alt="..."
                                                 className="shadow-md rounded-full max-w-full w-20 h-20 mx-auto p-2 bg-white"
@@ -134,7 +134,7 @@ const Home = (props) => {
                                         target="_blank"
                                         rel="noreferrer noopener"
                                     >
-                                        <div className="bg-green-500 shadow-lg rounded-lg text-center p-8 mt-8">
+                                        <div className="bg-green-500 shadow-lg rounded-lg text-center p-8 mt-8 transition-all transform hover:shadow-lg -rotate-3 hover:rotate-0">
                                             <img
                                                 alt="..."
                                                 className="shadow-md rounded-full max-w-full w-20 h-20 mx-auto p-2 bg-white"

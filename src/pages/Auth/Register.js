@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import githubImg from '../../assets/img/github.svg';
 import googleImg from '../../assets/img/google.svg';
+import Button from '../../components/Button/Button';
 
 const Register = (props) => {
     return (
@@ -16,28 +17,30 @@ const Register = (props) => {
                                     </h6>
                                 </div>
                                 <div className="btn-wrapper text-center">
-                                    <button
-                                        className="bg-white active:bg-gray-100 text-gray-800 px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
-                                        type="button"
-                                    >
-                                        <img
-                                            alt="..."
-                                            className="w-5 mr-1"
-                                            src={githubImg}
-                                        />
-                                        Github
-                                    </button>
-                                    <button
-                                        className="bg-white active:bg-gray-100 text-gray-800 px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
-                                        type="button"
-                                    >
-                                        <img
-                                            alt="..."
-                                            className="w-5 mr-1"
-                                            src={googleImg}
-                                        />
-                                        Google
-                                    </button>
+                                <Button
+                                        color="inline-flex items-center btn-secondary mr-1 mb-1 duration-300 transition transform hover:scale-105 hover:shadow-lg"
+                                        types="button"
+                                        label="Github"
+                                        icon={
+                                                <img
+                                                    alt="..."
+                                                    className="w-5 mr-1"
+                                                    src={githubImg}
+                                                />
+                                            }
+                                    />
+                                    <Button
+                                        color="inline-flex items-center btn-secondary ml-1 mb-1 duration-300 transition transform hover:scale-105 hover:shadow-lg"
+                                        types="button"
+                                        label="Google"
+                                        icon={
+                                                <img
+                                                    alt="..."
+                                                    className="w-5 mr-1"
+                                                    src={googleImg}
+                                                />
+                                            }
+                                    />
                                 </div>
                                 <hr className="mt-6 border-b-1 border-gray-400" />
                             </div>
@@ -113,13 +116,12 @@ const Register = (props) => {
                                     </div>
 
                                     <div className="text-center mt-6">
-                                        <button
-                                            onClick={() => props.setAuth(true)}
-                                            className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                                            type="button"
-                                        >
-                                            Create Account
-                                        </button>
+                                        <Button
+                                            handleClick={() => props.setAuth(true)}
+                                            color="btn-dark duration-300 transition transform hover:scale-105 hover:shadow-offset-black w-full py-3"
+                                            types="button"
+                                            label="create account"
+                                        />
                                     </div>
                                 </form>
                             </div>
@@ -129,7 +131,7 @@ const Register = (props) => {
                             <div className="w-12/12 text-gray-300">
                                 <small>Do you have an account ? </small>
                                 <Link to="/auth/login" className="text-gray-300">
-                                    <span className="bg-gray-800 px-4 py-2 ml-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150">Login</span>
+                                    <span className="btn-secondary ml-2 duration-300 transition transform hover:scale-105 hover:shadow-offset-black">Login</span>
                                 </Link>
                             </div>
                         </div>

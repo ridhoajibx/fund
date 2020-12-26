@@ -3,7 +3,6 @@ import { FaPlus } from "react-icons/fa";
 import { useState } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import Button from '../../Button/Button';
-import { PrimaryBtn } from '../../../variables/Colors';
 
 const repeats = [
     { id: 1, name: 'Select...', unavailable: true },
@@ -21,7 +20,7 @@ const AddExpense = () => {
                     <div className="text-center flex justify-between items-center">
                         <h6 className="text-gray-800 text-md font-bold uppercase">Add Expense</h6>
                         <Button
-                            color={PrimaryBtn + ' flex items-center'}
+                            color="flex items-center btn-primary duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black"
                             types="button"
                             handleClick={(e) => e.preventDefault()}
                             icon={<FaPlus className="mr-1" />}
@@ -46,7 +45,7 @@ const AddExpense = () => {
                                     <input
                                         id="expense"
                                         type="text"
-                                        className="px-3 py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+                                        className="px-3 py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition duration-150"
                                         placeholder="Expense name"
                                     />
                                 </div>
@@ -130,7 +129,7 @@ const AddExpense = () => {
                                     <input
                                         id="dtstart"
                                         type="date"
-                                        className="px-3 py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+                                        className="px-3 py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition duration-150"
                                     />
                                 </div>
                             </div>
@@ -146,7 +145,7 @@ const AddExpense = () => {
                                     <input
                                         id="dtend"
                                         type="date"
-                                        className="px-3 py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+                                        className="px-3 py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition duration-150"
                                     />
                                 </div>
                             </div>

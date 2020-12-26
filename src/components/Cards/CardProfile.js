@@ -1,8 +1,6 @@
 import { FaBriefcase, FaCalendar, FaCamera, FaMapMarked } from 'react-icons/fa';
-import { PrimaryBtn, UploadBtn } from '../../variables/Colors';
 import profileImg from '../../assets/img/team-1-800x800.jpg';
 import Button from '../Button/Button';
-import ButtonUpload from '../Button/ButtonUpload';
 
 const CardProfile = ({ setShowModal }) => {
     return (
@@ -17,11 +15,12 @@ const CardProfile = ({ setShowModal }) => {
                                     src={profileImg}
                                     className="shadow-xl rounded-full w-40 h-auto align-middle border-none -my-16 mx-auto max-w-100-px"
                                 />
-                                <ButtonUpload
-                                    color={UploadBtn + ' absolute right-0 top-10'}
+                                <Button
+                                    color="absolute right-0 top-10 btn-round border-2 border-gray-200 transition duration-300 transform hover:scale-105"
                                     types="button"
                                     handleClick={(e) => e.preventDefault()}
                                     icon={<FaCamera />}
+                                    label=""
                                 />
                             </div>
                         </div>
@@ -44,7 +43,7 @@ const CardProfile = ({ setShowModal }) => {
                         </div>
                         <div className="flex items-center mt-2">
                             <Button
-                                color={PrimaryBtn}
+                                color="btn-primary duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black"
                                 types="button"
                                 handleClick={() => setShowModal(true)}
                                 label="change password"

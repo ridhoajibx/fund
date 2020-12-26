@@ -1,0 +1,23 @@
+.btn-primary {
+    @apply bg-purple-600 text-white shadow-md font-bold rounded text-xs px-4 py-2 uppercase hover:bg-purple-700 focus:outline-none;
+}
+
+.btn-secondary {
+    @apply bg-gray-200 border-gray-600 text-gray-800 shadow-md font-bold rounded text-xs px-4 py-2 uppercase focus:outline-none;
+}
+
+.btn-dark {
+    @apply bg-gray-700 border-gray-600 text-gray-200 shadow-md font-bold rounded text-xs px-4 py-2 uppercase focus:outline-none;
+}
+
+.btn-danger {
+    @apply bg-red-600 text-white shadow-md font-bold rounded text-xs px-4 py-2 uppercase hover:bg-red-700 focus:outline-none;
+}
+
+.btn-warning {
+    @apply bg-yellow-600 text-gray-600 shadow-md font-bold rounded text-xs px-4 py-2 uppercase hover:bg-yellow-700 focus:outline-none;
+}
+
+.btn-round {
+    @apply bg-purple-600 text-white shadow-md font-bold rounded-full text-xs p-3 uppercase hover:bg-purple-700 focus:outline-none;
+}

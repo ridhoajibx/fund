@@ -18,7 +18,7 @@ const NotFound = () => {
                         <div className="relative flex flex-col items-center justify-center min-w-0 p-10 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0">
                             <h3 className="text-2xl mb-2 uppercase">404 This page not found</h3>
                             <div className="mt-2 uppercase">
-                                <Link className="px-4 py-2 bg-purple-600 shadow rounded focus:ring-2 focus:ring-purple-200 text-white font-bold text-sm flex items-center" to="/">
+                                <Link className="flex items-center btn-primary text-sm duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black" to="/">
                                     <FaHome className="mr-2" />
                                     Home
                                 </Link>

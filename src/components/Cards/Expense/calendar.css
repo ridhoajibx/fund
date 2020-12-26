@@ -1,0 +1,40 @@
+.fc {
+    @apply text-xs
+}
+
+.fc .fc-toolbar-title {
+    @apply text-sm m-0;
+}
+
+@media (min-width:1024px) {
+    .fc {
+        @apply text-sm
+    }
+    .fc .fc-toolbar-title {
+        @apply text-lg
+    }
+}
+
+.fc .fc-button-primary {
+    @apply border border-purple-600 bg-purple-600 text-xs px-3 py-1;
+}
+
+.fc .fc-button-primary:not(:disabled):active, .fc .fc-button-primary:not(:disabled).fc-button-active {
+    @apply border border-purple-700 bg-purple-700 outline-none;
+}
+
+.fc .fc-button-primary:hover, .fc .fc-button-primary:focus {
+    @apply border border-purple-700 bg-purple-700 outline-none cursor-pointer;
+}
+
+.fc .fc-button-primary:disabled {
+    @apply bg-gray-600 border border-gray-600;
+}
+
+.fc-h-event {
+    @apply border border-purple-600 bg-purple-600;
+}
+
+.fc-h-event:hover {
+    cursor: pointer;
+}

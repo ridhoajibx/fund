@@ -2,14 +2,14 @@
 export const Event = [
     {
         id: 1,
-        title: "Makan donat",
+        title: "Belanja bulanan",
         rrule: {
             freq: "daily",
             dtstart: "2020-11-01",
             until: "2020-11-01"
         },
         extendedProps: {
-            cost: "10000",
+            cost: "100000",
             repeat: "one time"
         }
     },

@@ -1,0 +1,8 @@
+/* Swall button custom */
+.swal2-styled.swal2-confirm {
+    @apply bg-purple-600 text-sm;
+}
+
+.swal2-styled.swal2-confirm:focus {
+    @apply outline-none;
+}
