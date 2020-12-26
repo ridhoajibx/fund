@@ -5,7 +5,7 @@ import { Event, formatMoney } from '../../../variables/Event';
 
 import TableDropdown from '../../Dropdown/TableDropdown';
 
-const History = ({ color, action }) => {
+const CardHistory = ({ color, action }) => {
     return (
         <>
             <div
@@ -139,12 +139,12 @@ const History = ({ color, action }) => {
     );
 }
 
-export default History;
+export default CardHistory;
 
-History.defaultProps = {
+CardHistory.defaultProps = {
     color: "light",
 };
 
-History.propTypes = {
+CardHistory.propTypes = {
     color: PropTypes.oneOf(["light", "dark"]),
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import CardCalendar from '../../components/Cards/Expense/CardCalendar';
-import AddExpense from '../../components/Cards/Expense/AddExpense';
-import History from '../../components/Cards/Expense/History';
+import CardFormExpense from '../../components/Cards/Expense/CardFormExpense';
+import CardHistory from '../../components/Cards/Expense/CardHistory';
 
 const Expense = () => {
     return (
@@ -11,12 +11,12 @@ const Expense = () => {
                     <CardCalendar />
                 </div>
                 <div className="w-full md:w-4/12 px-4">
-                    <AddExpense />
+                    <CardFormExpense />
                 </div>
             </div>
             <div className="flex flex-wrap">
                 <div className="w-full px-4">
-                    <History color="light" action/>
+                    <CardHistory color="light" action/>
                 </div>
             </div>
         </>

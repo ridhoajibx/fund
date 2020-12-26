@@ -11,7 +11,7 @@ const repeats = [
     { id: 4, name: 'Montly', unavailable: false },
 ]
 
-const AddExpense = () => {
+const CardFormExpense = () => {
     const [selectedRepeat, setSelectedRepeat] = useState(repeats[0])
     return (
         <>
@@ -157,4 +157,4 @@ const AddExpense = () => {
     );
 }
 
-export default AddExpense;
+export default CardFormExpense;

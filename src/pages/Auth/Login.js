@@ -18,7 +18,7 @@ const Login = (props) => {
                                 </div>
                                 <div className="btn-wrapper text-center">
                                     <Button
-                                        color="inline-flex items-center btn-secondary mr-1 mb-1 duration-300 transition transform hover:scale-105 hover:shadow-lg"
+                                        color="inline-flex items-center btn-secondary mr-1 mb-1 duration-300 transition transform hover:scale-105 hover:shadow-lg focus:scale-105 focus:shadow-lg"
                                         types="button"
                                         label="Github"
                                         icon={
@@ -30,7 +30,7 @@ const Login = (props) => {
                                             }
                                     />
                                     <Button
-                                        color="inline-flex items-center btn-secondary ml-1 mb-1 duration-300 transform hover:scale-105 hover:shadow-lg"
+                                        color="inline-flex items-center btn-secondary ml-1 mb-1 duration-300 transform hover:scale-105 hover:shadow-lg focus:scale-105 focus:shadow-lg"
                                         types="button"
                                         label="Google"
                                         icon={
@@ -94,7 +94,7 @@ const Login = (props) => {
                                     <div className="text-center mt-6">
                                         <Button
                                             handleClick={() => props.setAuth(true)}
-                                            color="btn-dark duration-300 transition transform hover:scale-105 hover:shadow-offset-black w-full py-3"
+                                            color="btn-dark duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black w-full py-3"
                                             types="button"
                                             label="sign in"
                                         />

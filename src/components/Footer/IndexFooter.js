@@ -33,22 +33,22 @@ const IndexFooter = () => {
                             </h5>
                             <div className="mt-6 lg:mb-0 mb-6">
                                 <Button 
-                                    color="btn-round inline-flex items-center bg-white text-blue-400 mr-2 hover:bg-white hover:shadow-lg transition hover:scale-105 duration-300 transform"
+                                    color="btn-round inline-flex items-center bg-white text-blue-400 mr-2 hover:bg-white transition hover:scale-105 hover:shadow-lg focus:scale-105 focus:shadow-lg duration-300 transform"
                                     label=""
                                     icon={<FaTwitter className="h-5 w-5 mx-auto" />}
                                 />
                                 <Button 
-                                    color="btn-round inline-flex items-center bg-white text-blue-600 mr-2 hover:bg-white hover:shadow-lg transition hover:scale-105 duration-300 transform"
+                                    color="btn-round inline-flex items-center bg-white text-blue-600 mr-2 hover:bg-white transition hover:scale-105 hover:shadow-lg focus:scale-105 focus:shadow-lg duration-300 transform"
                                     label=""
                                     icon={<FaFacebook className="h-5 w-5 mx-auto" />}
                                 />
                                 <Button 
-                                    color="btn-round inline-flex items-center bg-white text-pink-400 mr-2 hover:bg-white hover:shadow-lg transition hover:scale-105 duration-300 transform"
+                                    color="btn-round inline-flex items-center bg-white text-pink-400 mr-2 hover:bg-white transition hover:scale-105 hover:shadow-lg focus:scale-105 focus:shadow-lg duration-300 transform"
                                     label=""
                                     icon={<FaInstagram className="h-5 w-5 mx-auto" />}
                                 />
                                 <Button 
-                                    color="btn-round inline-flex items-center bg-white text-gray-900 mr-2 hover:bg-white hover:shadow-lg transition hover:scale-105 duration-300 transform"
+                                    color="btn-round inline-flex items-center bg-white text-gray-900 mr-2 hover:bg-white transition hover:scale-105 hover:shadow-lg focus:scale-105 focus:shadow-lg duration-300 transform"
                                     label=""
                                     icon={<FaGithub className="h-5 w-5 mx-auto" />}
                                 />

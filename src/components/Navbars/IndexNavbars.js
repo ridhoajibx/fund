@@ -25,7 +25,7 @@ const IndexNavbars = (props) => {
         <li className="flex items-center">
             <Link
                 to="/auth"
-                className="btn-primary duration-300 transition hover:scale-105 hover:shadow-offset-black ml-3 mb-3 md:mb-0"
+                className="btn-primary duration-300 transition hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black ml-3 mb-3 md:mb-0"
             >
                 Login
             </Link>

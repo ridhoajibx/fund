@@ -18,7 +18,7 @@ const Register = (props) => {
                                 </div>
                                 <div className="btn-wrapper text-center">
                                 <Button
-                                        color="inline-flex items-center btn-secondary mr-1 mb-1 duration-300 transition transform hover:scale-105 hover:shadow-lg"
+                                        color="inline-flex items-center btn-secondary mr-1 mb-1 duration-300 transition transform hover:scale-105 hover:shadow-lg focus:scale-105 focus:shadow-lg"
                                         types="button"
                                         label="Github"
                                         icon={
@@ -30,7 +30,7 @@ const Register = (props) => {
                                             }
                                     />
                                     <Button
-                                        color="inline-flex items-center btn-secondary ml-1 mb-1 duration-300 transition transform hover:scale-105 hover:shadow-lg"
+                                        color="inline-flex items-center btn-secondary ml-1 mb-1 duration-300 transition transform hover:scale-105 hover:shadow-lg focus:scale-105 focus:shadow-lg"
                                         types="button"
                                         label="Google"
                                         icon={
@@ -118,7 +118,7 @@ const Register = (props) => {
                                     <div className="text-center mt-6">
                                         <Button
                                             handleClick={() => props.setAuth(true)}
-                                            color="btn-dark duration-300 transition transform hover:scale-105 hover:shadow-offset-black w-full py-3"
+                                            color="btn-dark duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black w-full py-3"
                                             types="button"
                                             label="create account"
                                         />
@@ -131,7 +131,7 @@ const Register = (props) => {
                             <div className="w-12/12 text-gray-300">
                                 <small>Do you have an account ? </small>
                                 <Link to="/auth/login" className="text-gray-300">
-                                    <span className="btn-secondary ml-2 duration-300 transition transform hover:scale-105 hover:shadow-offset-black">Login</span>
+                                    <span className="btn-secondary ml-2 duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black">Login</span>
                                 </Link>
                             </div>
                         </div>

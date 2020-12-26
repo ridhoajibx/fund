@@ -5,13 +5,13 @@ import Logo from '../Logos/Logo';
 const AuthNavbar = () => {
     const [navbarOpen, setNavbarOpen] = React.useState(false);
     const btnLogin = <Link
-                        className="btn-secondary transform transition hover:scale-105 duration-300 hover:shadow-offset-black ml-3 mb-3 md:mb-0"
+                        className="btn-secondary transform transition hover:scale-105 duration-300 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black ml-3 mb-3 md:mb-0"
                         to="/auth/login"
                     >
                         Login
                     </Link>
     const btnRegister = <Link
-                            className="btn-secondary transform transition hover:scale-105 duration-300 hover:shadow-offset-black ml-3 mb-3 md:mb-0"
+                            className="btn-secondary transform transition hover:scale-105 duration-300 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black ml-3 mb-3 md:mb-0"
                             to="/auth/register"
                         >
                             Register

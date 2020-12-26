@@ -36,7 +36,7 @@ const Home = (props) => {
                                 <div className="mt-12">
                                     <Link
                                         to="/auth/register"
-                                        className="btn-primary px-6 py-4 duration-300 transition hover:scale-105 hover:shadow-offset-black"
+                                        className="btn-primary px-6 py-4 duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black"
                                     >
                                         Get started
                                     </Link>
