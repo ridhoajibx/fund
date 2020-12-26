@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App className="font-sans antialiased leading-relaxed" />
   </React.StrictMode>,
   document.getElementById('root')
 );

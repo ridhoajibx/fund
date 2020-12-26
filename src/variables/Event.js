@@ -43,3 +43,20 @@ export const formatMoney = (amount, decimalCount = 2, decimal = ".", thousands =
         console.log(e)
     }
 }
+
+export const pathName = (location) => {
+    switch (location) {
+        case "/dashboard":
+            return "Dashboard";
+        case "/expense":
+            return "Expense";
+        case "/budgets":
+            return "Budgets";
+        case "/settings":
+            return "Settings";
+        case "/tables":
+            return "Tables";
+        default:
+            break;
+    }
+}

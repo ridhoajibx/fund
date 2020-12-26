@@ -1,25 +1,10 @@
 import React from 'react';
 import { FaSearch } from 'react-icons/fa';
+import { pathName } from '../../variables/Event';
 import Notification from '../Dropdown/Notification';
 import User from '../Dropdown/User';
 
 const AppNavbar = (props) => {
-        const NamePath = (location) => {
-        switch (location) {
-            case "/dashboard":
-                return "Dashboard";
-            case "/expense":
-                return "Expense";
-            case "/budget":
-                return "Budgets";
-            case "/settings":
-                return "Settings";
-            case "/tables":
-                return "Tables";
-            default:
-                break;
-        }
-    }
     return (
         <>
             {/* Navbar */}
@@ -31,7 +16,7 @@ const AppNavbar = (props) => {
                         href="#pablo"
                         onClick={(e) => e.preventDefault()}
                     >
-                        {NamePath(window.location.pathname)}
+                        {pathName(window.location.pathname)}
                     </a>
                     {/* Form */}
                     <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">

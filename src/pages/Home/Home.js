@@ -6,7 +6,7 @@ import Disney from '../../assets/img/Disney_Logo.svg';
 import HBO from '../../assets/img/HBO-Logo.png';
 
 import IndexFooter from "../../components/Footer/IndexFooter";
-import { FaAngleDoubleRight } from "react-icons/fa";
+import { FaAngleDoubleRight, FaAtom } from "react-icons/fa";
 
 const Home = (props) => {
     return (
@@ -150,10 +150,8 @@ const Home = (props) => {
                         </div>
 
                         <div className="w-full md:w-4/12 px-12 md:px-4 ml-auto mr-auto">
-                            <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-20 h-20 mb-6 shadow-lg rounded-full bg-white">
-                                <svg className="w-20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
-                                </svg>
+                            <div className="text-gray-600 p-3 text-4xl text-center inline-flex items-center justify-center w-20 h-20 mb-6 shadow-lg rounded-full bg-white">
+                                <FaAtom />
                             </div>
                             <h3 className="text-3xl mb-2 font-semibold leading-normal">
                                 Subscriptions Feature

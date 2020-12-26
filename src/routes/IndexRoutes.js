@@ -13,6 +13,7 @@ import NotFound from '../pages/Errors/NotFound';
 import AuthRoutes from './AuthRoutes';
 import Tables from '../pages/Apps/Tables';
 import Expense from '../pages/Apps/Expense';
+import Budgets from '../pages/Apps/Budgets';
 
 const IndexRoutes = () => {
     const [auth, setAuth] = useState(false);
@@ -53,6 +54,13 @@ const IndexRoutes = () => {
             <PrivateRoutes exact path="/expense"
                 comp={AppLayouts}
                 child={Expense}
+                setAuth={setAuth}
+                auth={auth}
+            />
+
+            <PrivateRoutes exact path="/budgets"
+                comp={AppLayouts}
+                child={Budgets}
                 setAuth={setAuth}
                 auth={auth}
             />
