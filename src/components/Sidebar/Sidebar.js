@@ -1,5 +1,5 @@
 import React from "react";
-import { FaClipboardList, FaFingerprint, FaGoogleWallet, FaNewspaper, FaTable, FaTools, FaTv, FaUserCircle } from "react-icons/fa";
+import { FaGoogleWallet, FaReact, FaRegCreditCard, FaTable, FaTools, FaTv } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import User from "../Dropdown/User";
 import Logo from "../Logos/Logo";
@@ -99,32 +99,10 @@ export default function Sidebar(props) {
                                         <FaTv className={`
                                             mr-2 text-sm 
                                             ${(window.location.href.indexOf("/dashboard") !== -1
-                                            ? "opacity-75"
-                                            : "text-gray-400")}
+                                                ? "opacity-75"
+                                                : "text-gray-400")}
                                             `} /> {" "}
                                         Dashboard
-                                    </span>
-                                </Link>
-                            </li>
-
-                            <li className="items-center">
-                                <Link
-                                    className={
-                                        "text-xs uppercase py-3 font-bold block " +
-                                        (window.location.href.indexOf("/expense") !== -1
-                                            ? "text-purple-500 hover:text-purple-600"
-                                            : "text-gray-800 hover:text-gray-600")
-                                    }
-                                    to="/expense"
-                                >
-                                    <span className="flex items-center">
-                                        <FaTable className={`
-                                            mr-2 text-sm 
-                                            ${(window.location.href.indexOf("/expense") !== -1
-                                            ? "opacity-75"
-                                            : "text-gray-400")}
-                                            `} /> {" "}
-                                        Expense
                                     </span>
                                 </Link>
                             </li>
@@ -143,10 +121,54 @@ export default function Sidebar(props) {
                                         <FaGoogleWallet className={`
                                             mr-2 text-sm 
                                             ${(window.location.href.indexOf("/budgets") !== -1
-                                            ? "opacity-75"
-                                            : "text-gray-400")}
+                                                ? "opacity-75"
+                                                : "text-gray-400")}
                                             `} /> {" "}
                                         Budgets
+                                    </span>
+                                </Link>
+                            </li>
+
+                            <li className="items-center">
+                                <Link
+                                    className={
+                                        "text-xs uppercase py-3 font-bold block " +
+                                        (window.location.href.indexOf("/expense") !== -1
+                                            ? "text-purple-500 hover:text-purple-600"
+                                            : "text-gray-800 hover:text-gray-600")
+                                    }
+                                    to="/expense"
+                                >
+                                    <span className="flex items-center">
+                                        <FaTable className={`
+                                            mr-2 text-sm 
+                                            ${(window.location.href.indexOf("/expense") !== -1
+                                                ? "opacity-75"
+                                                : "text-gray-400")}
+                                            `} /> {" "}
+                                        Expense
+                                    </span>
+                                </Link>
+                            </li>
+
+                            <li className="items-center">
+                                <Link
+                                    className={
+                                        "text-xs uppercase py-3 font-bold block " +
+                                        (window.location.href.indexOf("/subscription") !== -1
+                                            ? "text-purple-500 hover:text-purple-600"
+                                            : "text-gray-800 hover:text-gray-600")
+                                    }
+                                    to="/subscription"
+                                >
+                                    <span className="flex items-center">
+                                        <FaRegCreditCard className={`
+                                            mr-2 text-sm 
+                                            ${(window.location.href.indexOf("/subscription") !== -1
+                                                ? "opacity-75"
+                                                : "text-gray-400")}
+                                            `} /> {" "}
+                                        Subscription
                                     </span>
                                 </Link>
                             </li>
@@ -165,100 +187,43 @@ export default function Sidebar(props) {
                                         <FaTools className={`
                                             mr-2 text-sm 
                                             ${(window.location.href.indexOf("/settings") !== -1
-                                            ? "opacity-75"
-                                            : "text-gray-400")}
+                                                ? "opacity-75"
+                                                : "text-gray-400")}
                                             `} /> {" "}
                                         Settings
                                     </span>
                                 </Link>
                             </li>
+                        </ul>
 
+                        {/* Divider */}
+                        <hr className="my-4 md:min-w-full" />
+                        {/* Heading */}
+                        <h6 className="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+                            Examples
+                        </h6>
+                        {/* Navigation */}
+
+                        <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
                             <li className="items-center">
                                 <Link
-                                    className={
-                                        "text-xs uppercase py-3 font-bold block " +
-                                        (window.location.href.indexOf("/tables") !== -1
-                                            ? "text-purple-500 hover:text-purple-600"
-                                            : "text-gray-800 hover:text-gray-600")
-                                    }
+                                    className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
                                     to="/tables"
                                 >
                                     <span className="flex items-center">
-                                        <FaTable className={`
-                                            mr-2 text-sm 
-                                            ${(window.location.href.indexOf("/tables") !== -1
-                                            ? "opacity-75"
-                                            : "text-gray-400")}
-                                            `} /> {" "}
-                                        Table
+                                        <FaTable className=" text-gray-500 mr-2 text-sm" /> {" "}
+                                        Tables
                                     </span>
                                 </Link>
                             </li>
-                        </ul>
-
-                        {/* Divider */}
-                        <hr className="my-4 md:min-w-full" />
-                        {/* Heading */}
-                        <h6 className="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-                            Auth Layout Pages
-                        </h6>
-                        {/* Navigation */}
-
-                        <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
                             <li className="items-center">
                                 <Link
                                     className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                                    to="/auth/login"
+                                    to="/errors"
                                 >
                                     <span className="flex items-center">
-                                        <FaFingerprint className=" text-gray-500 mr-2 text-sm" /> {" "}
-                                        Login
-                                    </span>
-                                </Link>
-                            </li>
-
-                            <li className="items-center">
-                                <Link
-                                    className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                                    to="/auth/register"
-                                >
-                                    <span className="flex items-center">
-                                        <FaClipboardList className=" text-gray-500 mr-2 text-sm" /> {" "}
-                                        Register
-                                    </span>
-                                </Link>
-                            </li>
-                        </ul>
-
-                        {/* Divider */}
-                        <hr className="my-4 md:min-w-full" />
-                        {/* Heading */}
-                        <h6 className="md:min-w-full text-gray-600 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-                            No Layout Pages
-                        </h6>
-                        {/* Navigation */}
-
-                        <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-                            <li className="items-center">
-                                <Link
-                                    className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                                    to="/landing"
-                                >
-                                    <span className="flex items-center">
-                                        <FaNewspaper className=" text-gray-500 mr-2 text-sm" /> {" "}
-                                        Landing page
-                                    </span>
-                                </Link>
-                            </li>
-
-                            <li className="items-center">
-                                <Link
-                                    className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
-                                    to="/profile"
-                                >
-                                    <span className="flex items-center">
-                                        <FaUserCircle className=" text-gray-500 mr-2 text-sm" /> {" "}
-                                        Profile page
+                                        <FaReact className=" text-gray-500 mr-2 text-sm" /> {" "}
+                                        404 pages
                                     </span>
                                 </Link>
                             </li>

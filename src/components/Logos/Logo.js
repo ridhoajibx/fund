@@ -3,7 +3,7 @@ import Brands from '../../assets/img/Logo.svg';
 
 const Logo = ({logoColor}) => {
     return (
-        <div className="flex items-center">
+        <div className="flex items-center font-extrabold">
             <img className="w-6 h-6 mr-2" src={Brands} alt="logo"/>
             <span className={logoColor}>FUN</span>D
         </div>

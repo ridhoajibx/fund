@@ -36,7 +36,7 @@ const Dropdown = () => {
                                 <span
                                     className="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-no-wrap bg-transparent text-gray-500"
                                 >
-                                    Admin Layout
+                                    Dashboard User
                                 </span>
 
                                 <div className="py-1">
@@ -50,6 +50,14 @@ const Dropdown = () => {
                                     </Menu.Item>
                                     <Menu.Item>
                                         <Link
+                                            to="/budgets"
+                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                                        >
+                                            Budgets
+                                        </Link>
+                                    </Menu.Item>
+                                    <Menu.Item>
+                                        <Link
                                             to="/expense"
                                             className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
                                         >
@@ -58,10 +66,10 @@ const Dropdown = () => {
                                     </Menu.Item>
                                     <Menu.Item>
                                         <Link
-                                            to="/budget"
+                                            to="/subscription"
                                             className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
                                         >
-                                            Budgets
+                                            Subscription
                                         </Link>
                                     </Menu.Item>
                                     <Menu.Item>
@@ -72,64 +80,30 @@ const Dropdown = () => {
                                             Settings
                                         </Link>
                                     </Menu.Item>
+                                </div>
+                                <div className="h-0 mx-4 my-2 border border-solid border-gray-200" />
+
+                                <span
+                                    className="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-no-wrap bg-transparent text-gray-500"
+                                >
+                                    Example
+                                </span>
+
+                                <div className="py-1">
                                     <Menu.Item>
                                         <Link
                                             to="/tables"
-                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                                            className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
                                         >
                                             Tables
                                         </Link>
                                     </Menu.Item>
-                                </div>
-                                <div className="h-0 mx-4 my-2 border border-solid border-gray-200" />
-
-                                <span
-                                    className="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-no-wrap bg-transparent text-gray-500"
-                                >
-                                    Auth Layout
-                                </span>
-
-                                <div className="py-1">
                                     <Menu.Item>
                                         <Link
-                                            to="/auth/login"
-                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
-                                        >
-                                            Login
-                                        </Link>
-                                    </Menu.Item>
-                                    <Menu.Item>
-                                        <Link
-                                            to="/auth/register"
-                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
-                                        >
-                                            Register
-                                        </Link>
-                                    </Menu.Item>
-                                </div>
-                                <div className="h-0 mx-4 my-2 border border-solid border-gray-200" />
-
-                                <span
-                                    className="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-no-wrap bg-transparent text-gray-500"
-                                >
-                                    No Layout
-                                </span>
-
-                                <div className="py-1">
-                                    <Menu.Item>
-                                        <Link
-                                            to="/landingpage"
+                                            to="/errors"
                                             className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
                                         >
-                                            Landing
-                                        </Link>
-                                    </Menu.Item>
-                                    <Menu.Item>
-                                        <Link
-                                            to="/profile"
-                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
-                                        >
-                                            Profile
+                                            404 pages
                                         </Link>
                                     </Menu.Item>
                                 </div>

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import authBg from '../../assets/img/bg_404.svg';
-import { FaHome } from 'react-icons/fa';
+import { FaReply } from 'react-icons/fa';
 
 const NotFound = () => {
     return (
@@ -24,8 +24,8 @@ const NotFound = () => {
                                 Error code: 404
                             </div>
                             <div className="mt-2 uppercase">
-                                <Link className="flex items-center btn-primary text-sm duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black" to="/">
-                                    <FaHome className="mr-2" />
+                                <Link className="flex items-center btn-primary text-xs duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black" to="/">
+                                    <FaReply className="mr-1" />
                                     Home
                                 </Link>
                             </div>

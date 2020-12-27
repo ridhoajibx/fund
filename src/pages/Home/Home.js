@@ -6,7 +6,7 @@ import Disney from '../../assets/img/Disney_Logo.svg';
 import HBO from '../../assets/img/HBO-Logo.png';
 
 import IndexFooter from "../../components/Footer/IndexFooter";
-import { FaAngleDoubleRight, FaAtom } from "react-icons/fa";
+import { FaAngleDoubleRight, FaReact } from "react-icons/fa";
 
 const Home = (props) => {
     return (
@@ -151,7 +151,7 @@ const Home = (props) => {
 
                         <div className="w-full md:w-4/12 px-12 md:px-4 ml-auto mr-auto">
                             <div className="text-gray-600 p-3 text-4xl text-center inline-flex items-center justify-center w-20 h-20 mb-6 shadow-lg rounded-full bg-white">
-                                <FaAtom />
+                                <FaReact />
                             </div>
                             <h3 className="text-3xl mb-2 font-semibold leading-normal">
                                 Subscriptions Feature

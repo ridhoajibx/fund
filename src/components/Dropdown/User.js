@@ -38,7 +38,7 @@ const User = ({
                             >
                                 <div className="px-4 py-3">
                                     <p className="text-sm leading-5">Signed in as</p>
-                                    <p className="text-sm font-medium leading-5 text-gray-900 truncate">
+                                    <p className="text-sm font-bold leading-5 text-gray-900 truncate">
                                         Jumakri Ridho Fauzi
                                     </p>
                                 </div>

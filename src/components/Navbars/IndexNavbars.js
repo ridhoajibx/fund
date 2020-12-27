@@ -51,17 +51,28 @@ const IndexNavbars = (props) => {
                 <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                     <Link
                         to="/"
-                        className="text-gray-800 text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase"
+                        className="text-gray-800 text-lg font-extrabold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase"
                     >
                         <Logo logoColor={`text-purple-600`} />
                     </Link>
-                    <button
+                    <button                         
+                        className="menu-wrapper block lg:hidden focus:outline-none"
+                        type="button"
+                        onClick={() => setNavbarOpen(!navbarOpen)}
+                    >
+                        <div className={`hamburger-menu ${navbarOpen && 'open'}`}>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </button>
+                    {/* <button
                         className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
                         type="button"
                         onClick={() => setNavbarOpen(!navbarOpen)}
                     >
                         {btnCollapsed}
-                    </button>
+                    </button> */}
                 </div>
                 <div
                     className={
