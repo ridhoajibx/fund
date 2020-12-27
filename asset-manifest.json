@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/fund/static/css/main.ccefa5f8.chunk.css",
-    "main.js": "/fund/static/js/main.414c8b4e.chunk.js",
-    "main.js.map": "/fund/static/js/main.414c8b4e.chunk.js.map",
+    "main.css": "/fund/static/css/main.0fca271d.chunk.css",
+    "main.js": "/fund/static/js/main.d58ae912.chunk.js",
+    "main.js.map": "/fund/static/js/main.d58ae912.chunk.js.map",
     "runtime-main.js": "/fund/static/js/runtime-main.05a28e3e.js",
     "runtime-main.js.map": "/fund/static/js/runtime-main.05a28e3e.js.map",
     "static/css/2.e69d4eef.chunk.css": "/fund/static/css/2.e69d4eef.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.b3636c2d.chunk.js.map": "/fund/static/js/3.b3636c2d.chunk.js.map",
     "index.html": "/fund/index.html",
     "static/css/2.e69d4eef.chunk.css.map": "/fund/static/css/2.e69d4eef.chunk.css.map",
-    "static/css/main.ccefa5f8.chunk.css.map": "/fund/static/css/main.ccefa5f8.chunk.css.map",
+    "static/css/main.0fca271d.chunk.css.map": "/fund/static/css/main.0fca271d.chunk.css.map",
     "static/js/2.a97d0b59.chunk.js.LICENSE.txt": "/fund/static/js/2.a97d0b59.chunk.js.LICENSE.txt",
     "static/media/Disney_Logo.e1eabf98.svg": "/fund/static/media/Disney_Logo.e1eabf98.svg",
     "static/media/HBO-Logo.4d2a6a9e.png": "/fund/static/media/HBO-Logo.4d2a6a9e.png",
@@ -37,7 +37,7 @@
     "static/js/runtime-main.05a28e3e.js",
     "static/css/2.e69d4eef.chunk.css",
     "static/js/2.a97d0b59.chunk.js",
-    "static/css/main.ccefa5f8.chunk.css",
-    "static/js/main.414c8b4e.chunk.js"
+    "static/css/main.0fca271d.chunk.css",
+    "static/js/main.d58ae912.chunk.js"
   ]
 }
