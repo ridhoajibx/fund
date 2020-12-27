@@ -38,14 +38,7 @@ export default function Sidebar(props) {
                     >
                         {/* Collapse header */}
                         <div className="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-gray-300">
-                            <div className="flex flex-wrap"
-                                enter="transition transform duration-300"
-                                enterstart="-translate-x-full opacity-30 ease-in"
-                                enterend="translate-x-0 opacity-100 ease-out"
-                                leave="transition transform duration-300"
-                                leavestart="translate-x-0 opacity-100 ease-out"
-                                leaveend="-translate-x-full opacity-0 ease-in"
-                            >
+                            <div className="flex flex-wrap">
                                 <div className="w-6/12">
                                     <Link
                                         className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-lg uppercase font-bold p-4 px-0"

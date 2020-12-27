@@ -63,36 +63,37 @@ const IndexFooter = () => {
                                     <ul className="list-unstyled">
                                         <li>
                                             <a
-                                                className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                                                 href="https://github.com/ridhoajibx/fund/blob/master/LICENSE.md"
+                                                target="_blank"
                                                 rel="noreferrer noopener"
+                                                className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                                             >
                                                 MIT License
                                             </a>
                                         </li>
                                         <li>
                                             <a
-                                                className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                                href="#"
+                                                href="!#"
                                                 rel="noreferrer noopener"
+                                                className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                                             >
                                                 Terms & Conditions
                                             </a>
                                         </li>
                                         <li>
                                             <a
-                                                className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                                href="#"
+                                                href="!#"
                                                 rel="noreferrer noopener"
+                                                className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                                             >
                                                 Privacy Policy
                                             </a>
                                         </li>
                                         <li>
                                             <a
-                                                className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                                href="#"
+                                                href="!#"
                                                 rel="noreferrer noopener"
+                                                className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                                             >
                                                 Contact Us
                                             </a>
@@ -108,9 +109,9 @@ const IndexFooter = () => {
                             <div className="text-sm text-gray-600 font-semibold py-1">
                                 Copyright © {new Date().getFullYear()} {" "}
                                 <a
-                                    href="#"
-                                    className="text-gray-600 hover:text-gray-900"
+                                    href="!#"
                                     rel="noreferrer noopener"
+                                    className="text-gray-600 hover:text-gray-900"
                                 >
                                     <LogoFooter logoColor={`text-purple-600`} /> Teams
                                 </a>

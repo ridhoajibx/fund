@@ -18,10 +18,11 @@ const SmallFooter = (props) => {
                             <div className="text-sm text-gray-100 font-semibold py-1 text-center md:text-left">
                                 Copyright © {new Date().getFullYear()}{" "}
                                 <a
-                                    href="#"
+                                    href="!#"
+                                    rel="noreferrer noopener"
                                     className="text-white hover:text-gray-400 text-sm font-semibold py-1"
                                 >
-                                    <LogoFooter logoColor={`text-purple-600`}/> Teams
+                                    <LogoFooter logoColor={`text-purple-600`} /> Teams
                                 </a>
                             </div>
                         </div>
@@ -29,15 +30,17 @@ const SmallFooter = (props) => {
                             <ul className="flex flex-wrap list-none md:justify-end  justify-center">
                                 <li>
                                     <a
-                                        href="#"
+                                        href="!#"
+                                        rel="noreferrer noopener"
                                         className="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3"
                                     >
-                                        <LogoFooter logoColor={`text-purple-600`}/> Teams
+                                        <LogoFooter logoColor={`text-purple-600`} /> Teams
                                     </a>
                                 </li>
                                 <li>
                                     <a
-                                        href="#"
+                                        href="!#"
+                                        rel="noreferrer noopener"
                                         className="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3"
                                     >
                                         About Us
@@ -45,7 +48,8 @@ const SmallFooter = (props) => {
                                 </li>
                                 <li>
                                     <a
-                                        href="#"
+                                        href="!#"
+                                        rel="noreferrer noopener"
                                         className="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3"
                                     >
                                         Blog
@@ -54,6 +58,8 @@ const SmallFooter = (props) => {
                                 <li>
                                     <a
                                         href="https://github.com/ridhoajibx/fund/blob/master/LICENSE.md"
+                                        target="_blank"
+                                        rel="noreferrer noopener"
                                         className="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3"
                                     >
                                         MIT License

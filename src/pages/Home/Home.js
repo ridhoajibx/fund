@@ -118,7 +118,7 @@ const Home = (props) => {
                                         target="_blank"
                                         rel="noreferrer noopener"
                                     >
-                                        <div className="bg-red-700 shadow-lg rounded-lg text-center p-8 mt-8 transition-all transform hover:shadow-lg rotate-3 hover:rotate-0">
+                                        <div className="bg-red-700 shadow-lg rounded-lg text-center p-8 mt-8 transition-all transform hover:shadow-lg -rotate-3 hover:rotate-0">
                                             <img
                                                 alt="..."
                                                 className="shadow-md rounded-full max-w-full w-20 h-20 mx-auto p-2 bg-white"
@@ -134,7 +134,7 @@ const Home = (props) => {
                                         target="_blank"
                                         rel="noreferrer noopener"
                                     >
-                                        <div className="bg-green-500 shadow-lg rounded-lg text-center p-8 mt-8 transition-all transform hover:shadow-lg -rotate-3 hover:rotate-0">
+                                        <div className="bg-green-500 shadow-lg rounded-lg text-center p-8 mt-8 transition-all transform hover:shadow-lg rotate-3 hover:rotate-0">
                                             <img
                                                 alt="..."
                                                 className="shadow-md rounded-full max-w-full w-20 h-20 mx-auto p-2 bg-white"
@@ -160,7 +160,7 @@ const Home = (props) => {
                                 <strong><span className="text-purple-600">FUN</span>D</strong> has a feature to pay digital products like Spotify, Netflix, HBO, and Disney.
                             </p>
                             <a
-                                href="#"
+                                href="!#"
                                 target="_blank"
                                 rel="noreferrer noopener"
                                 className="font-bold text-gray-800 hover:text-gray-600 ease-linear transition-all duration-150 flex items-center"

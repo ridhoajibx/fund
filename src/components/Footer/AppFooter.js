@@ -12,7 +12,8 @@ const AppFooter = () => {
                             <div className="text-sm text-gray-600 font-semibold py-1 text-center md:text-left">
                                 Copyright © {new Date().getFullYear()}{" "}
                                 <a
-                                    href="#"
+                                    href="!#"
+                                    rel="noreferrer noopener"
                                     className="text-gray-600 hover:text-gray-800 text-sm font-semibold py-1"
                                 >
                                     <LogoFooter logoColor={`text-purple-600`} /> Teams
@@ -23,7 +24,8 @@ const AppFooter = () => {
                             <ul className="flex flex-wrap list-none md:justify-end  justify-center">
                                 <li>
                                     <a
-                                        href="#"
+                                        href="!#"
+                                        rel="noreferrer noopener"
                                         className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
                                     >
                                         <LogoFooter logoColor={`text-purple-600`} /> Teams
@@ -31,7 +33,8 @@ const AppFooter = () => {
                                 </li>
                                 <li>
                                     <a
-                                        href="#"
+                                        href="!#"
+                                        rel="noreferrer noopener"
                                         className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
                                     >
                                         About Us
@@ -40,6 +43,8 @@ const AppFooter = () => {
                                 <li>
                                     <a
                                         href="https://github.com/ridhoajibx/fund/blob/master/LICENSE.md"
+                                        target="_blank"
+                                        rel="noreferrer noopener"
                                         className="text-gray-700 hover:text-gray-900 text-sm font-semibold block py-1 px-3"
                                     >
                                         MIT License

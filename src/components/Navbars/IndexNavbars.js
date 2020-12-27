@@ -9,9 +9,6 @@ import Logo from "../Logos/Logo";
 
 const IndexNavbars = (props) => {
     const [navbarOpen, setNavbarOpen] = React.useState(false);
-    const btnCollapsed = navbarOpen ? 
-        <svg className="w-6 h-6 duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg> :
-        <svg className="w-6 h-6 duration-500 transform -rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
 
     const guestNav = (<>
         <li className="flex items-center">
@@ -25,7 +22,7 @@ const IndexNavbars = (props) => {
         <li className="flex items-center">
             <Link
                 to="/auth"
-                className="btn-primary duration-300 transition hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black ml-3 mb-3 md:mb-0"
+                className="btn-primary duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black ml-3 mb-3 md:mb-0"
             >
                 Login
             </Link>
@@ -66,19 +63,10 @@ const IndexNavbars = (props) => {
                             <span></span>
                         </div>
                     </button>
-                    {/* <button
-                        className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-                        type="button"
-                        onClick={() => setNavbarOpen(!navbarOpen)}
-                    >
-                        {btnCollapsed}
-                    </button> */}
                 </div>
                 <div
-                    className={
-                        "lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none" +
-                        (navbarOpen ? " block" : " hidden")
-                    }
+                    className={`lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none 
+                                ${navbarOpen ? 'block' : 'hidden'}`}
                     id="example-navbar-warning"
                 >
                     <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
