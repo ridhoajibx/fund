@@ -14,6 +14,8 @@ import AuthRoutes from './AuthRoutes';
 import Tables from '../pages/Apps/Tables';
 import Expense from '../pages/Apps/Expense';
 import Budgets from '../pages/Apps/Budgets';
+import Loading from '../pages/Loading/Loading';
+import ForgotPassword from '../pages/Auth/ForgorPassword';
 
 const IndexRoutes = () => {
     const [auth, setAuth] = useState(false);
@@ -28,6 +30,10 @@ const IndexRoutes = () => {
                 </MainLayouts>
             </Route>
 
+            <Route exact path="/loading">
+                <Loading />
+            </Route>
+
             <AuthRoutes exact path="/auth/login"
                 comp={AuthLayouts}
                 child={Login}
@@ -38,6 +44,13 @@ const IndexRoutes = () => {
             <AuthRoutes exact path="/auth/register"
                 comp={AuthLayouts}
                 child={Register}
+                setAuth={setAuth}
+                auth={auth}
+            >
+            </AuthRoutes>
+            <AuthRoutes exact path="/auth/forgot-password"
+                comp={AuthLayouts}
+                child={ForgotPassword}
                 setAuth={setAuth}
                 auth={auth}
             >

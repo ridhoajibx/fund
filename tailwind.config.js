@@ -4,7 +4,7 @@ module.exports = {
     theme: {
         extend: {},
         fontFamily: {
-            'sans': ['Lato', 'Nunito', 'Varela Round', 'ui-sans-serif', 'system-ui'],
+            'sans': ['PT Sans', 'Varela Round', 'ui-sans-serif', 'system-ui'],
         },
         boxShadow: {
             sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',

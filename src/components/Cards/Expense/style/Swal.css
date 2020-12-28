@@ -1,7 +1,6 @@
 /* Swall button custom */
 .swal2-styled.swal2-confirm {
-    @apply bg-purple-600 text-sm;
-    padding: 6px 20px
+    @apply bg-purple-600 text-sm p-3 px-4 py-2;
 }
 
 .swal2-styled.swal2-confirm:focus {

@@ -23,7 +23,7 @@ const Home = (props) => {
                             </h2>
                             <p className="mt-4 text-lg leading-relaxed text-gray-600">
                                 <a
-                                    href="https://tailwindcss.com/?ref=creativetim"
+                                    href="https://tailwindcss.com/"
                                     className="text-gray-700"
                                     target="_blank"
                                     rel="noreferrer noopener"

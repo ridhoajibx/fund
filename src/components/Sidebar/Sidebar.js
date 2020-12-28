@@ -220,6 +220,17 @@ export default function Sidebar(props) {
                                     </span>
                                 </Link>
                             </li>
+                            <li className="items-center">
+                                <Link
+                                    className="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
+                                    to="/auth/forgot-password"
+                                >
+                                    <span className="flex items-center">
+                                        <FaReact className=" text-gray-500 mr-2 text-sm" /> {" "}
+                                        Reset password
+                                    </span>
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
