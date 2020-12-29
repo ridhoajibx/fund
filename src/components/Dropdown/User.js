@@ -47,7 +47,7 @@ const User = ({
                                     <Menu.Item>
                                         <Link
                                             to="/dashboard"
-                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800 hover:text-purple-600"
                                         >
                                             Dashboard
                                         </Link>
@@ -55,7 +55,7 @@ const User = ({
                                     <Menu.Item>
                                         <Link
                                             to="/settings"
-                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800 hover:text-purple-600"
                                         >
                                             Settings
                                         </Link>
@@ -67,7 +67,7 @@ const User = ({
                                     <Menu.Item>
                                         <button
                                             className={
-                                                "text-sm text-left py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800 hover:bg-purple-500 hover:text-gray-200 focus:outline-none"
+                                                "text-sm text-left py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800 hover:text-purple-600 focus:outline-none"
                                             }
                                             onClick={() => setAuth(false)}
                                         >

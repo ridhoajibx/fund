@@ -43,7 +43,7 @@ const Dropdown = () => {
                                     <Menu.Item>
                                         <Link
                                             to="/dashboard"
-                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-600 hover:text-purple-600"
                                         >
                                             Dashboard
                                         </Link>
@@ -51,7 +51,7 @@ const Dropdown = () => {
                                     <Menu.Item>
                                         <Link
                                             to="/budgets"
-                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-600 hover:text-purple-600"
                                         >
                                             Budgets
                                         </Link>
@@ -59,7 +59,7 @@ const Dropdown = () => {
                                     <Menu.Item>
                                         <Link
                                             to="/expense"
-                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-600 hover:text-purple-600"
                                         >
                                             Expense
                                         </Link>
@@ -67,7 +67,7 @@ const Dropdown = () => {
                                     <Menu.Item>
                                         <Link
                                             to="/subscription"
-                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-600 hover:text-purple-600"
                                         >
                                             Subscription
                                         </Link>
@@ -75,7 +75,7 @@ const Dropdown = () => {
                                     <Menu.Item>
                                         <Link
                                             to="/settings"
-                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                                            className="focus:outline-none text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-600 hover:text-purple-600"
                                         >
                                             Settings
                                         </Link>
@@ -93,7 +93,7 @@ const Dropdown = () => {
                                     <Menu.Item>
                                         <Link
                                             to="/tables"
-                                            className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                                            className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-600 hover:text-purple-600"
                                         >
                                             Tables
                                         </Link>
@@ -101,7 +101,7 @@ const Dropdown = () => {
                                     <Menu.Item>
                                         <Link
                                             to="/errors"
-                                            className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                                            className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-600 hover:text-purple-600"
                                         >
                                             404 pages
                                         </Link>
