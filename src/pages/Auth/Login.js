@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FaSpinner } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import githubImg from '../../assets/img/github.svg';
@@ -12,9 +12,13 @@ import Loading from '../Loading/Loading';
 const Login = (props) => {
     const { login, auth } = props;
     const history = useHistory();
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [showPass, setShowPass] = useState(false);
     const [email, bindEmail] = useInput();
     const [password, bindPassword] = useInput();
+
+    const handlePass = () => setShowPass(!showPass);
+
     const onSubmit = (e) => {
         e.preventDefault();
         if (!loading) {
@@ -25,9 +29,9 @@ const Login = (props) => {
 
     useEffect(() => {
         let timer = setTimeout(() => setLoading(false), 2000);
-        return () =>  clearTimeout(timer) 
+        return () => clearTimeout(timer)
     }, [loading]);
-    
+
     return (
         <>
             {!loading ?
@@ -107,11 +111,18 @@ const Login = (props) => {
                                             <input
                                                 id="password"
                                                 autoComplete="true"
-                                                type="password"
-                                                className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+                                                type={!showPass ? 'password' : 'text'}
+                                                className="relative px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                                                 placeholder="Password"
                                                 {...bindPassword}
                                             />
+                                            <button
+                                                onClick={handlePass}
+                                                type="button"
+                                                className="absolute bottom-0 right-0 flex items-center border-l border-gray-300 px-3.5 py-3.5 text-gray-500 focus:outline-none"
+                                            >
+                                                {!showPass ? <FaEye /> : <FaEyeSlash />}
+                                            </button>
                                         </div>
                                         <div>
                                             <label className="inline-flex items-center cursor-pointer">
