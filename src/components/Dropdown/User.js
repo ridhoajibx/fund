@@ -1,14 +1,19 @@
 import { Menu, Transition } from '@headlessui/react';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import profile from '../../assets/img/team-1-800x800.jpg'
 import PropTypes from "prop-types";
+import { connect } from 'react-redux';
+import { LogOutAuthActions } from '../../redux/actions/authActions';
 
-const User = ({ 
-    position,
-    ringImg,
-    setAuth
-}) => {
+const User = (props) => {
+    const {
+        position,
+        ringImg,
+        auth,
+        logout
+    } = props;
+    const history = useHistory();
     return (
         <li className="flex items-center relative text-left">
             <Menu>
@@ -19,7 +24,7 @@ const User = ({
                                 <img
                                     alt="..."
                                     className="w-full rounded-full align-middle border-none shadow-lg"
-                                    src={profile}
+                                    src={auth.user.photo ? auth.user.photo : profile}
                                 />
                             </span>
                         </Menu.Button>
@@ -39,7 +44,7 @@ const User = ({
                                 <div className="px-4 py-3">
                                     <p className="text-sm leading-5">Signed in as</p>
                                     <p className="text-sm font-bold leading-5 text-gray-900 truncate">
-                                        Jumakri Ridho Fauzi
+                                        {auth.user.name ? auth.user.name : "Jumakri"}
                                     </p>
                                 </div>
 
@@ -69,7 +74,7 @@ const User = ({
                                             className={
                                                 "text-sm text-left py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800 hover:text-purple-600 focus:outline-none"
                                             }
-                                            onClick={() => setAuth(false)}
+                                            onClick={() => logout(history)}
                                         >
                                             Logout
                                         </button>
@@ -83,8 +88,22 @@ const User = ({
         </li>
     );
 }
+const mapStateToProps = (state) => {
+    return {
+        auth: state,
+    }
+}
 
-export default User;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: (history) => {
+            dispatch(LogOutAuthActions(history));
+            // console.log(userState);
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (User);
 
 User.defaultProps = {
     position: "-right-40 lg:-left-40",

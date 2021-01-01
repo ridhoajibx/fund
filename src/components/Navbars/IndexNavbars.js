@@ -8,6 +8,7 @@ import User from "../Dropdown/User";
 import Logo from "../Logos/Logo";
 
 const IndexNavbars = (props) => {
+    const { auth } = props;
     const [navbarOpen, setNavbarOpen] = React.useState(false);
 
     const guestNav = (<>
@@ -40,7 +41,7 @@ const IndexNavbars = (props) => {
         
         <Dropdown />
 
-        <User setAuth={props.setAuth} color={`text-gray-800 hover:text-gray-600`} ringImg={`ring-purple-600`} />
+        <User auth={auth} color={`text-gray-800 hover:text-gray-600`} ringImg={`ring-purple-600`} />
     </>
     return (
         <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
@@ -70,7 +71,7 @@ const IndexNavbars = (props) => {
                     id="example-navbar-warning"
                 >
                     <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-                        {!props.auth ? guestNav : userNav}
+                        {!auth.isLoggedin ? guestNav : userNav}
                     </ul>
                 </div>
             </div>

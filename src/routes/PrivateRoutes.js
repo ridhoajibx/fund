@@ -1,13 +1,13 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
-const PrivateRoutes = ({ comp:Component, child: Children, setAuth, auth, ...rest }) => {
+const PrivateRoutes = ({ comp:Component, child: Children, auth, ...rest }) => {
     return (
         <Route
             {...rest}
             render={
-                props => auth ?
-                (<Component {...props} setAuth={ setAuth } >
+                props => auth.isLoggedin ?
+                (<Component {...props} auth={auth} >
                     <Children />
                 </Component>) :
                 (<Redirect to={{ pathname:'/' }} />)

@@ -1,13 +1,13 @@
 import IndexNavbars from "../components/Navbars/IndexNavbars";
 
 const MainLayouts = (props) => {
+    const { children, auth } = props;
     return (
         <div>
             <IndexNavbars 
-                auth={props.auth}
-                setAuth={props.setAuth}
+                auth={auth}
             />
-            {props.children}
+            {children}
         </div>
     );
 }

@@ -3,12 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import axios from 'axios';
+
+axios.defaults.baseURL = "https://peaceful-gorge-77974.herokuapp.com";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App className="font-sans antialiased leading-relaxed" />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <Provider store={store}>
+            <App className="font-sans antialiased leading-relaxed" />
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

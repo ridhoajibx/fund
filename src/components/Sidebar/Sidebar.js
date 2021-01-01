@@ -5,6 +5,7 @@ import User from "../Dropdown/User";
 import Logo from "../Logos/Logo";
 
 export default function Sidebar(props) {
+    const { auth } = props;
     const [collapseShow, setCollapseShow] = React.useState("hidden");
     return (
         <>
@@ -27,7 +28,7 @@ export default function Sidebar(props) {
                     </Link>
                     {/* User */}
                     <ul className="md:hidden items-center flex flex-wrap list-none">
-                        <User setAuth={props.setAuth} position={'right-0'} color={`text-gray-800 hover:text-gray-600`} ringImg={`ring-purple-600`} />
+                        <User auth={auth} position={'right-0'} color={`text-gray-800 hover:text-gray-600`} ringImg={`ring-purple-600`} />
                     </ul>
                     {/* Collapse */}
                     <div

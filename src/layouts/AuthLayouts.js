@@ -4,6 +4,7 @@ import AuthNavbar from '../components/Navbars/AuthNavbar';
 import authBg from '../assets/img/register_bg_2.png';
 
 function AuthLayouts(props) {
+    const { children } = props;
     return (
         <>
             {/* Navbar */}
@@ -19,7 +20,7 @@ function AuthLayouts(props) {
                     ></div>
 
                     {/* Page */}
-                    { props.children }
+                    { children }
 
                     {/* Footer */}
                     <SmallFooter absolute />

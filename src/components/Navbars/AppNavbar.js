@@ -5,6 +5,7 @@ import Notification from '../Dropdown/Notification';
 import User from '../Dropdown/User';
 
 const AppNavbar = (props) => {
+    const { auth } = props;
     return (
         <>
             {/* Navbar */}
@@ -35,7 +36,7 @@ const AppNavbar = (props) => {
                     <ul className="flex-col md:flex-row list-none items-center hidden md:flex">
                         <Notification />
                         <User
-                            setAuth={props.setAuth}
+                            auths={auth}
                             position={`-right-40 md:-left-40`}
                             color={`text-gray-100`}
                         />
