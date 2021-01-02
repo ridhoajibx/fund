@@ -7,36 +7,40 @@ import googleImg from '../../assets/img/google.svg';
 import Button from '../../components/Button/Button';
 import useInput from '../../customHooks/useInput';
 import { LoginAuthActions } from '../../redux/actions/authActions';
-import { ValidateLogin } from '../../variables/Validate';
+import Validate from '../../variables/Validate';
 import Loading from '../Loading/Loading';
 
 const Login = (props) => {
     const { login, auth } = props;
     const history = useHistory();
     const [loading, setLoading] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [showPass, setShowPass] = useState(false);
     const [errors, setErrors] = useState({});
     const [email, bindEmail] = useInput();
     const [password, bindPassword] = useInput();
 
+
     const handlePass = () => setShowPass(!showPass);
 
     const onSubmit = (e) => {
         e.preventDefault();
+        setErrors(Validate({ email, password }));
+        setIsSubmitting(true);
         setLoading(true)
-        setErrors(ValidateLogin({ email, password }));
-        if (Object.keys(errors).length === 0) {
-            login({ email, password }, history);
-        }
     }
 
     useEffect(() => {
-        let timer = setTimeout(() => setLoading(false), 2000);
-        return () => {
-            clearTimeout(timer)
+        if (Object.keys(errors).length === 0 && isSubmitting) {
+            return () => login({ email, password }, history);
         }
+    }, [errors, isSubmitting, login, email, password, history]);
+
+    useEffect(() => {
+        let timer = setTimeout(() => setLoading(false), 2000);
+        return () => clearTimeout(timer)
     }, [loading]);
-    console.log(Object.keys(errors), 'cek');
+
     return (
         <>
             {!loading ?
@@ -82,6 +86,11 @@ const Login = (props) => {
                                     <div className="text-gray-500 text-center mb-3 font-bold">
                                         <small>Or sign in with credentials</small>
                                     </div>
+                                    {auth.errors &&
+                                        <div className="bg-red-200 py-2 flex items-center justify-center rounded border border-red-300 text-red-500 text-center mb-3 font-bold">
+                                            <small>{auth.errors}</small>
+                                        </div>
+                                    }
                                     <form onSubmit={onSubmit}>
                                         <div className="relative w-full mb-3">
                                             <label
@@ -101,12 +110,7 @@ const Login = (props) => {
                                             />
                                             {errors.email &&
                                                 <small className="text-red-500 my-1">
-                                                    {`${errors.email}. `}
-                                                </small>
-                                            }
-                                            {auth.errors === "User not found" &&
-                                                <small className="text-red-500 my-1">
-                                                    {auth.errors}
+                                                    {errors.email}
                                                 </small>
                                             }
                                         </div>
@@ -138,12 +142,7 @@ const Login = (props) => {
 
                                             {errors.password &&
                                                 <small className="text-red-500 my-1">
-                                                    {`${errors.password}. `}
-                                                </small>
-                                            }
-                                            {auth.errors === "Wrong password" &&
-                                                <small className="text-red-500 my-1">
-                                                    {auth.errors}
+                                                    {errors.password}
                                                 </small>
                                             }
                                         </div>
