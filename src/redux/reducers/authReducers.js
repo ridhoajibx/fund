@@ -31,16 +31,20 @@ const authReducers = (state = newAuth, action) => {
                 isLoggedin: true,
                 user: action.payload.user,
                 token: action.payload.access_token,
+                errorsLogin: "",
+                errorsRegister: ""
             };
             axios.defaults.headers.common['Authorization'] = `Bearer ${action.payload.access_token}`;
             localStorage.setItem("auth", JSON.stringify(newAuthState))
             return newAuthState;
-            
+
         case authActionTypes.LOGOUT_SUCCESS:
             const LogOutAuthState = {
                 isLoggedin: false,
                 user: {},
                 token: "",
+                errorsLogin: "",
+                errorsRegister: ""
             };
             localStorage.removeItem("auth");
             return LogOutAuthState;
@@ -48,7 +52,9 @@ const authReducers = (state = newAuth, action) => {
         case authActionTypes.REGISTER_FAIL:
             const authRegisterFailState = {
                 isLoggedin: false,
-                errorsRegister: action.payload
+                errorsRegister: action.payload,
+                errorsLogin: "",
+                token: ""
             };
             return authRegisterFailState
 
@@ -57,6 +63,8 @@ const authReducers = (state = newAuth, action) => {
                 isLoggedin: true,
                 user: action.payload.userData,
                 token: action.payload.access_token,
+                errorsLogin: "",
+                errorsRegister: ""
             };
             axios.defaults.headers.common['Authorization'] = `Bearer ${action.payload.access_token}`;
             localStorage.setItem("auth", JSON.stringify(loginAuthState))
@@ -65,7 +73,8 @@ const authReducers = (state = newAuth, action) => {
         case authActionTypes.LOGIN_FAIL:
             const authLoginFailState = {
                 isLoggedin: false,
-                errorsLogin: action.payload
+                errorsLogin: action.payload,
+                errorsRegister: ""
             };
             return authLoginFailState;
         default:

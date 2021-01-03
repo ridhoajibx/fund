@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import githubImg from '../../assets/img/github.svg';
 import googleImg from '../../assets/img/google.svg';
 import Button from '../../components/Button/Button';
-import useInput from '../../customHooks/useInput';
+import useForm from '../../customHooks/useForm';
 import { RegisterAuthActions } from '../../redux/actions/authActions';
 import { ValidateRegister } from '../../variables/Validate';
 import Loading from '../Loading/Loading';
@@ -15,35 +16,40 @@ const Register = (props) => {
     const history = useHistory()
     const { register, auth } = props;
     // State
-    const [loading, setLoading] = useState(false);
     const [showPass, setShowPass] = useState(false);
     const [showPass2, setShowPass2] = useState(false);
-    const [errors, setErrors] = useState({});
-    // useInput
-    const [name, bindName] = useInput();
-    const [email, bindEmail] = useInput();
-    const [password, bindPassword] = useInput();
-    const [password2, bindPassword2] = useInput();
-    const [dateOfBirth, bindDateOfBirth] = useInput();
 
     const handlePass = () => setShowPass(!showPass)
     const handlePass2 = () => setShowPass2(!showPass2)
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!auth.isLoggedin) {
-            setLoading(true)
-            setErrors(ValidateRegister({ name, email, password, password2, dateOfBirth }));
-            if (Object.keys(errors).length === 0) {
-                register({ name, email, password, password2, dateOfBirth }, history);
-            }
-        }
+    // useForm
+    const {
+        values,
+        errors,
+        loading,
+        setLoading,
+        handleChange,
+        handleSubmit,
+    } = useForm(onSubmit, ValidateRegister);
+
+    function onSubmit() {
+        //  Redux Register
+        register(values, history);
     };
 
     useEffect(() => {
-        let timer = setTimeout(() => setLoading(false), 2000);
-        return () => clearTimeout(timer)
-    }, [loading])
+        auth.errorsRegister &&
+        Swal.fire({
+            icon: 'error',
+            title: 'Something wrongs!',
+            text: auth.errorsRegister,
+            confirmButtonText: `Ok`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setLoading(false)
+            }
+        })
+    }, [auth, setLoading]);
 
     return (
         <>
@@ -102,11 +108,13 @@ const Register = (props) => {
                                             <input
                                                 autoFocus
                                                 id="name"
-                                                autoComplete="true"
+                                                autoComplete="false"
                                                 type="name"
                                                 className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                                                 placeholder="Name"
-                                                {...bindName}
+                                                value={values.name || ''}
+                                                onChange={handleChange}
+                                                name="name"
                                             />
                                             {errors.name &&
                                                 <small className="text-red-500 my-1">
@@ -124,20 +132,17 @@ const Register = (props) => {
                                             </label>
                                             <input
                                                 id="email"
-                                                autoComplete="true"
+                                                autoComplete="false"
                                                 type="email"
                                                 className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                                                 placeholder="Email"
-                                                {...bindEmail}
+                                                value={values.email || ''}
+                                                onChange={handleChange}
+                                                name="email"
                                             />
                                             {errors.email &&
                                                 <small className="text-red-500 my-1">
                                                     {`${errors.email}. `}
-                                                </small>
-                                            }
-                                            {auth.errorsRegister === 'Email is already registered' &&
-                                                <small className="text-red-500 my-1">
-                                                    {auth.errorsRegister}
                                                 </small>
                                             }
 
@@ -153,12 +158,13 @@ const Register = (props) => {
                                             <div className="relative">
                                                 <input
                                                     id="password"
-                                                    name="password"
-                                                    autoComplete="true"
+                                                    autoComplete="false"
                                                     type={!showPass ? 'password' : 'text'}
                                                     className="relative px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                                                     placeholder="Password"
-                                                    {...bindPassword}
+                                                    value={values.password || ''}
+                                                    onChange={handleChange}
+                                                    name="password"
                                                 />
                                                 <button
                                                     onClick={handlePass}
@@ -185,13 +191,14 @@ const Register = (props) => {
                                             </label>
                                             <div className="relative">
                                                 <input
-                                                    name="password2"
                                                     id="password2"
-                                                    autoComplete="true"
+                                                    autoComplete="false"
                                                     type={!showPass2 ? 'password' : 'text'}
                                                     className="relative px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                                                     placeholder="Confirm password"
-                                                    {...bindPassword2}
+                                                    value={values.password2 || ''}
+                                                    onChange={handleChange}
+                                                    name="password2"
                                                 />
                                                 <div
                                                     onClick={handlePass2}
@@ -205,11 +212,6 @@ const Register = (props) => {
                                                     {`${errors.password2}. `}
                                                 </small>
                                             }
-                                            {auth.errorsRegister === 'Password is not the same' &&
-                                                <small className="text-red-500 my-1">
-                                                    {auth.errorsRegister}
-                                                </small>
-                                            }
                                         </div>
 
                                         <div className="relative w-full mb-3">
@@ -221,20 +223,16 @@ const Register = (props) => {
                                         </label>
                                             <input
                                                 id="dateofBirth"
-                                                name="dateofBirth"
                                                 autoComplete="false"
                                                 type="date"
                                                 className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                                                {...bindDateOfBirth}
+                                                value={values.dateofBirth || ''}
+                                                onChange={handleChange}
+                                                name="dateofBirth"
                                             />
-                                            {errors.dateOfBirth &&
+                                            {errors.dateofBirth &&
                                                 <small className="text-red-500 my-1">
-                                                    {`${errors.dateOfBirth}. `}
-                                                </small>
-                                            }
-                                            {auth.errorsRegister === "Date of birth is required!" &&
-                                                <small className="text-red-500 my-1">
-                                                    {auth.errorsRegister}
+                                                    {`${errors.dateofBirth}. `}
                                                 </small>
                                             }
                                         </div>

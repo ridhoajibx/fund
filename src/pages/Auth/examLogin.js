@@ -2,11 +2,10 @@ import { useEffect, useState } from 'react';
 import { FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import githubImg from '../../assets/img/github.svg';
 import googleImg from '../../assets/img/google.svg';
 import Button from '../../components/Button/Button';
-import useForm from '../../customHooks/useForm';
+import useInput from '../../customHooks/useInput';
 import { LoginAuthActions } from '../../redux/actions/authActions';
 import { ValidateLogin } from '../../variables/Validate';
 import Loading from '../Loading/Loading';
@@ -14,37 +13,31 @@ import Loading from '../Loading/Loading';
 const Login = (props) => {
     const { login, auth } = props;
     const history = useHistory();
-    const {
-        values,
-        errors,
-        loading,
-        setLoading,
-        handleChange,
-        handleSubmit,
-    } = useForm(onSubmit, ValidateLogin);
-
+    const [loading, setLoading] = useState(false);
     const [showPass, setShowPass] = useState(false);
+    const [errors, setErrors] = useState({});
+    const [email, bindEmail] = useInput();
+    const [password, bindPassword] = useInput();
+
     const handlePass = () => setShowPass(!showPass);
 
-    function onSubmit() {
-        // Redux login
-        login(values, history);
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (!auth.isLoggedin) {
+            if (Object.keys(errors).length === 0) {
+                setLoading(true)
+                login({ email, password }, history);
+            }
+        }
     }
 
     useEffect(() => {
-        auth.errorsLogin &&
-        Swal.fire({
-            icon: 'error',
-            title: 'Something get wrong!',
-            text: auth.errorsLogin,
-            confirmButtonText: `Ok`,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                setLoading(false)
-            }
-        })
-    }, [auth, setLoading]);
-    
+        let timer = setTimeout(() => setLoading(false), 3000);
+        return () => {
+            clearTimeout(timer)
+            setErrors(ValidateLogin({ email, password }));
+        }
+    }, [loading, setErrors, email, password]);
 
     return (
         <>
@@ -91,7 +84,7 @@ const Login = (props) => {
                                     <div className="text-gray-500 text-center mb-3 font-bold">
                                         <small>Or sign in with credentials</small>
                                     </div>
-                                    <form onSubmit={handleSubmit}>
+                                    <form onSubmit={onSubmit}>
                                         <div className="relative w-full mb-3">
                                             <label
                                                 className="block uppercase text-gray-700 text-xs font-bold mb-2"
@@ -106,13 +99,16 @@ const Login = (props) => {
                                                 type="email"
                                                 className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                                                 placeholder="Email"
-                                                value={values.email || ''}
-                                                onChange={handleChange}
-                                                name="email"
+                                                {...bindEmail}
                                             />
                                             {errors.email &&
                                                 <small className="text-red-500 my-1">
                                                     {`${errors.email}. `}
+                                                </small>
+                                            }
+                                            {auth.errorsLogin === "User not found" &&
+                                                <small className="text-red-500 my-1">
+                                                    {auth.errorsLogin}
                                                 </small>
                                             }
                                         </div>
@@ -131,9 +127,7 @@ const Login = (props) => {
                                                     type={!showPass ? 'password' : 'text'}
                                                     className="relative px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                                                     placeholder="Password"
-                                                    value={values.password || ''}
-                                                    onChange={handleChange}
-                                                    name="password"
+                                                    {...bindPassword}
                                                 />
                                                 <button
                                                     onClick={handlePass}
@@ -147,6 +141,11 @@ const Login = (props) => {
                                             {errors.password &&
                                                 <small className="text-red-500 my-1">
                                                     {`${errors.password}. `}
+                                                </small>
+                                            }
+                                            {auth.errorsLogin === "Wrong password" &&
+                                                <small className="text-red-500 my-1">
+                                                    {auth.errorsLogin}
                                                 </small>
                                             }
                                         </div>
@@ -165,7 +164,7 @@ const Login = (props) => {
 
                                         <div className="text-center mt-6">
                                             <Button
-                                                handleClick={handleSubmit}
+                                                handleClick={onSubmit}
                                                 color="flex items-center justify-center btn-dark duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black w-full py-3"
                                                 types="submit"
                                                 label="sign in"
@@ -194,7 +193,7 @@ const Login = (props) => {
                     </div>
                 </div> :
                 <Loading />
-            } 
+            }
         </>
     );
 }
