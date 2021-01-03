@@ -9,6 +9,7 @@ const useInput = (initialValue = '') => {
         value,
         onChange: (e) => {
             setValue(e.target.value)
+            // setValue(values => ({ ...values, [e.target.name]: e.target.value }))
         }
     }
     return [value, bind, reset]

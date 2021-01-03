@@ -3,18 +3,10 @@ import { authActionTypes } from "../actions/authActions";
 
 const authState = {
     isLoggedin: false,
-    user: {
-        id: null,
-        name: '',
-        email: '',
-        password: '',
-        dateOfBirth: '',
-        updatedAt: '',
-        createdAt: '',
-        photo: ''
-    },
+    user: {},
     token: "",
-    errors: ""
+    errorsLogin: "",
+    errorsRegister: ""
 }
 
 const getAuthState = () => {
@@ -54,7 +46,11 @@ const authReducers = (state = newAuth, action) => {
             return LogOutAuthState;
 
         case authActionTypes.REGISTER_FAIL:
-            return state
+            const authRegisterFailState = {
+                isLoggedin: false,
+                errorsRegister: action.payload
+            };
+            return authRegisterFailState
 
         case authActionTypes.LOGIN_SUCCESS:
             const loginAuthState = {
@@ -67,11 +63,11 @@ const authReducers = (state = newAuth, action) => {
             return loginAuthState;
 
         case authActionTypes.LOGIN_FAIL:
-            const authState = {
+            const authLoginFailState = {
                 isLoggedin: false,
-                errors: action.payload
+                errorsLogin: action.payload
             };
-            return authState;
+            return authLoginFailState;
         default:
             return state;
     }

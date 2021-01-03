@@ -60,3 +60,7 @@ export const pathName = (location) => {
             break;
     }
 }
+
+export const showPass = (bool) => {
+    return () => !bool;
+}

@@ -14,11 +14,13 @@ const RegisterAuthActions = (userState, history) => {
         try {
             const res = await axios.post("/users/register", userState);
             const { data } = res;
-            dispatch({ type: authActionTypes.REGISTER_SUCCESS, payload: data });
-            history.push('/');
+            if (data.status === "Success") {
+                dispatch({ type: authActionTypes.REGISTER_SUCCESS, payload: data });
+                history.push('/');
+            }
         } catch (error) {
-            console.log(error);
-            dispatch({ type: authActionTypes.REGISTER_FAIL, payload: {} })
+            const errorMsg = error.response.data.msg
+            dispatch({ type: authActionTypes.REGISTER_FAIL, payload: errorMsg })
         }
     }
 }

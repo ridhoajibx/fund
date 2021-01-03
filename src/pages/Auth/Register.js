@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FaSpinner } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import githubImg from '../../assets/img/github.svg';
@@ -7,23 +7,36 @@ import googleImg from '../../assets/img/google.svg';
 import Button from '../../components/Button/Button';
 import useInput from '../../customHooks/useInput';
 import { RegisterAuthActions } from '../../redux/actions/authActions';
+import { ValidateRegister } from '../../variables/Validate';
 import Loading from '../Loading/Loading';
+
 
 const Register = (props) => {
     const history = useHistory()
-    const { register } = props;
+    const { register, auth } = props;
+    // State
     const [loading, setLoading] = useState(false);
+    const [showPass, setShowPass] = useState(false);
+    const [showPass2, setShowPass2] = useState(false);
+    const [errors, setErrors] = useState({});
+    // useInput
     const [name, bindName] = useInput();
     const [email, bindEmail] = useInput();
     const [password, bindPassword] = useInput();
     const [password2, bindPassword2] = useInput();
     const [dateOfBirth, bindDateOfBirth] = useInput();
 
+    const handlePass = () => setShowPass(!showPass)
+    const handlePass2 = () => setShowPass2(!showPass2)
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!loading) {
+        if (!auth.isLoggedin) {
             setLoading(true)
-            register({ name, email, password, password2, dateOfBirth }, history);
+            setErrors(ValidateRegister({ name, email, password, password2, dateOfBirth }));
+            if (Object.keys(errors).length === 0) {
+                register({ name, email, password, password2, dateOfBirth }, history);
+            }
         }
     };
 
@@ -31,6 +44,7 @@ const Register = (props) => {
         let timer = setTimeout(() => setLoading(false), 2000);
         return () => clearTimeout(timer)
     }, [loading])
+
     return (
         <>
             {!loading ?
@@ -84,16 +98,21 @@ const Register = (props) => {
                                                 htmlFor="name"
                                             >
                                                 Name
-                                        </label>
+                                            </label>
                                             <input
                                                 autoFocus
                                                 id="name"
                                                 autoComplete="true"
-                                                type="email"
+                                                type="name"
                                                 className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                                                 placeholder="Name"
                                                 {...bindName}
                                             />
+                                            {errors.name &&
+                                                <small className="text-red-500 my-1">
+                                                    {`${errors.name}. `}
+                                                </small>
+                                            }
                                         </div>
 
                                         <div className="relative w-full mb-3">
@@ -102,7 +121,7 @@ const Register = (props) => {
                                                 htmlFor="email"
                                             >
                                                 Email
-                                        </label>
+                                            </label>
                                             <input
                                                 id="email"
                                                 autoComplete="true"
@@ -111,6 +130,17 @@ const Register = (props) => {
                                                 placeholder="Email"
                                                 {...bindEmail}
                                             />
+                                            {errors.email &&
+                                                <small className="text-red-500 my-1">
+                                                    {`${errors.email}. `}
+                                                </small>
+                                            }
+                                            {auth.errorsRegister === 'Email is already registered' &&
+                                                <small className="text-red-500 my-1">
+                                                    {auth.errorsRegister}
+                                                </small>
+                                            }
+
                                         </div>
 
                                         <div className="relative w-full mb-3">
@@ -119,48 +149,94 @@ const Register = (props) => {
                                                 htmlFor="password"
                                             >
                                                 Password
-                                        </label>
-                                            <input
-                                                id="password"
-                                                autoComplete="true"
-                                                type="password"
-                                                className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                                                placeholder="Password"
-                                                {...bindPassword}
-                                            />
+                                            </label>
+                                            <div className="relative">
+                                                <input
+                                                    id="password"
+                                                    name="password"
+                                                    autoComplete="true"
+                                                    type={!showPass ? 'password' : 'text'}
+                                                    className="relative px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+                                                    placeholder="Password"
+                                                    {...bindPassword}
+                                                />
+                                                <button
+                                                    onClick={handlePass}
+                                                    type="button"
+                                                    className="absolute bottom-0 right-0 flex items-center border-l border-gray-300 px-3.5 py-3.5 text-gray-500 focus:outline-none"
+                                                >
+                                                    {!showPass ? <FaEye /> : <FaEyeSlash />}
+                                                </button>
+                                            </div>
+                                            {errors.password &&
+                                                <small className="text-red-500 my-1">
+                                                    {`${errors.password}. `}
+                                                </small>
+                                            }
+
                                         </div>
 
                                         <div className="relative w-full mb-3">
                                             <label
                                                 className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                                                htmlFor="confirm-password"
+                                                htmlFor="password2"
                                             >
                                                 Confirm Password
-                                        </label>
-                                            <input
-                                                id="confirm-password"
-                                                autoComplete="true"
-                                                type="password"
-                                                className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                                                placeholder="Confirm Password"
-                                                {...bindPassword2}
-                                            />
+                                            </label>
+                                            <div className="relative">
+                                                <input
+                                                    name="password2"
+                                                    id="password2"
+                                                    autoComplete="true"
+                                                    type={!showPass2 ? 'password' : 'text'}
+                                                    className="relative px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+                                                    placeholder="Confirm password"
+                                                    {...bindPassword2}
+                                                />
+                                                <div
+                                                    onClick={handlePass2}
+                                                    className="absolute bottom-0 right-0 flex items-center border-l border-gray-300 px-3.5 py-3.5 text-gray-500 focus:outline-none cursor-pointer"
+                                                >
+                                                    {!showPass2 ? <FaEye /> : <FaEyeSlash />}
+                                                </div>
+                                            </div>
+                                            {errors.password2 &&
+                                                <small className="text-red-500 my-1">
+                                                    {`${errors.password2}. `}
+                                                </small>
+                                            }
+                                            {auth.errorsRegister === 'Password is not the same' &&
+                                                <small className="text-red-500 my-1">
+                                                    {auth.errorsRegister}
+                                                </small>
+                                            }
                                         </div>
 
                                         <div className="relative w-full mb-3">
                                             <label
                                                 className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                                                htmlFor="dob"
+                                                htmlFor="dateofBirth"
                                             >
                                                 Date of birth
                                         </label>
                                             <input
-                                                id="dob"
+                                                id="dateofBirth"
+                                                name="dateofBirth"
                                                 autoComplete="false"
                                                 type="date"
                                                 className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                                                 {...bindDateOfBirth}
                                             />
+                                            {errors.dateOfBirth &&
+                                                <small className="text-red-500 my-1">
+                                                    {`${errors.dateOfBirth}. `}
+                                                </small>
+                                            }
+                                            {auth.errorsRegister === "Date of birth is required!" &&
+                                                <small className="text-red-500 my-1">
+                                                    {auth.errorsRegister}
+                                                </small>
+                                            }
                                         </div>
 
                                         <div>
@@ -212,13 +288,18 @@ const Register = (props) => {
     );
 }
 
+const mapStateToProps = (state) => {
+    return {
+        auth: state
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         register: (userState, history) => {
             dispatch(RegisterAuthActions(userState, history));
-            // console.log(userState);
         }
     }
 }
 
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

@@ -23,20 +23,22 @@ const Login = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        setLoading(true)
-        setErrors(ValidateLogin({ email, password }));
-        if (Object.keys(errors).length === 0) {
-            login({ email, password }, history);
+        if (!auth.isLoggedin) {
+            setLoading(true)
+            setErrors(ValidateLogin({ email, password }));
+            if (Object.keys(errors).length === 0) {
+                login({ email, password }, history);
+            }
         }
     }
 
     useEffect(() => {
-        let timer = setTimeout(() => setLoading(false), 2000);
+        let timer = setTimeout(() => setLoading(false), 3000);
         return () => {
             clearTimeout(timer)
         }
     }, [loading]);
-    console.log(Object.keys(errors), 'cek');
+
     return (
         <>
             {!loading ?
@@ -104,9 +106,9 @@ const Login = (props) => {
                                                     {`${errors.email}. `}
                                                 </small>
                                             }
-                                            {auth.errors === "User not found" &&
+                                            {auth.errorsLogin === "User not found" &&
                                                 <small className="text-red-500 my-1">
-                                                    {auth.errors}
+                                                    {auth.errorsLogin}
                                                 </small>
                                             }
                                         </div>
@@ -141,9 +143,9 @@ const Login = (props) => {
                                                     {`${errors.password}. `}
                                                 </small>
                                             }
-                                            {auth.errors === "Wrong password" &&
+                                            {auth.errorsLogin === "Wrong password" &&
                                                 <small className="text-red-500 my-1">
-                                                    {auth.errors}
+                                                    {auth.errorsLogin}
                                                 </small>
                                             }
                                         </div>
