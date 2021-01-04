@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 
 const Button = ({color, types, handleClick, label, icon}) => {
     return (
-        <button className={color} type={types} onClick={handleClick}>
+        <button className={color} type={types} onClick={handleClick} >
             {icon} {label}
         </button>
     );
 }
 Button.defaultProps = {
     types: "button",
-    label: "Submit"
+    label: "Submit",
 }
 
 Button.propTypes = {

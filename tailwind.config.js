@@ -23,6 +23,7 @@ module.exports = {
         extend: {
             backgroundColor: ['active'],
             pointerEvents: ['hover', 'focus'],
+            opacity: ['disabled'],
         },
     },
     plugins: [],

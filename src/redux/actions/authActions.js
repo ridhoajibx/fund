@@ -17,9 +17,11 @@ const RegisterAuthActions = (userState, history) => {
             if (data.status === "Success") {
                 dispatch({ type: authActionTypes.REGISTER_SUCCESS, payload: data });
                 history.push('/');
+            } else {
+                throw res;
             }
         } catch (error) {
-            const errorMsg = error.response.data.msg
+            const errorMsg = error.data.msg
             dispatch({ type: authActionTypes.REGISTER_FAIL, payload: errorMsg })
         }
     }
@@ -33,9 +35,11 @@ const LoginAuthActions = (loginState, history) => {
             if (data.status === "Success") {
                 dispatch({ type: authActionTypes.LOGIN_SUCCESS, payload: data });
                 history.push('/');
+            } else {
+                throw res;
             }
         } catch (error) {
-            const errorMsg = error.response.data.msg
+            const errorMsg = error.data.msg
             dispatch({ type: authActionTypes.LOGIN_FAIL, payload: errorMsg })
         }
     }
