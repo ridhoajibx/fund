@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BgImg from "../../assets/img/Oreti2.svg"
 import Spotify from '../../assets/img/spotify.png';
@@ -7,10 +8,23 @@ import HBO from '../../assets/img/HBO-Logo.png';
 
 import IndexFooter from "../../components/Footer/IndexFooter";
 import { FaAngleDoubleRight, FaReact } from "react-icons/fa";
+import Loading from "../Loading/Loading";
 
 const Home = (props) => {
+    const { auth } = props;
+    const [loadingPage, setLoadingPage] = useState(true);
+
+    useEffect(() => {
+        let timer = setTimeout(() => {
+            setLoadingPage(false)
+        }, 3000);
+        return () => {
+            clearTimeout(timer);
+        }
+    }, [loadingPage])
     return (
         <>
+        {loadingPage && <Loading /> }
             <section className="header relative items-center flex h-screen max-h-860-px">
                 <div className="container mx-auto items-center flex flex-wrap">
                     <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
@@ -32,11 +46,11 @@ const Home = (props) => {
                                 </a>
                                 helps people to control their financial expenses.
                             </p>
-                            {props.auth ? '' :
+                            {!auth.isLoggedin &&
                                 <div className="mt-12">
                                     <Link
                                         to="/auth/register"
-                                        className="btn-primary px-6 py-4 duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black"
+                                        className="inline-flex btn-primary px-6 py-4 duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black"
                                     >
                                         Get started
                                     </Link>

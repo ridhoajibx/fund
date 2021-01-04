@@ -8,6 +8,7 @@ import Button from '../../components/Button/Button';
 import { LoginAuthActions } from '../../redux/actions/authActions';
 import { useForm } from "react-hook-form";
 import PasswordPopover from '../../variables/PasswordPopover';
+import Loading from '../Loading/Loading';
 
 const Login = (props) => {
     const {
@@ -22,7 +23,8 @@ const Login = (props) => {
 
     const { login, auth } = props;
     const history = useHistory();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [loadingPage, setLoadingPage] = useState(true);
     const [showPass, setShowPass] = useState(false);
 
     const handlePass = () => setShowPass(!showPass);
@@ -41,11 +43,14 @@ const Login = (props) => {
     }
 
     useEffect(() => {
-        let timer = setTimeout(() => setLoading(false), 3000);
+        let timer = setTimeout(() => {
+            setLoading(false)
+            setLoadingPage(false)
+        }, 3000);
         return () => {
             clearTimeout(timer)
         }
-    }, [loading]);
+    }, [loading, loadingPage]);
 
     // useEffect(() => {
     //     console.log(("touched", formState.touched), ("submitted", formState));
@@ -53,6 +58,7 @@ const Login = (props) => {
 
     return (
         <>
+        {loadingPage && <Loading /> }
             <div className="container mx-auto px-4 h-full">
                 <div className="flex content-center items-center justify-center h-full">
                     <div className="w-full lg:w-4/12 px-4">

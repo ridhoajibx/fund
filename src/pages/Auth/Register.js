@@ -9,6 +9,7 @@ import { RegisterAuthActions } from '../../redux/actions/authActions';
 import { useForm } from "react-hook-form";
 import PasswordPopover from '../../variables/PasswordPopover';
 import DateofBirthPopover from '../../variables/DateofBirthPopover';
+import Loading from '../Loading/Loading';
 
 
 const Register = (props) => {
@@ -26,6 +27,7 @@ const Register = (props) => {
     const history = useHistory()
     // State
     const [loading, setLoading] = useState(false);
+    const [loadingPage, setLoadingPage] = useState(true);
     const [showPass, setShowPass] = useState(false);
     const [showPass2, setShowPass2] = useState(false);
 
@@ -55,11 +57,14 @@ const Register = (props) => {
     }
 
     useEffect(() => {
-        let timer = setTimeout(() => setLoading(false), 3000);
+        let timer = setTimeout(() => {
+            setLoading(false)
+            setLoadingPage(false)
+        }, 3000);
         return () => {
             clearTimeout(timer);
         }
-    }, [loading])
+    }, [loading, loadingPage])
 
     // useEffect(() => {
     //     console.log("touched", formState.touched);
@@ -67,6 +72,7 @@ const Register = (props) => {
 
     return (
         <>
+            {loadingPage && <Loading />}
             <div className="container mx-auto px-4 h-full">
                 <div className="flex content-center items-center justify-center h-full">
                     <div className="w-full lg:w-6/12 px-4">
@@ -148,7 +154,7 @@ const Register = (props) => {
                                         />
                                         {errors.email?.type === "required" && <p className="text-red-500 text-xs mt-1">"Email address is required"</p>}
                                         {errors.email?.type === "pattern" && <p className="text-red-500 text-xs mt-1">"Email address is invalid"</p>}
-                                        {auth.errorsRegister === "Email is already registered" && 
+                                        {auth.errorsRegister === "Email is already registered" &&
                                             <p className="text-red-500 text-xs mt-1">{auth.errorsRegister}</p>
                                         }
                                     </div>
@@ -250,11 +256,11 @@ const Register = (props) => {
                                                         className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                                                         name="dateofBirth"
                                                         ref={register({ required: "Date is Required" })}
-                                                            onFocus={() => props.visible(true)}
-                                                            onBlur={() => props.visible(false)}
-                                                            onChange={() =>
-                                                                props.validate("dateofBirth", getValues, setError, clearErrors)
-                                                            }
+                                                        onFocus={() => props.visible(true)}
+                                                        onBlur={() => props.visible(false)}
+                                                        onChange={() =>
+                                                            props.validate("dateofBirth", getValues, setError, clearErrors)
+                                                        }
                                                     />
                                                 )}
                                         </DateofBirthPopover>
