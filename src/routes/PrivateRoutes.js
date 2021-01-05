@@ -1,4 +1,3 @@
-import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 const PrivateRoutes = ({ comp:Component, child: Children, auth, ...rest }) => {
@@ -10,7 +9,7 @@ const PrivateRoutes = ({ comp:Component, child: Children, auth, ...rest }) => {
                 (<Component {...props} auth={auth} >
                     <Children />
                 </Component>) :
-                (<Redirect to={{ pathname:'/' }} />)
+                (<Redirect to={{ pathname:'/auth/login' }} />)
             }
         />
     );
