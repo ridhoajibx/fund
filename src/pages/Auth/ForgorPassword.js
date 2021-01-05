@@ -1,9 +1,23 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../components/Button/Button';
+import Loading from '../Loading/Loading';
 
 const ForgotPassword = (props) => {
+
+    const [loadingPage, setLoadingPage] = useState(true);
+
+    useEffect(() => {
+        let timer = setTimeout(() => {
+            setLoadingPage(false)
+        }, 3000);
+        return () => {
+            clearTimeout(timer)
+        }
+    }, [loadingPage]);
     return (
         <>
+            { loadingPage && <Loading /> }
             <div className="container mx-auto px-4 h-full">
                 <div className="flex content-center items-center justify-center h-full">
                     <div className="w-full lg:w-4/12 px-4">

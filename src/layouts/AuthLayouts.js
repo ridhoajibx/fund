@@ -1,10 +1,10 @@
-import React from 'react'
 import SmallFooter from '../components/Footer/SmallFooter';
 import AuthNavbar from '../components/Navbars/AuthNavbar';
 import authBg from '../assets/img/register_bg_2.png';
 
 function AuthLayouts(props) {
     const { children } = props;
+
     return (
         <>
             {/* Navbar */}
