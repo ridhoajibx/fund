@@ -115,11 +115,14 @@ const Login = (props) => {
                                             className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                                             placeholder="Email"
                                             name="email"
-                                            ref={register({ required: true, pattern: /^\S+@\S+$/i })}
+                                            ref={register({ required: true, pattern: /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/i })}
                                         />
-                                        {errors.email?.type === "required" && <p className="text-red-500 text-xs mt-1">"Email address is required"</p>}
-                                        {errors.email?.type === "pattern" && <p className="text-red-500 text-xs mt-1">"Email address is invalid"</p>}
+                                        {errors.email?.type === "required" && <p className="text-red-500 text-xs mt-1">Email address is required</p>}
+                                        {errors.email?.type === "pattern" && <p className="text-red-500 text-xs mt-1">Email address is invalid</p>}
                                         {auth.errorsLogin === "User not found" &&
+                                            <p className="text-red-500 text-xs mt-1"> {auth.errorsLogin} </p>
+                                        }
+                                        {auth.errorsLogin === "Invalid email format" &&
                                             <p className="text-red-500 text-xs mt-1"> {auth.errorsLogin} </p>
                                         }
                                     </div>
@@ -142,7 +145,7 @@ const Login = (props) => {
                                                             type={!showPass ? 'password' : 'text'}
                                                             placeholder="Password"
                                                             name="password"
-                                                            ref={register({ required: "Password Required" })}
+                                                            ref={register({ required: "Password is Required" })}
                                                             onFocus={() => props.visible(true)}
                                                             onBlur={() => props.visible(false)}
                                                             onChange={() =>

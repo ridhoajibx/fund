@@ -26,7 +26,7 @@ const Register = (props) => {
     const { registerAuth, auth } = props;
     const history = useHistory()
     // State
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [loadingPage, setLoadingPage] = useState(true);
     const [showPass, setShowPass] = useState(false);
     const [showPass2, setShowPass2] = useState(false);
@@ -134,7 +134,7 @@ const Register = (props) => {
                                             ref={register({ required: true, minLength: 5 })}
                                         />
                                         {errors.name?.type === "required" && <p className="text-red-500 text-xs mt-1">"Name is required"</p>}
-                                        {errors.name?.type === "minLength" && <p className="text-red-500 text-xs mt-1">"Name must be 8 or more characters"</p>}
+                                        {errors.name?.type === "minLength" && <p className="text-red-500 text-xs mt-1">"Name must be 5 or more characters"</p>}
                                     </div>
 
                                     <div className="relative w-full mb-3">
@@ -150,10 +150,10 @@ const Register = (props) => {
                                             className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                                             placeholder="Email"
                                             name="email"
-                                            ref={register({ required: true, pattern: /^\S+@\S+$/i })}
+                                            ref={register({ required: true, pattern: /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/i })}
                                         />
-                                        {errors.email?.type === "required" && <p className="text-red-500 text-xs mt-1">"Email address is required"</p>}
-                                        {errors.email?.type === "pattern" && <p className="text-red-500 text-xs mt-1">"Email address is invalid"</p>}
+                                        {errors.email?.type === "required" && <p className="text-red-500 text-xs mt-1">Email address is required</p>}
+                                        {errors.email?.type === "pattern" && <p className="text-red-500 text-xs mt-1">Email address is invalid</p>}
                                         {auth.errorsRegister === "Email is already registered" &&
                                             <p className="text-red-500 text-xs mt-1">{auth.errorsRegister}</p>
                                         }
