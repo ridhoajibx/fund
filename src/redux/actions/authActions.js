@@ -51,7 +51,11 @@ const LogOutAuthActions = (history) => {
             text: "You won't be able to revert this!",
             icon: 'info',
             showCancelButton: true,
-            confirmButtonText: 'Yes, Logout!'
+            confirmButtonText: 'Yes, Logout!',
+            customClass: {
+                confirmButton: 'swal2-confirm',
+                cancelButton: 'swal2-cancel',
+            }
         }).then((result) => {
             if (result.isConfirmed) {
                 const success = 'Logout success!';
@@ -59,7 +63,10 @@ const LogOutAuthActions = (history) => {
                 history.push('/');
                 Swal.fire({
                     title: 'Success',
-                    icon: 'success'
+                    icon: 'success',
+                    customClass: {
+                        confirmButton: 'swal2-confirm'
+                    }
                 })
             }
         })
@@ -110,6 +117,9 @@ const updateUserActions = (userState) => {
                         icon: 'success',
                         title: 'Great!',
                         text: res.data.msg,
+                        customClass: {
+                            confirmButton: 'swal2-confirm'
+                        }
                     });
                 } else {
                     throw res
@@ -119,6 +129,9 @@ const updateUserActions = (userState) => {
                     icon: 'error',
                     title: 'Ops!',
                     text: error.data.msg,
+                    customClass: {
+                        confirmButton: 'swal2-confirm'
+                    }
                 });
             }
         }
@@ -147,7 +160,9 @@ const updatePhotoUserActions = (file) => {
                             title: 'Your uploaded picture',
                             imageUrl: e.target.result,
                             imageAlt: 'The uploaded picture',
-                            imageWidth: 200,
+                            customClass: {
+                                confirmButton: 'swal2-confirm'
+                            }
                         })
                     }
                     reader.readAsDataURL(file)

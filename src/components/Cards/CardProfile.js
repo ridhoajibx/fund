@@ -18,18 +18,24 @@ const CardProfile = (props) => {
             inputAttributes: {
                 'accept': 'image/*',
                 'aria-label': 'Upload your profile picture'
+            },
+            customClass: {
+                confirmButton: 'swal2-confirm'
             }
         })
-        if (!file) {
-            Swal.fire({
-                icon: 'error',
-                title: "Wait!",
-                text: "There is no image you have uploaded"
-            })
-        } else {
+        if (file) {
             await later(1000);
             setLoading(true);
             updatePhoto(file);
+        } else {
+            Swal.fire({
+                icon: 'info',
+                title: "wait!",
+                text: "your photo isn't uploaded yet!",
+                customClass: {
+                    confirmButton: 'swal2-confirm'
+                }
+            })
         }
     }
 
@@ -40,16 +46,13 @@ const CardProfile = (props) => {
     }
     useEffect(() => {
         let timer = setTimeout(() => {
+            getUser()
             setLoading(false)
         }, 3000);
         return () => {
             clearTimeout(timer)
         }
-    }, [loading]);
-
-    useEffect(() => {
-        getUser();
-    }, [getUser])
+    }, [loading, getUser]);
 
     return (
         <>
@@ -65,7 +68,7 @@ const CardProfile = (props) => {
                                     <img
                                         alt="..."
                                         src={auth.user.photo}
-                                        style={{ objectFit: 'cover', objectPosition:'center' }}
+                                        style={{ objectFit: 'cover', objectPosition: 'center' }}
                                         className="border-2 border-gray-300 shadow-xl rounded-full w-40 h-40 align-middle -my-16 mx-auto max-w-100-px"
                                     />
                                 }

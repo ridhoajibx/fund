@@ -17,7 +17,11 @@ const CardCalendar = () => {
             title: data.event.title,
             html: ` <b>Rp. ${formatMoney(data.event.extendedProps.cost)}</b> <br/>
                     Pembayaran: ${data.event.extendedProps.repeat}`,
-            showConfirmButton: true
+            showConfirmButton: true,
+            customClass: {
+                confirmButton: 'swal2-confirm',
+                cancelButton: 'swal2-cancel',
+            }
         })
     }
     return (

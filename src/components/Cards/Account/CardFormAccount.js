@@ -35,16 +35,13 @@ const CardFormAccount = (props) => {
 
     useEffect(() => {
         let timer = setTimeout(() => {
+            getUser();
             setLoading(false)
         }, 3000);
         return () => {
             clearTimeout(timer)
         }
-    }, [loading]);
-    
-    useEffect(() => {
-        getUser();
-    }, [getUser])
+    }, [loading, getUser]);
 
     return (
         <>
@@ -122,4 +119,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps) (CardFormAccount);
+export default connect(null, mapDispatchToProps)(CardFormAccount);
