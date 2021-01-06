@@ -18,7 +18,6 @@ const CardFormAccount = (props) => {
         await later(1000);
         setLoading(true);
         update(userState);
-        getUser();
     };
 
     function later(delay) {
@@ -42,6 +41,10 @@ const CardFormAccount = (props) => {
             clearTimeout(timer)
         }
     }, [loading]);
+    
+    useEffect(() => {
+        getUser();
+    }, [getUser])
 
     return (
         <>

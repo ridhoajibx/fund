@@ -44,9 +44,12 @@ const CardProfile = (props) => {
         }, 3000);
         return () => {
             clearTimeout(timer)
-            getUser();
         }
-    }, [loading, getUser]);
+    }, [loading]);
+
+    useEffect(() => {
+        getUser();
+    }, [getUser])
 
     return (
         <>
