@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { FaSpinner } from "react-icons/fa";
 import { connect } from "react-redux";
 import { updateUserActions, userActions } from "../../../redux/actions/authActions";
+import { useForm } from "react-hook-form";
+import { FaSpinner } from "react-icons/fa";
 
 const CardFormAccount = (props) => {
     const { update, auth, getUser } = props;

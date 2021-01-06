@@ -1,9 +1,52 @@
-import { FaCalendar, FaCamera, FaEnvelope } from 'react-icons/fa';
+import { FaCalendar, FaCamera, FaEnvelope, FaSpinner } from 'react-icons/fa';
 import Button from '../Button/Button';
 import moment from 'moment';
+import Swal from 'sweetalert2';
+import { updatePhotoUserActions, userActions } from '../../redux/actions/authActions';
+import { connect } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 const CardProfile = (props) => {
-    const { setShowModal, auth } = props;
+    const { setShowModal, auth, updatePhoto, getUser } = props;
+
+    const [loading, setLoading] = useState(false);
+
+    const uploadPhoto = async (value) => {
+        const { value: file } = await Swal.fire({
+            title: 'Select image',
+            input: 'file',
+            inputAttributes: {
+                'accept': 'image/*',
+                'aria-label': 'Upload your profile picture'
+            }
+        })
+        if (!file) {
+            Swal.fire({
+                icon: 'error',
+                title: "Wait!",
+                text: "There is no image you have uploaded"
+            })
+        } else {
+            await later(1000);
+            setLoading(true);
+            updatePhoto(file);
+        }
+    }
+
+    function later(delay) {
+        return new Promise(function (resolve) {
+            setTimeout(resolve, delay);
+        });
+    }
+    useEffect(() => {
+        let timer = setTimeout(() => {
+            setLoading(false)
+        }, 3000);
+        return () => {
+            clearTimeout(timer)
+            getUser();
+        }
+    }, [loading, getUser]);
 
     return (
         <>
@@ -12,15 +55,21 @@ const CardProfile = (props) => {
                     <div className="flex flex-wrap justify-center">
                         <div className="w-full px-4 flex justify-center items-center">
                             <div className="relative">
-                                <img
-                                    alt="..."
-                                    src={auth.user.photo}
-                                    className="border-2 border-gray-300 shadow-xl rounded-full w-40 h-auto align-middle -my-16 mx-auto max-w-100-px"
-                                />
+                                {loading ?
+                                    <div>
+                                        <FaSpinner className="bg-white border-2 border-gray-300 shadow-xl rounded-full w-40 h-auto align-middle p-10 -my-16 mx-auto max-w-100-px animate-spin" />
+                                    </div> :
+                                    <img
+                                        alt="..."
+                                        src={auth.user.photo}
+                                        style={{ objectFit: 'cover', objectPosition:'center' }}
+                                        className="border-2 border-gray-300 shadow-xl rounded-full w-40 h-40 align-middle -my-16 mx-auto max-w-100-px"
+                                    />
+                                }
                                 <Button
                                     color="absolute right-0 top-10 btn-round border-2 border-gray-200 transition duration-300 transform hover:scale-105"
                                     types="button"
-                                    handleClick={(e) => e.preventDefault()}
+                                    handleClick={uploadPhoto}
                                     icon={<FaCamera />}
                                     label=""
                                 />
@@ -29,11 +78,11 @@ const CardProfile = (props) => {
                     </div>
                     <div className="mt-20 pb-4 flex flex-col text-center items-center">
                         <h3 className="text-lg font-semibold leading-normal text-gray-800 mb-2">
-                            { auth.user.name }
+                            {auth.user.name}
                         </h3>
                         <div className="flex items-center text-xs leading-normal mt-0 mb-2 text-gray-500 font-bold">
                             <FaEnvelope className="mr-2" />
-                            { auth.user.email }
+                            {auth.user.email}
                         </div>
                         <div className="flex items-center mb-2 text-gray-700 mt-10 text-sm">
                             <FaCalendar className="mr-2" />
@@ -53,5 +102,11 @@ const CardProfile = (props) => {
         </>
     );
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updatePhoto: (state) => dispatch(updatePhotoUserActions(state)),
+        getUser: () => dispatch(userActions())
+    }
+}
 
-export default CardProfile;
+export default connect(null, mapDispatchToProps)(CardProfile);

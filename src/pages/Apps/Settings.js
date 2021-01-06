@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { userActions } from '../../redux/actions/authActions';
+
 import CardProfile from '../../components/Cards/CardProfile';
 import CardFormAccount from '../../components/Cards/Account/CardFormAccount';
 import ModalPassword from '../../components/Modals/ModalPassword';
-import { userActions } from '../../redux/actions/authActions';
 
 const Settings = (props) => {
     const { auth, getUser } = props;

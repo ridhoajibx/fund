@@ -125,4 +125,44 @@ const updateUserActions = (userState) => {
     }
 }
 
-export { RegisterAuthActions, LoginAuthActions, userActions, updateUserActions, authActionTypes, LogOutAuthActions };
+const updatePhotoUserActions = (file) => {
+    const auth = localStorage.getItem("auth");
+    const authObj = JSON.parse(auth);
+    const { token } = authObj;
+    let data = new FormData();
+    data.append('photo', file)
+    if (token) {
+        return async () => {
+            const header = {
+                headers: {
+                    'access_token': token
+                }
+            }
+            try {
+                const res = await axios.put("/users/editphoto", data, header);
+                if (res.status === 200) {
+                    const reader = new FileReader()
+                    reader.onload = (e) => {
+                        Swal.fire({
+                            title: 'Your uploaded picture',
+                            imageUrl: e.target.result,
+                            imageAlt: 'The uploaded picture',
+                            imageWidth: 200,
+                        })
+                    }
+                    reader.readAsDataURL(file)
+                } else {
+                    throw res
+                }
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ops!',
+                    text: error.data.msg,
+                });
+            }
+        }
+    }
+}
+
+export { RegisterAuthActions, LoginAuthActions, userActions, updateUserActions, updatePhotoUserActions, authActionTypes, LogOutAuthActions };
