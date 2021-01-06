@@ -1,21 +1,27 @@
+import { connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
+
+// Protected routes
 import PrivateRoutes from './PrivateRoutes';
+import AuthRoutes from './AuthRoutes';
+
+// Master layouts
 import MainLayouts from '../layouts/MainLayouts';
 import AppLayouts from '../layouts/AppLayouts';
 import AuthLayouts from '../layouts/AuthLayouts';
+
+// Pages
 import Home from '../pages/Home/Home';
 import Login from '../pages/Auth/Login';
 import Register from '../pages/Auth/Register';
+import ForgotPassword from '../pages/Auth/ForgorPassword';
 import Dashboard from '../pages/Apps/Dashboard';
 import Settings from '../pages/Apps/Settings';
-import NotFound from '../pages/Errors/NotFound';
-import AuthRoutes from './AuthRoutes';
 import Tables from '../pages/Apps/Tables';
 import Expense from '../pages/Apps/Expense';
 import Budgets from '../pages/Apps/Budgets';
+import NotFound from '../pages/Errors/NotFound';
 import Loading from '../pages/Loading/Loading';
-import ForgotPassword from '../pages/Auth/ForgorPassword';
-import { connect } from 'react-redux';
 
 const IndexRoutes = (props) => {
     const { auth } = props;

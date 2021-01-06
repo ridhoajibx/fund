@@ -1,6 +1,8 @@
 import Button from "../Button/Button";
 
-const CardSettings = () => {
+const CardSettings = (props) => {
+    const { auth } = props;
+    console.log(auth, 'cek auth');
     return (
         <>
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200 border-0">
@@ -33,7 +35,7 @@ const CardSettings = () => {
                                         id="name"
                                         type="text"
                                         className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition duration-150"
-                                        defaultValue="Jumakri Ridho Fauzi"
+                                        value={auth.user.name ? auth.user.name : ""}
                                     />
                                 </div>
                             </div>
@@ -41,14 +43,14 @@ const CardSettings = () => {
                                 <div className="relative w-full mb-3">
                                     <label
                                         className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                                        htmlFor="email"
+                                        htmlFor="dateOfBirth"
                                     >
                                         Date of birth
                                     </label>
                                     <input
                                         type="date"
                                         className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition duration-150"
-                                        defaultValue="1993-12-10"
+                                        value={auth.user.dateOfBirth ? auth.user.dateOfBirth : ''}
                                     />
                                 </div>
                             </div>

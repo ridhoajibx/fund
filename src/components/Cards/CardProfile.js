@@ -1,8 +1,10 @@
-import { FaBriefcase, FaCalendar, FaCamera, FaMapMarked } from 'react-icons/fa';
-import profileImg from '../../assets/img/team-1-800x800.jpg';
+import { FaCalendar, FaCamera, FaEnvelope } from 'react-icons/fa';
 import Button from '../Button/Button';
+import moment from 'moment';
 
-const CardProfile = ({ setShowModal }) => {
+const CardProfile = (props) => {
+    const { setShowModal, auth } = props;
+
     return (
         <>
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16">
@@ -12,8 +14,8 @@ const CardProfile = ({ setShowModal }) => {
                             <div className="relative">
                                 <img
                                     alt="..."
-                                    src={profileImg}
-                                    className="shadow-xl rounded-full w-40 h-auto align-middle border-none -my-16 mx-auto max-w-100-px"
+                                    src={auth.user.photo}
+                                    className="border-2 border-gray-300 shadow-xl rounded-full w-40 h-auto align-middle -my-16 mx-auto max-w-100-px"
                                 />
                                 <Button
                                     color="absolute right-0 top-10 btn-round border-2 border-gray-200 transition duration-300 transform hover:scale-105"
@@ -27,19 +29,15 @@ const CardProfile = ({ setShowModal }) => {
                     </div>
                     <div className="mt-20 pb-4 flex flex-col text-center items-center">
                         <h3 className="text-lg font-semibold leading-normal text-gray-800 mb-2">
-                            Jumakri Ridho Fauzi
+                            { auth.user.name }
                         </h3>
-                        <div className="flex items-center text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
-                            <FaMapMarked className="mr-2" />
-                            Batam, Indonesia
+                        <div className="flex items-center text-xs leading-normal mt-0 mb-2 text-gray-500 font-bold">
+                            <FaEnvelope className="mr-2" />
+                            { auth.user.email }
                         </div>
                         <div className="flex items-center mb-2 text-gray-700 mt-10 text-sm">
-                            <FaBriefcase className="mr-2" />
-                            Front End Developer
-                        </div>
-                        <div className="flex items-center mb-2 text-gray-700 text-sm">
                             <FaCalendar className="mr-2" />
-                            <p>10, December 1993</p>
+                            <p>{moment(auth.user.dateOfBirth).format("MMM, Do YYYY")}</p>
                         </div>
                         <div className="flex items-center mt-2">
                             <Button

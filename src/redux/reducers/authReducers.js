@@ -6,7 +6,8 @@ const authState = {
     user: {},
     token: "",
     errorsLogin: "",
-    errorsRegister: ""
+    errorsRegister: "",
+    errorsUser: ""
 }
 
 const getAuthState = () => {
@@ -38,25 +39,14 @@ const authReducers = (state = newAuth, action) => {
             localStorage.setItem("auth", JSON.stringify(newAuthState))
             return newAuthState;
 
-        case authActionTypes.LOGOUT_SUCCESS:
-            const LogOutAuthState = {
-                isLoggedin: false,
-                user: {},
-                token: "",
-                errorsLogin: "",
-                errorsRegister: ""
-            };
-            localStorage.removeItem("auth");
-            return LogOutAuthState;
-
         case authActionTypes.REGISTER_FAIL:
-            const authRegisterFailState = {
+            const registerFailState = {
                 isLoggedin: false,
                 errorsRegister: action.payload,
                 errorsLogin: "",
                 token: ""
             };
-            return authRegisterFailState
+            return registerFailState
 
         case authActionTypes.LOGIN_SUCCESS:
             const loginAuthState = {
@@ -71,12 +61,52 @@ const authReducers = (state = newAuth, action) => {
             return loginAuthState;
 
         case authActionTypes.LOGIN_FAIL:
-            const authLoginFailState = {
+            const loginFailState = {
                 isLoggedin: false,
                 errorsLogin: action.payload,
                 errorsRegister: ""
             };
-            return authLoginFailState;
+            return loginFailState;
+
+        case authActionTypes.USER_SUCCESS:
+            const userAuthState = {
+                isLoggedin: true,
+                user: {
+                    id: action.payload.data.id,
+                    name: action.payload.data.name,
+                    password: action.payload.data.password,
+                    dateOfBirth: action.payload.data.dateOfBirth,
+                    photo: action.payload.data.photo,
+                    email: action.payload.data.email,
+                    createdAt: action.payload.data.createdAt,
+                    updatedAt: action.payload.data.updatedAt
+                },
+                token: action.payload.token,
+                errorsLogin: "",
+                errorsRegister: "",
+                errorsUser: ""
+            };
+            axios.defaults.headers.common['Authorization'] = `Bearer ${action.payload.token}`;
+            localStorage.setItem("auth", JSON.stringify(userAuthState))
+            return userAuthState;
+
+        case authActionTypes.USER_FAIL:
+            const userFailState = {
+                ...state,
+                errorsUser: action.payload
+            };
+            return userFailState;
+
+        case authActionTypes.LOGOUT_SUCCESS:
+            const LogOutAuthState = {
+                isLoggedin: false,
+                user: {},
+                token: "",
+                errorsLogin: "",
+                errorsRegister: ""
+            };
+            localStorage.removeItem("auth");
+            return LogOutAuthState;
         default:
             return state;
     }

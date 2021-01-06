@@ -242,7 +242,7 @@ const Register = (props) => {
                                     <div className="relative w-full mb-3">
                                         <label
                                             className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                                            htmlFor="dateofBirth"
+                                            htmlFor="dateOfBirth"
                                         >
                                             Date of birth
                                         </label>
@@ -251,21 +251,21 @@ const Register = (props) => {
                                                 props // validate, visible
                                             ) => (
                                                     <input
-                                                        id="dateofBirth"
+                                                        id="dateOfBirth"
                                                         type="date"
                                                         className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                                                        name="dateofBirth"
+                                                        name="dateOfBirth"
                                                         ref={register({ required: "Date is Required" })}
                                                         onFocus={() => props.visible(true)}
                                                         onBlur={() => props.visible(false)}
                                                         onChange={() =>
-                                                            props.validate("dateofBirth", getValues, setError, clearErrors)
+                                                            props.validate("dateOfBirth", getValues, setError, clearErrors)
                                                         }
                                                     />
                                                 )}
                                         </DateofBirthPopover>
-                                        {errors.dateofBirth && (
-                                            <p className="text-red-500 text-xs mt-1"> {errors.dateofBirth.message} </p>
+                                        {errors.dateOfBirth && (
+                                            <p className="text-red-500 text-xs mt-1"> {errors.dateOfBirth.message} </p>
                                         )}
                                     </div>
 

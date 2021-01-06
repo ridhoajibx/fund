@@ -1,26 +1,49 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import CardProfile from '../../components/Cards/CardProfile';
-import CardFormSettings from '../../components/Cards/Settings/CardFormSettings';
+import CardFormAccount from '../../components/Cards/Account/CardFormAccount';
 import ModalPassword from '../../components/Modals/ModalPassword';
+import { userActions } from '../../redux/actions/authActions';
 
-const Settings = () => {
+const Settings = (props) => {
+    const { auth, getUser } = props;
+
     const [showModal, setShowModal] = useState(false);
     const modalHandler = () => setShowModal(!showModal);
+
+    useEffect(() => {
+        getUser()
+    }, [getUser])
+
     return (
         <>
-            {showModal ? 
+            {showModal ?
                 <ModalPassword modalHandler={modalHandler} /> : null
             }
             <div className="flex flex-wrap">
                 <div className="w-full lg:w-4/12 px-4">
-                    <CardProfile setShowModal={setShowModal} />
+                    <CardProfile auth={auth} setShowModal={setShowModal} />
                 </div>
                 <div className="w-full lg:w-8/12 mt-10 px-4">
-                    <CardFormSettings />
+                    <CardFormAccount auth={auth} />
                 </div>
             </div>
         </>
     );
 }
 
-export default Settings;
+const mapStateToProps = (state) => {
+    return {
+        auth: state,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getUser: () => {
+            dispatch(userActions());
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);
