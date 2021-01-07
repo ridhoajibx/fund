@@ -1,17 +1,19 @@
-import { FaCalendar, FaCamera, FaEnvelope, FaSpinner } from 'react-icons/fa';
+import { FaCalendar, FaCamera, FaEnvelope, FaLock, FaSpinner, FaTrashAlt } from 'react-icons/fa';
 import Button from '../Button/Button';
 import moment from 'moment';
-import { updatePhotoUserActions, userActions } from '../../redux/actions/authActions';
+import { deleteUserActions, updatePhotoUserActions, userActions } from '../../redux/actions/authActions';
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { swalWithTWButton } from '../Button/swalWithTWButton';
+import { useHistory } from 'react-router-dom';
 
 const CardProfile = (props) => {
-    const { setShowModal, auth, updatePhoto, getUser } = props;
+    const { setShowModal, auth, updatePhoto, getUser, deleteUser } = props;
+
+    const history = useHistory();
 
     const [loading, setLoading] = useState(false);
 
-    
     const uploadPhoto = async (value) => {
         const { value: file } = await swalWithTWButton.fire({
             title: 'Select image',
@@ -39,15 +41,17 @@ const CardProfile = (props) => {
             setTimeout(resolve, delay);
         });
     }
+
+
     useEffect(() => {
         let timer = setTimeout(() => {
-            getUser()
+            getUser();
             setLoading(false)
         }, 3000);
         return () => {
             clearTimeout(timer)
         }
-    }, [loading, getUser]);
+    }, [getUser, loading]);
 
     return (
         <>
@@ -85,16 +89,26 @@ const CardProfile = (props) => {
                             <FaEnvelope className="mr-2" />
                             {auth.user.email}
                         </div>
-                        <div className="flex items-center mb-2 text-gray-700 mt-10 text-sm">
+                        <div className="flex items-center text-xs leading-normal mt-0 mb-2 text-gray-500 font-bold">
                             <FaCalendar className="mr-2" />
                             <p>{moment(auth.user.dateOfBirth).format("MMM, Do YYYY")}</p>
                         </div>
-                        <div className="flex items-center mt-2">
+                        <div className="flex items-center mt-10">
                             <Button
-                                color="btn-primary duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black"
+                                color="flex items-center btn-primary duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black"
                                 types="button"
                                 handleClick={() => setShowModal(true)}
                                 label="change password"
+                                icon={<FaLock className="mr-1" />}
+                            />
+                        </div>
+                        <div className="flex items-center mt-2">
+                            <Button
+                                color="flex items-center btn-danger duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black"
+                                types="button"
+                                handleClick={() => deleteUser(history)}
+                                label="Delete account"
+                                icon={<FaTrashAlt className="mr-1" />}
                             />
                         </div>
                     </div>
@@ -106,7 +120,8 @@ const CardProfile = (props) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         updatePhoto: (state) => dispatch(updatePhotoUserActions(state)),
-        getUser: () => dispatch(userActions())
+        getUser: () => dispatch(userActions()),
+        deleteUser: (history) => dispatch(deleteUserActions(history)),
     }
 }
 

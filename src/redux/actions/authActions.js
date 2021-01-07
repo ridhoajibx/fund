@@ -5,6 +5,7 @@ const authActionTypes = {
     USER_SUCCESS: "USER_SUCCESS",
     USER_FAIL: "USER_FAIL",
     UPDATE_USER: "UPDATE_USER",
+    DELETE_USER: "DELETE_USER",
     REGISTER_SUCCESS: "REGISTER_SUCCESS",
     REGISTER_FAIL: "REGISTER_FAIL",
     LOGIN_SUCCESS: "LOGIN_SUCCESS",
@@ -162,4 +163,42 @@ const updatePhotoUserActions = (file) => {
     }
 }
 
-export { RegisterAuthActions, LoginAuthActions, userActions, updateUserActions, updatePhotoUserActions, authActionTypes, LogOutAuthActions };
+const deleteUserActions = (history) => {
+    return (dispatch) => {
+        const auth = localStorage.getItem("auth");
+        const authObj = JSON.parse(auth);
+        const { token } = authObj;
+        const header = {
+            headers: {
+                'access_token': token
+            }
+        }
+        swalWithTWButton.fire({
+            title: 'Delete Account!',
+            text: "Are you sure to delete your account?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete("/users/delete", header)
+                    .then(response => {
+                        const users = response.data;
+                        dispatch({ type: authActionTypes.DELETE_USER, payload: users });
+                        history.push('/auth/login');
+                        swalWithTWButton.fire({
+                            title: 'Success',
+                            icon: 'success',
+                            text: 'Your account has been deleted!'
+                        })
+                    })
+                    .catch(error => {
+                        const errorMsg = error.message
+                        console.log(errorMsg, 'cek error delete user');
+                    })
+            }
+        })
+    }
+}
+
+export { RegisterAuthActions, LoginAuthActions, userActions, updateUserActions, updatePhotoUserActions, deleteUserActions, authActionTypes, LogOutAuthActions };

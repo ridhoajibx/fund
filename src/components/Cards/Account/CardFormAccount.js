@@ -14,7 +14,8 @@ const CardFormAccount = (props) => {
         }
     });
 
-    const onSubmit = async (userState) => {
+    const onSubmit = async (userState, event) => {
+        event.preventDefault();
         await later(1000);
         setLoading(true);
         update(userState);
@@ -41,26 +42,26 @@ const CardFormAccount = (props) => {
         return () => {
             clearTimeout(timer)
         }
-    }, [loading, getUser]);
+    }, [getUser, loading]);
 
     return (
         <>
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200 border-0">
-                <div className="rounded-t bg-white mb-0 px-6 py-6">
-                    <div className="text-center flex justify-between">
-                        <h6 className="text-gray-800 text-lg font-bold uppercase">My account</h6>
-                        <button
-                            onClick={handleSubmit(onSubmit)}
-                            type="button"
-                            className="flex items-center justify-center btn-primary duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black disabled:opacity-40"
-                            disabled={formState.isSubmitting}
-                        >
-                            {loading && <FaSpinner className="animate-spin mr-2" />} Setting
-                        </button>
+                <form>
+                    <div className="rounded-t bg-white mb-0 px-6 py-6">
+                        <div className="text-center flex justify-between">
+                            <h6 className="text-gray-800 text-lg font-bold uppercase">My account</h6>
+                            <button
+                                onClick={handleSubmit(onSubmit)}
+                                type="submit"
+                                className="flex items-center justify-center btn-primary duration-300 transition transform hover:scale-105 hover:shadow-offset-black focus:scale-105 focus:shadow-offset-black disabled:opacity-40"
+                                disabled={formState.isSubmitting}
+                            >
+                                {loading && <FaSpinner className="animate-spin mr-2" />} Setting
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                    <form>
+                    <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                         <h6 className="text-gray-500 text-sm mt-3 mb-6 font-bold uppercase">
                             User Information
                         </h6>
@@ -105,8 +106,8 @@ const CardFormAccount = (props) => {
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </>
     );

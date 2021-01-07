@@ -97,13 +97,26 @@ const authReducers = (state = newAuth, action) => {
             };
             return userFailState;
 
+        case authActionTypes.DELETE_USER:
+            const deleteUserState = {
+                isLoggedin: false,
+                user: {},
+                token: "",
+                errorsLogin: "",
+                errorsRegister: "",
+                errorsUser: ""
+            };
+            localStorage.removeItem("auth");
+            return deleteUserState;
+
         case authActionTypes.LOGOUT_SUCCESS:
             const LogOutAuthState = {
                 isLoggedin: false,
                 user: {},
                 token: "",
                 errorsLogin: "",
-                errorsRegister: ""
+                errorsRegister: "",
+                errorsUser: ""
             };
             localStorage.removeItem("auth");
             return LogOutAuthState;
