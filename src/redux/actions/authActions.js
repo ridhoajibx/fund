@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Swal from 'sweetalert2';
+import { swalWithTWButton } from '../../components/Button/swalWithTWButton';
 
 const authActionTypes = {
     USER_SUCCESS: "USER_SUCCESS",
@@ -46,27 +46,20 @@ const LoginAuthActions = (loginState, history) => {
 
 const LogOutAuthActions = (history) => {
     return (dispatch) => {
-        Swal.fire({
+        swalWithTWButton.fire({
             title: 'Are you sure to logout?',
             text: "You won't be able to revert this!",
             icon: 'info',
             showCancelButton: true,
-            confirmButtonText: 'Yes, Logout!',
-            customClass: {
-                confirmButton: 'swal2-confirm',
-                cancelButton: 'swal2-cancel',
-            }
+            confirmButtonText: 'Yes, Logout!'
         }).then((result) => {
             if (result.isConfirmed) {
                 const success = 'Logout success!';
                 dispatch({ type: authActionTypes.LOGOUT_SUCCESS, payload: success });
                 history.push('/');
-                Swal.fire({
+                swalWithTWButton.fire({
                     title: 'Success',
-                    icon: 'success',
-                    customClass: {
-                        confirmButton: 'swal2-confirm'
-                    }
+                    icon: 'success'
                 })
             }
         })
@@ -89,10 +82,12 @@ const userActions = () => {
                 const { data } = res;
                 if (res.status === 200) {
                     dispatch({ type: authActionTypes.USER_SUCCESS, payload: { data, token } });
+                } else {
+                    throw res
                 }
             } catch (error) {
                 console.log(error, 'cek error');
-                const errorMsg = error.response.data.msg
+                const errorMsg = error.response.data.message;
                 dispatch({ type: authActionTypes.USER_FAIL, payload: errorMsg })
             }
         }
@@ -113,25 +108,19 @@ const updateUserActions = (userState) => {
             try {
                 const res = await axios.put("/users/editprofile", userState, header);
                 if (res.status === 200) {
-                    Swal.fire({
+                    swalWithTWButton.fire({
                         icon: 'success',
                         title: 'Great!',
-                        text: res.data.msg,
-                        customClass: {
-                            confirmButton: 'swal2-confirm'
-                        }
+                        text: res.data.msg
                     });
                 } else {
                     throw res
                 }
             } catch (error) {
-                Swal.fire({
+                swalWithTWButton.fire({
                     icon: 'error',
                     title: 'Ops!',
-                    text: error.data.msg,
-                    customClass: {
-                        confirmButton: 'swal2-confirm'
-                    }
+                    text: error.data.msg
                 });
             }
         }
@@ -156,13 +145,10 @@ const updatePhotoUserActions = (file) => {
                 if (res.status === 200) {
                     const reader = new FileReader()
                     reader.onload = (e) => {
-                        Swal.fire({
+                        swalWithTWButton.fire({
                             title: 'Your uploaded picture',
                             imageUrl: e.target.result,
-                            imageAlt: 'The uploaded picture',
-                            customClass: {
-                                confirmButton: 'swal2-confirm'
-                            }
+                            imageAlt: 'The uploaded picture'
                         })
                     }
                     reader.readAsDataURL(file)
@@ -170,11 +156,7 @@ const updatePhotoUserActions = (file) => {
                     throw res
                 }
             } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Ops!',
-                    text: error.data.msg,
-                });
+                console.error(error)
             }
         }
     }

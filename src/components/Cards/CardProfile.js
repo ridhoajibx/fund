@@ -5,22 +5,21 @@ import Swal from 'sweetalert2';
 import { updatePhotoUserActions, userActions } from '../../redux/actions/authActions';
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { swalWithTWButton } from '../Button/swalWithTWButton';
 
 const CardProfile = (props) => {
     const { setShowModal, auth, updatePhoto, getUser } = props;
 
     const [loading, setLoading] = useState(false);
 
+    
     const uploadPhoto = async (value) => {
-        const { value: file } = await Swal.fire({
+        const { value: file } = await swalWithTWButton.fire({
             title: 'Select image',
             input: 'file',
             inputAttributes: {
                 'accept': 'image/*',
                 'aria-label': 'Upload your profile picture'
-            },
-            customClass: {
-                confirmButton: 'swal2-confirm'
             }
         })
         if (file) {
@@ -28,13 +27,10 @@ const CardProfile = (props) => {
             setLoading(true);
             updatePhoto(file);
         } else {
-            Swal.fire({
+            swalWithTWButton.fire({
                 icon: 'info',
                 title: "wait!",
-                text: "your photo isn't uploaded yet!",
-                customClass: {
-                    confirmButton: 'swal2-confirm'
-                }
+                text: "your photo isn't uploaded yet!"
             })
         }
     }

@@ -5,23 +5,19 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import { Event, formatMoney } from '../../../variables/Event';
-import Swal from 'sweetalert2';
 
 import './style/Calendar.css';
-import './style/ButtonSwal.css';
+import { swalWithTWButton } from '../../Button/swalWithTWButton';
 
 const CardCalendar = () => {
+
     const handleEventClick = (data) => {
-        Swal.fire({
+        swalWithTWButton.fire({
             icon: 'info',
             title: data.event.title,
             html: ` <b>Rp. ${formatMoney(data.event.extendedProps.cost)}</b> <br/>
                     Pembayaran: ${data.event.extendedProps.repeat}`,
-            showConfirmButton: true,
-            customClass: {
-                confirmButton: 'swal2-confirm',
-                cancelButton: 'swal2-cancel',
-            }
+            showConfirmButton: true
         })
     }
     return (
