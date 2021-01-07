@@ -1,7 +1,6 @@
 import { FaCalendar, FaCamera, FaEnvelope, FaSpinner } from 'react-icons/fa';
 import Button from '../Button/Button';
 import moment from 'moment';
-import Swal from 'sweetalert2';
 import { updatePhotoUserActions, userActions } from '../../redux/actions/authActions';
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';

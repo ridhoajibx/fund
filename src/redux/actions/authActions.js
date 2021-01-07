@@ -19,7 +19,7 @@ const RegisterAuthActions = (registerState, history) => {
             const { data } = res;
             if (data.status === "Success") {
                 dispatch({ type: authActionTypes.REGISTER_SUCCESS, payload: data });
-                history.push('/');
+                history.push('/settings');
             }
         } catch (error) {
             const errorMsg = error.response.data.msg
@@ -35,7 +35,7 @@ const LoginAuthActions = (loginState, history) => {
             const { data } = res;
             if (data.status === "Success") {
                 dispatch({ type: authActionTypes.LOGIN_SUCCESS, payload: data });
-                history.push('/');
+                history.push('/settings');
             }
         } catch (error) {
             const errorMsg = error.response.data.msg
@@ -56,7 +56,7 @@ const LogOutAuthActions = (history) => {
             if (result.isConfirmed) {
                 const success = 'Logout success!';
                 dispatch({ type: authActionTypes.LOGOUT_SUCCESS, payload: success });
-                history.push('/');
+                history.push('/auth/login');
                 swalWithTWButton.fire({
                     title: 'Success',
                     icon: 'success'
