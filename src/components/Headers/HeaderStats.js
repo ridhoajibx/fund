@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CardStats from '../Cards/CardStats';
 
 import { FaDonate, FaShoppingBag, FaWallet } from 'react-icons/fa';
 
-const HeaderStats = () => {
+import { connect } from 'react-redux';
+import { getBudgetActions } from '../../redux/actions/budgetActions';
+
+const HeaderStats = (props) => {
+    const { budget, getBudget } = props;
+
+    useEffect(() => {
+        getBudget()
+    }, [getBudget]);
+
     return (
         <>
             {/* Header */}
@@ -21,12 +30,23 @@ const HeaderStats = () => {
                                 />
                             </div>
                             <div className="w-full lg:w-6/12 xl:w-4/12 px-4">
-                                <CardStats
-                                    statSubtitle="BUDGET"
-                                    statTitle="10000000"
-                                    statIconName={<FaDonate/>}
-                                    statIconColor="bg-red-500"
-                                />
+                                {budget.budgets.length ?
+                                    budget.budgets.map((data, index) => (
+                                        <CardStats key={index}
+                                            statSubtitle="BUDGET"
+                                            statTitle={data.set_budget}
+                                            statIconName={<FaDonate />}
+                                            statIconColor="bg-red-500"
+                                        />
+                                    ))
+                                    :
+                                    <CardStats
+                                        statSubtitle="BUDGET"
+                                        statTitle="0"
+                                        statIconName={<FaDonate />}
+                                        statIconColor="bg-red-500"
+                                    />
+                                }
                             </div>
                             <div className="w-full lg:w-6/12 xl:w-4/12 px-4">
                                 <CardStats
@@ -44,4 +64,18 @@ const HeaderStats = () => {
     );
 }
 
-export default HeaderStats;
+const mapStateToProps = (state) => {
+    return {
+        budget: state.budget,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getBudget: () => {
+            dispatch(getBudgetActions());
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderStats);

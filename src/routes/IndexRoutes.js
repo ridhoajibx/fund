@@ -26,7 +26,7 @@ import { useEffect } from 'react';
 
 const IndexRoutes = (props) => {
     const { auth } = props;
-
+    console.log(auth, 'cek')
     useEffect(() => {
         if (auth.errorsUser === "jwt expired") {
             return () => {
@@ -110,7 +110,7 @@ const IndexRoutes = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        auth: state,
+        auth: state.auth,
     }
 }
 

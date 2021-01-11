@@ -31,7 +31,7 @@ const Settings = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        auth: state,
+        auth: state.auth,
     }
 }
 

@@ -1,28 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { formatMoney } from '../../../variables/Event';
+import ModalBudgetEdit from '../../Modals/ModalBudgetEdit';
+import { deleteBudgetActions } from '../../../redux/actions/budgetActions';
 
-import TableDropdown from '../../Dropdown/TableDropdown';
+const CardBudgets = (props) => {
+    const { color, action, budget, deleteBudget } = props;
+    const [modal, setModal] = useState(false);
+    const [data, setdata] = useState({});
 
-const budgets = [
-    {
-        id: 1,
-        set_budget: '1000000',
-        limit_date: '2020-12-31',
-        createdAt: '2020-12-01'
-    },
-    {
-        id: 2,
-        set_budget: '2000000',
-        limit_date: '2021-01-31',
-        createdAt: '2021-01-01'
-    }
-]
-
-const CardBudgets = ({color, action}) => {
+    const modalHandler = (item) => {
+        setdata(item)
+        setModal(!modal)
+    };
     return (
         <>
+            { modal && <ModalBudgetEdit modalHandler={modalHandler} data={data} />}
+
             <div
                 className={
                     "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
@@ -91,8 +87,46 @@ const CardBudgets = ({color, action}) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {budgets.map((budget) => (
-                                <tr key={budget.id}>
+                            {budget.budgets.length ?
+                                budget.budgets.map((budget) => (
+                                    <tr key={budget.id}>
+                                        <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                            <span
+                                                className={
+                                                    "font-bold " +
+                                                    +(color === "light" ? "text-gray-700" : "text-white")
+                                                }
+                                            >
+                                                Rp. {formatMoney(budget.set_budget)}
+                                            </span>
+                                        </th>
+                                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                            {budget.createdAt}
+                                        </td>
+                                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                            {budget.limit_date}
+                                        </td>
+                                        {action &&
+                                            <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-right">
+                                                <button
+                                                    className="btn-primary m-1"
+                                                    type="button"
+                                                    onClick={() => modalHandler(budget)}
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    className="btn-danger m-1"
+                                                    type="button"
+                                                    onClick={() => deleteBudget()}
+                                                >
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        }
+                                    </tr>
+                                )) :
+                                <tr>
                                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                                         <span
                                             className={
@@ -100,22 +134,11 @@ const CardBudgets = ({color, action}) => {
                                                 +(color === "light" ? "text-gray-700" : "text-white")
                                             }
                                         >
-                                            Rp. {formatMoney(budget.set_budget)}
+                                            You don't have any budgets yet!
                                         </span>
                                     </th>
-                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                                        {budget.createdAt}
-                                    </td>
-                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                                        {budget.limit_date}
-                                    </td>
-                                    {action &&
-                                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-right">
-                                            <TableDropdown color={color} id={budget.id}/>
-                                        </td>
-                                    }
                                 </tr>
-                            ))}
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -124,7 +147,19 @@ const CardBudgets = ({color, action}) => {
     );
 }
 
-export default CardBudgets;
+const mapStateToProps = (state) => {
+    return {
+        budget: state.budget,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteBudget: () => dispatch(deleteBudgetActions())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardBudgets);
 
 CardBudgets.defaultProps = {
     color: "light",

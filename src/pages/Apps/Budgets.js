@@ -2,7 +2,7 @@ import React from 'react';
 import CardBudgets from '../../components/Cards/Budgets/CardBudgets';
 import CardFormBudgets from '../../components/Cards/Budgets/CardFormBudgets';
 
-const Budgets = () => {
+const Budgets = (props) => {
     return (
         <>
             <div className="flex flex-wrap">
