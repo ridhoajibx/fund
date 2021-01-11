@@ -87,9 +87,15 @@ const userActions = () => {
                     throw res
                 }
             } catch (error) {
-                console.log(error, 'cek error');
                 const errorMsg = error.response.data.message;
-                dispatch({ type: authActionTypes.USER_FAIL, payload: errorMsg })
+                dispatch({ type: authActionTypes.USER_FAIL, payload: errorMsg });
+                if (errorMsg === "jwt expired") {
+                    swalWithTWButton.fire({
+                        icon:'error',
+                        title: 'Ops!',
+                        text: `Your token has been expired! please, relogin again!`
+                    })
+                }
             }
         }
     }

@@ -22,18 +22,9 @@ import Expense from '../pages/Apps/Expense';
 import Budgets from '../pages/Apps/Budgets';
 import NotFound from '../pages/Errors/NotFound';
 import Loading from '../pages/Loading/Loading';
-import { useEffect } from 'react';
 
 const IndexRoutes = (props) => {
     const { auth } = props;
-    console.log(auth, 'cek')
-    useEffect(() => {
-        if (auth.errorsUser === "jwt expired") {
-            return () => {
-                localStorage.removeItem("auth")
-            }
-        }
-    }, [auth])
 
     return (
         <Switch>

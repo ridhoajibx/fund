@@ -32,8 +32,22 @@ const getBudgetActions = () => {
                     throw res
                 }
             } catch (error) {
-                const errorMsg = error.response.data.msg;
+                console.log(error.response.data.message, 'cek error');
+                const errorMsg = error.response.data.message;
                 dispatch({ type: budgetActionTypes.BUDGET_FAIL, payload: errorMsg })
+                if (errorMsg === "jwt expired") {
+                    swalWithTWButton.fire({
+                        icon: 'error',
+                        title: 'Opps!',
+                        text: `Sorry ! ${errorMsg}, you must be reloggin!`
+                    });
+                } else {
+                    swalWithTWButton.fire({
+                        icon: 'error',
+                        title: 'Opps!',
+                        text: `${errorMsg}`
+                    });
+                }
             }
         }
     }
@@ -62,13 +76,22 @@ const addBudgetActions = (state) => {
                     });
                 }
             } catch (error) {
-                const errorMsg = error.response.data.msg;
+                console.log(error.response, 'cek error');
+                const errorMsg = error.response.data.message;
                 dispatch({ type: budgetActionTypes.ADD_BUDGET_FAIL, payload: errorMsg });
-                swalWithTWButton.fire({
-                    icon: 'error',
-                    title: 'Opps!',
-                    text: `Sorry ! ${errorMsg}, cannot input budget twice`
-                });
+                if (errorMsg === "jwt expired") {
+                    swalWithTWButton.fire({
+                        icon: 'error',
+                        title: 'Opps!',
+                        text: `Sorry ! ${errorMsg}, you must be reloggin!`
+                    });
+                } else {
+                    swalWithTWButton.fire({
+                        icon: 'error',
+                        title: 'Opps!',
+                        text: `Sorry ! ${errorMsg}, cannot input budget twice!`
+                    });
+                }
             }
         }
     }

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { FaPlus, FaSpinner, FaTrashAlt } from "react-icons/fa";
-import NumberFormat from 'react-number-format';
+import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { addBudgetActions, getBudgetActions } from '../../../redux/actions/budgetActions';
+import NumberFormat from 'react-number-format';
+import { FaPlus, FaSpinner, FaTrashAlt } from "react-icons/fa";
 
 const CardFormBudgets = (props) => {
     const { addBudget, getBudget } = props;
@@ -37,7 +37,7 @@ const CardFormBudgets = (props) => {
 
     useEffect(() => {
         let timer = setTimeout(() => {
-            getBudget();
+            getBudget()
             setLoading(false)
         }, 3000);
         return () => {
