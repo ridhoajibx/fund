@@ -76,20 +76,20 @@ const addBudgetActions = (state) => {
                     });
                 }
             } catch (error) {
-                console.log(error.response, 'cek error');
-                const errorMsg = error.response.data.message;
+                // console.log(error.response, 'cek error');
+                const errorMsg = error.response.data.msg;
                 dispatch({ type: budgetActionTypes.ADD_BUDGET_FAIL, payload: errorMsg });
-                if (errorMsg === "jwt expired") {
-                    swalWithTWButton.fire({
-                        icon: 'error',
-                        title: 'Opps!',
-                        text: `Sorry ! ${errorMsg}, you must be reloggin!`
-                    });
-                } else {
+                if (errorMsg) {
                     swalWithTWButton.fire({
                         icon: 'error',
                         title: 'Opps!',
                         text: `Sorry ! ${errorMsg}, cannot input budget twice!`
+                    });
+                } else if (error.response.data.message === "jwt expired") {
+                    swalWithTWButton.fire({
+                        icon: 'error',
+                        title: 'Opps!',
+                        text: `Sorry ! ${errorMsg}, you must be relogin!`
                     });
                 }
             }
