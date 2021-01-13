@@ -134,7 +134,7 @@ const CardFormBudgets = (props) => {
                                     disabled={formState.isSubmitting}
                                 >
                                     {loading ? <FaSpinner className="animate-spin mr-2" /> : <FaPlus className="mr-1" />} Add
-                            </button>
+                                </button>
                             </div>
                         </div>
                     </div>

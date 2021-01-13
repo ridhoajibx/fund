@@ -52,8 +52,6 @@ const CardCalendar = (props) => {
         }
     }, [expenses]);
 
-    console.log(events, 'cek data expense');
-
     return (
         <>
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200 border-0">
