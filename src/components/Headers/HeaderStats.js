@@ -1,17 +1,38 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import CardStats from '../Cards/CardStats';
 
 import { FaDonate, FaShoppingBag, FaWallet } from 'react-icons/fa';
 
 import { connect } from 'react-redux';
 import { getBudgetActions } from '../../redux/actions/budgetActions';
+import { getExpenseTotalActions } from '../../redux/actions/expenseActions';
+import { swalWithTWButton } from '../Button/swalWithTWButton';
 
 const HeaderStats = (props) => {
-    const { budget, getBudget } = props;
+    const { budget, getBudget, getExpenseTotal, expenseTotal } = props;
 
+    const alert = useCallback(() => {
+        const percentage = parseInt(expenseTotal.percentageUsage)
+        if (percentage >= 95) {
+            swalWithTWButton.fire({
+                icon: 'warning',
+                title: 'expense',
+                text: expenseTotal.msg
+            })
+        }
+    }, [expenseTotal])
+    
     useEffect(() => {
-        getBudget()
-    }, [getBudget]);
+        getBudget();
+        getExpenseTotal();
+    }, [getBudget, getExpenseTotal]);
+    
+    useEffect(() => {
+        if (expenseTotal) {
+            return () => alert();
+        }
+    }, [expenseTotal, alert]);
+
 
     return (
         <>
@@ -51,7 +72,7 @@ const HeaderStats = (props) => {
                             <div className="w-full lg:w-6/12 xl:w-4/12 px-4">
                                 <CardStats
                                     statSubtitle="EXPENSE"
-                                    statTitle="1000000"
+                                    statTitle={expenseTotal.total ? expenseTotal.total : '0'}
                                     statIconName={<FaShoppingBag />}
                                     statIconColor="bg-pink-500"
                                 />
@@ -67,14 +88,14 @@ const HeaderStats = (props) => {
 const mapStateToProps = (state) => {
     return {
         budget: state.budget,
+        expenseTotal: state.expense.total,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getBudget: () => {
-            dispatch(getBudgetActions());
-        }
+        getBudget: () => dispatch(getBudgetActions()),
+        getExpenseTotal: () => dispatch(getExpenseTotalActions()),
     }
 }
 

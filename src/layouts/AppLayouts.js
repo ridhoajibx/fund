@@ -1,12 +1,17 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { swalWithTWButton } from "../components/Button/swalWithTWButton";
 import AppFooter from "../components/Footer/AppFooter";
 import HeaderStats from "../components/Headers/HeaderStats";
 import AppNavbar from "../components/Navbars/AppNavbar";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Loading from "../pages/Loading/Loading";
+import { LogOutAuthActions } from "../redux/actions/authActions";
 
 const AppLayouts = (props) => {
-    const { children, auth } = props;
+    let history = useHistory()
+    const { children, auth, logout } = props;
     const [loadingPage, setLoadingPage] = useState(true);
 
     useEffect(() => {
@@ -17,6 +22,26 @@ const AppLayouts = (props) => {
             clearTimeout(timer);
         }
     }, [loadingPage])
+
+    const alert = useCallback(() => {
+        if (auth.errorsUser === 'jwt expired') {
+            swalWithTWButton.fire({
+                icon: 'warning',
+                title: 'Token is expired',
+                text: auth.errorUsers,
+                confirmButtonText: 'Logout now!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    logout(history);
+                }
+            })
+        }
+    }, [auth, logout, history])
+
+    useEffect(() => {
+        alert();
+    }, [alert]);
+    
     return (
         <>
             { loadingPage && <Loading /> }
@@ -34,4 +59,10 @@ const AppLayouts = (props) => {
     );
 }
 
-export default AppLayouts;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: (history) => dispatch(LogOutAuthActions(history))
+    }
+}
+
+export default connect(null, mapDispatchToProps) (AppLayouts);

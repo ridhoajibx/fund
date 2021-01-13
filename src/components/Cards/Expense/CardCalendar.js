@@ -4,12 +4,17 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
-import { Event, formatMoney } from '../../../variables/Event';
+import { formatMoney } from '../../../variables/Event';
 
 import './style/Calendar.css';
 import { swalWithTWButton } from '../../Button/swalWithTWButton';
+import { connect } from 'react-redux';
+import { getExpensesActions } from '../../../redux/actions/expenseActions';
+import { useEffect, useState } from 'react';
 
-const CardCalendar = () => {
+const CardCalendar = (props) => {
+    const { expenses, getExpenses } = props;
+    const [events, setEvents] = useState();
 
     const handleEventClick = (data) => {
         swalWithTWButton.fire({
@@ -20,6 +25,35 @@ const CardCalendar = () => {
             showConfirmButton: true
         })
     }
+
+    useEffect(() => {
+        getExpenses();
+    }, [getExpenses])
+
+    useEffect(() => {
+        if(expenses.length){
+            let events = []
+            expenses.forEach(e => {
+                events.push({
+                    id: e.id,
+                    title: e.title,
+                    rrule: {
+                        freq: e.repeat ? e.repeat.toLowerCase() : 'daily',
+                        dtstart: e.start_date ? e.start_date : e.createdAt, // will also accept '20120201T103000'
+                        until: e.limit_date ? e.limit_date : e.createdAt, // will also accept '20120201'
+                    },
+                    extendedProps: {
+                        cost: e.cost,
+                        repeat: e.repeat ? e.repeat.toLowerCase() : 'One time'
+                    }
+                })
+            })
+            setEvents(events)
+        }
+    }, [expenses]);
+
+    console.log(events, 'cek data expense');
+
     return (
         <>
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200 border-0">
@@ -39,7 +73,7 @@ const CardCalendar = () => {
                             }}
                             initialView="dayGridMonth"
                             weekends={true}
-                            events={Event}
+                            events={events}
                             eventClick={handleEventClick}
                         />
                     </div>
@@ -49,4 +83,16 @@ const CardCalendar = () => {
     );
 }
 
-export default CardCalendar;
+const mapStateToProps= (state) => {
+    return {
+        expenses: state.expense.expensesUser
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getExpenses: () => dispatch(getExpensesActions()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (CardCalendar);

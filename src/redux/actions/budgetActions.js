@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { swalWithTWButton } from '../../components/Button/swalWithTWButton';
+import { authActionTypes } from './authActions';
 
 const budgetActionTypes = {
     BUDGET_SUCCESS: "BUDGET_SUCCESS",
@@ -32,21 +33,17 @@ const getBudgetActions = () => {
                     throw res
                 }
             } catch (error) {
-                console.log(error.response.data.message, 'cek error');
-                const errorMsg = error.response.data.message;
-                dispatch({ type: budgetActionTypes.BUDGET_FAIL, payload: errorMsg })
-                if (errorMsg === "jwt expired") {
+                console.log(error.response.data, 'cek error');
+                const errorMsg = error.response.data;
+                if (errorMsg.msg) {
+                    dispatch({ type: budgetActionTypes.BUDGET_FAIL, payload: errorMsg.msg })
                     swalWithTWButton.fire({
                         icon: 'error',
                         title: 'Opps!',
-                        text: `Sorry ! ${errorMsg}, you must be reloggin!`
+                        text: `${errorMsg.msg}`
                     });
-                } else {
-                    swalWithTWButton.fire({
-                        icon: 'error',
-                        title: 'Opps!',
-                        text: `${errorMsg}`
-                    });
+                } else if (errorMsg.message === "jwt expired") {
+                    dispatch({ type: authActionTypes.USER_FAIL, payload: errorMsg.message });
                 }
             }
         }
@@ -74,23 +71,20 @@ const addBudgetActions = (state) => {
                         title: 'Great!',
                         text: 'Budget added'
                     });
+                } else {
+                    throw res;
                 }
             } catch (error) {
-                // console.log(error.response, 'cek error');
-                const errorMsg = error.response.data.msg;
-                dispatch({ type: budgetActionTypes.ADD_BUDGET_FAIL, payload: errorMsg });
-                if (errorMsg) {
+                const errorMsg = error.response.data;
+                if (errorMsg.msg) {
+                    dispatch({ type: budgetActionTypes.ADD_BUDGET_FAIL, payload: errorMsg.msg });
                     swalWithTWButton.fire({
                         icon: 'error',
                         title: 'Opps!',
-                        text: `Sorry ! ${errorMsg}, cannot input budget twice!`
+                        text: `Sorry ! ${errorMsg.msg}, cannot input budget twice!`
                     });
-                } else if (error.response.data.message === "jwt expired") {
-                    swalWithTWButton.fire({
-                        icon: 'error',
-                        title: 'Opps!',
-                        text: `Sorry ! ${errorMsg}, you must be relogin!`
-                    });
+                } else if (errorMsg.message === "jwt expired") {
+                    dispatch({ type: authActionTypes.USER_FAIL, payload: errorMsg.message });
                 }
             }
         }
@@ -121,13 +115,17 @@ const updateBudgetActions = (state) => {
                     throw res;
                 }
             } catch (error) {
-                const errorMsg = error.response.data.msg;
-                dispatch({ type: budgetActionTypes.UPDATE_BUDGET_FAIL });
-                swalWithTWButton.fire({
-                    icon: 'error',
-                    title: 'Opps!',
-                    text: `${errorMsg}`
-                });
+                const errorMsg = error.response.data;
+                if (errorMsg.msg) {
+                    dispatch({ type: budgetActionTypes.UPDATE_BUDGET_FAIL });
+                    swalWithTWButton.fire({
+                        icon: 'error',
+                        title: 'Opps!',
+                        text: `${errorMsg.msg}`
+                    });
+                } else if (errorMsg.message === "jwt expired") {
+                    dispatch({ type: authActionTypes.USER_FAIL, payload: errorMsg.message });
+                }
             }
         }
     }

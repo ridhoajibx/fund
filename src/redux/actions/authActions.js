@@ -87,14 +87,11 @@ const userActions = () => {
                     throw res
                 }
             } catch (error) {
-                const errorMsg = error.response.data.message;
-                dispatch({ type: authActionTypes.USER_FAIL, payload: errorMsg });
-                if (errorMsg === "jwt expired") {
-                    swalWithTWButton.fire({
-                        icon:'error',
-                        title: 'Ops!',
-                        text: `Your token has been expired! please, relogin again!`
-                    })
+                const errorMsg = error.response.data;
+                if (errorMsg.message === "jwt expired") {
+                    dispatch({ type: authActionTypes.USER_FAIL, payload: errorMsg.message });
+                } else if (errorMsg.msg) {
+                    dispatch({ type: authActionTypes.USER_FAIL, payload: errorMsg.msg });
                 }
             }
         }

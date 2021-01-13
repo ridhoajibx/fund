@@ -1,18 +1,20 @@
 import NumberFormat from 'react-number-format';
 import { FaPlus } from "react-icons/fa";
 import { useState } from 'react';
-import { Listbox, Transition } from '@headlessui/react';
+import { Listbox } from '@headlessui/react';
 import Button from '../../Button/Button';
 
 const repeats = [
-    { id: 1, name: 'Select...', unavailable: true },
-    { id: 2, name: 'Daily', unavailable: false },
-    { id: 3, name: 'Weekly', unavailable: false },
-    { id: 4, name: 'Montly', unavailable: false },
+    { id: 1, name: 'Select ...', value: '', unavailable: true },
+    { id: 2, name: 'One time', value: '', unavailable: false },
+    { id: 3, name: 'Daily', value: 'Daily', unavailable: false },
+    { id: 4, name: 'Weekly', value: 'Weekly', unavailable: false },
+    { id: 5, name: 'Montly', value: 'Monthly', unavailable: false },
 ]
 
 const CardFormExpense = () => {
     const [selectedRepeat, setSelectedRepeat] = useState(repeats[0])
+    console.log(selectedRepeat, 'cek select');
     return (
         <>
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200 border-0">
@@ -66,10 +68,34 @@ const CardFormExpense = () => {
                                     />
                                 </div>
                             </div>
+
+                            {/* <div className="w-full px-4">
+                                <div className="relative w-full mb-3">
+                                    <label htmlFor="freq" className="uppercase block text-xs font-bold text-gray-700">Frequence</label>
+                                    <select 
+                                        id="repeat" 
+                                        name="repeat" 
+                                        className="cursor-pointer mt-1 flex items-center justify-between w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none text-sm"
+                                    >
+                                        {repeats.map(repeat => (
+                                            <option
+                                                key={ repeat.id }
+                                                className={`cursor-pointer py-2 px-3 text-gray-400 hover:text-gray-400 hover:bg-gray-200 focus:outline-none${!repeat.unavailable && ' text-gray-800 hover:text-white hover:bg-purple-600'}`}
+                                                disabled={repeat.unavailable}
+                                                value={ repeat.value }
+                                            >
+                                                { repeat.name }
+                                            </option>
+                                        )
+                                        )};
+                                    </select>
+                                </div>
+                            </div> */}
+
                             <div className="w-full px-4">
                                 <div className="relative w-full mb-3">
                                     <label htmlFor="freq" className="uppercase block text-xs font-bold text-gray-700">Frequence</label>
-                                    <Listbox value={selectedRepeat} onChange={setSelectedRepeat}>
+                                    <Listbox value={selectedRepeat} onChange={setSelectedRepeat} name="repeat">
                                         {({ open }) => (
                                             <>
                                                 <Listbox.Button className={
@@ -87,31 +113,21 @@ const CardFormExpense = () => {
                                                         <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path>
                                                     </svg>
                                                 </Listbox.Button>
-                                                <Transition
-                                                    show={open}
-                                                    enter="transition ease-in-out duration-100"
-                                                    enterFrom="transform scale-75"
-                                                    enterTo="transform scale-100"
-                                                    leave="transition ease-in-out duration-75"
-                                                    leaveFrom="transform scale-100"
-                                                    leaveTo="transform scale-75"
-                                                >
-                                                    <Listbox.Options className="absolute right-0 w-full z-40 text-sm bg-white border-1 border-gray-300 shadow-lg rounded-b-lg focus:outline-none overflow-hidden">
-                                                        {repeats.map(repeat => (
-                                                            <Listbox.Option
-                                                                className={
-                                                                    `py-2 px-3 
+                                                <Listbox.Options className="absolute right-0 w-full z-40 text-sm bg-white border-1 border-gray-300 shadow-lg rounded-b-lg focus:outline-none overflow-hidden">
+                                                    {repeats.map(repeat => (
+                                                        <Listbox.Option
+                                                            className={
+                                                                `py-2 px-3 
                                                                     ${!repeat.unavailable ? 'text-gray-800 hover:text-white hover:bg-purple-600' : 'text-gray-400 hover:text-gray-400 hover:bg-gray-200'} 
                                                                     focus:outline-none cursor-pointer`
-                                                                }
-                                                                disabled={repeat.unavailable}
-                                                                key={repeat.id}
-                                                                value={repeat}>
-                                                                {repeat.name}
-                                                            </Listbox.Option>
-                                                        ))}
-                                                    </Listbox.Options>
-                                                </Transition>
+                                                            }
+                                                            disabled={repeat.unavailable}
+                                                            key={repeat.id}
+                                                            value={repeat}>
+                                                            {repeat.name}
+                                                        </Listbox.Option>
+                                                    ))}
+                                                </Listbox.Options>
                                             </>
                                         )}
                                     </Listbox>
