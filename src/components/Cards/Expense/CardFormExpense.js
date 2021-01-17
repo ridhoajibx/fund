@@ -3,6 +3,8 @@ import { FaPlus, FaSpinner, FaTrashAlt } from "react-icons/fa";
 import { useEffect, useState } from 'react';
 import { Listbox } from '@headlessui/react';
 import { Controller, useForm } from 'react-hook-form';
+import { connect } from 'react-redux';
+import { addExpensesActions, getExpensesActions, getExpenseTotalActions } from '../../../redux/actions/expenseActions';
 
 const repeats = [
     { id: 1, name: 'Select ...', value: '', unavailable: true },
@@ -12,7 +14,8 @@ const repeats = [
     { id: 5, name: 'Montly', value: 'Monthly', unavailable: false },
 ]
 
-const CardFormExpense = () => {
+const CardFormExpense = (props) => {
+    const {getExpenses, getExpenseTotal, addExpenses} = props;
     const [loading, setLoading] = useState(false);
     const {
         register,
@@ -36,7 +39,7 @@ const CardFormExpense = () => {
         e.preventDefault();
         await later(1000);
         setLoading(true);
-        console.log(data, 'cek data');
+        addExpenses(data);
     }
 
     function later(delay) {
@@ -47,12 +50,14 @@ const CardFormExpense = () => {
 
     useEffect(() => {
         let timer = setTimeout(() => {
-            setLoading(false)
+            getExpenses();
+            getExpenseTotal();
+            setLoading(false);
         }, 3000);
         return () => {
             clearTimeout(timer)
         }
-    }, [loading]);
+    }, [loading, getExpenses, getExpenseTotal]);
 
     return (
         <>
@@ -239,4 +244,12 @@ const CardFormExpense = () => {
     );
 }
 
-export default CardFormExpense;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addExpenses: (state) => dispatch(addExpensesActions(state)),
+        getExpenses: () => dispatch(getExpensesActions()),
+        getExpenseTotal: () => dispatch(getExpenseTotalActions()),
+    }
+}
+
+export default connect(null, mapDispatchToProps) (CardFormExpense);

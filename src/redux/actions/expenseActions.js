@@ -88,4 +88,45 @@ const getExpensesActions = () => {
     }
 }
 
-export { getExpenseTotalActions, getExpensesActions, expenseActionTypes };
+const addExpensesActions = (stateExpenses) => {
+    const auth = localStorage.getItem("auth");
+    const authObj = JSON.parse(auth);
+    const { token } = authObj;
+    if (token) {
+        const header = {
+            headers: {
+                'access_token': token
+            }
+        }
+        return async (dispatch) => {
+            try {
+                const res = await axios.post("/expenses/add", stateExpenses, header);
+                const { data } = res;
+                if (res.status === 200) {
+                    dispatch({ type: expenseActionTypes.ADD_EXPENSE_SUCCESS, payload: data });
+                    swalWithTWButton.fire({
+                        icon: 'success',
+                        title: 'Great!',
+                        text: `New expense is updated!`
+                    });
+                } else {
+                    throw res;
+                }
+            } catch (error) {
+                const errorMsg = error.response.data;
+                if (errorMsg.msg) {
+                    dispatch({ type: expenseActionTypes.ADD_EXPENSE_FAIL, payload: errorMsg.msg })
+                    swalWithTWButton.fire({
+                        icon: 'error',
+                        title: 'Opps!',
+                        text: `${errorMsg.msg}`
+                    });
+                } else if (errorMsg.message === "jwt expired") {
+                    dispatch({ type: authActionTypes.USER_FAIL, payload: errorMsg.message });
+                }
+            }
+        }
+    }
+}
+
+export { getExpenseTotalActions, getExpensesActions, addExpensesActions, expenseActionTypes };

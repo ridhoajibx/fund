@@ -18,6 +18,18 @@ const expenseReducers = (state = expenseState, action) => {
                 ...state,
                 expensesUser: action.payload
             }
+
+        case expenseActionTypes.ADD_EXPENSE_SUCCESS:
+            return {
+                ...state,
+                expensesUser: action.payload
+            }
+
+        case expenseActionTypes.ADD_EXPENSE_FAIL:
+            return {
+                ...state,
+                errorsExpenses: action.payload
+            }
         default:
             return state;
     }
