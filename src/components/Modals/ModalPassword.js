@@ -105,7 +105,7 @@ export default function ModalPassword(props) {
                                             className="block uppercase text-gray-700 text-xs font-bold -mb-4"
                                             htmlFor="password"
                                         >
-                                            Password
+                                            New password
                                             </label>
                                         <PasswordPopover>
                                             {(
@@ -116,7 +116,7 @@ export default function ModalPassword(props) {
                                                         id="password"
                                                         className="overflow-hidden px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                                                         type={!showPass ? 'password' : 'text'}
-                                                        placeholder="Password"
+                                                        placeholder="New password"
                                                         name="password"
                                                         ref={register({ required: "Password is Required" })}
                                                         onFocus={() => props.visible(true)}
@@ -145,7 +145,7 @@ export default function ModalPassword(props) {
                                             className="block uppercase text-gray-700 text-xs font-bold -mb-4"
                                             htmlFor="password"
                                         >
-                                            Password
+                                            Confirm password
                                             </label>
                                         <PasswordPopover>
                                             {(
