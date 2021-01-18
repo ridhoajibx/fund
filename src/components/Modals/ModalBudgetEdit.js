@@ -59,7 +59,7 @@ const ModalBudgetEdit = (props) => {
             <div
                 className="transform transition flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
             >
-                <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                <div className="relative w-auto my-6 mx-5 max-w-2xl">
                     {/*content*/}
                     <div className="bg-gray-200 border-0 rounded-lg shadow-lg relative flex flex-col w-full outline-none focus:outline-none">
                         {/*body*/}

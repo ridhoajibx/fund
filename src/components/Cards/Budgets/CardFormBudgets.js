@@ -27,6 +27,7 @@ const CardFormBudgets = (props) => {
         await later(1000);
         setLoading(true);
         addBudget(data);
+        reset();
     }
 
     function later(delay) {

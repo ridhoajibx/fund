@@ -17,7 +17,7 @@ const repeats = [
 
 const CardFormExpense = (props) => {
     const history = useHistory();
-    const {getExpenses, getExpenseTotal, addExpenses} = props;
+    const { getExpenses, getExpenseTotal, addExpenses } = props;
     const [loading, setLoading] = useState(false);
     const {
         register,
@@ -42,6 +42,13 @@ const CardFormExpense = (props) => {
         await later(1000);
         setLoading(true);
         addExpenses(data);
+        reset({
+            title: "",
+            cost: "",
+            repeat: "",
+            start_date: "",
+            limit_date: ""
+        });
     }
 
     function later(delay) {
@@ -151,7 +158,7 @@ const CardFormExpense = (props) => {
                                     <label htmlFor="freq" className="uppercase block text-xs font-bold text-gray-700">Frequence</label>
                                     <Controller
                                         render={(props) => (
-                                            
+
                                             <Listbox value={props.value} onChange={props.onChange}>
                                                 {({ open }) => (
                                                     <>
@@ -252,4 +259,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps) (CardFormExpense);
+export default connect(null, mapDispatchToProps)(CardFormExpense);
