@@ -1,11 +1,71 @@
-import React from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { Event, formatMoney } from '../../../variables/Event';
+import { formatMoney } from '../../../variables/Event';
 
-import TableDropdown from '../../Dropdown/TableDropdown';
+import { FaTrashAlt } from 'react-icons/fa';
+import { connect } from 'react-redux';
+import { getExpensesActions, getExpenseTotalActions } from '../../../redux/actions/expenseActions';
+import { swalWithTWButton } from '../../Button/swalWithTWButton';
+import axios from 'axios';
 
-const CardHistory = ({ color, action }) => {
+const CardHistory = (props) => {
+    const { color, action, expenses, getExpenses, getExpensesTotal } = props;
+
+    const handleDelete = (id) => {
+        const auth = localStorage.getItem("auth");
+        const authObj = JSON.parse(auth);
+        const { token } = authObj;
+        if (token) {
+            const header = {
+                headers: {
+                    'access_token': token
+                }
+            }
+            swalWithTWButton.fire({
+                title: 'Delete!',
+                text: "Are you sure to delete your expense?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await later(1000);
+                    axios.delete(`/expenses/delete/${id}`, header)
+                        .then(response => {
+                            getExpenses();
+                            getExpensesTotal();
+                            swalWithTWButton.fire({
+                                title: 'Success',
+                                icon: 'success',
+                                text: 'Your expense has been deleted!'
+                            })
+                        })
+                        .catch(error => {
+                            const errorMsg = error.response.data.msg;
+                            swalWithTWButton.fire({
+                                icon: 'error',
+                                title: 'Opps!',
+                                text: `${errorMsg}`
+                            });
+                            console.log(errorMsg, 'cek error delete expense');
+                        })
+                }
+            })
+        }
+    }
+
+    function later(delay) {
+        return new Promise(function (resolve) {
+            setTimeout(resolve, delay);
+        })
+    }
+
+    useEffect(() => {
+        getExpenses();
+        getExpensesTotal();
+    }, [getExpenses, getExpensesTotal]);
+
     return (
         <>
             <div
@@ -91,46 +151,68 @@ const CardHistory = ({ color, action }) => {
                                                 ? "bg-gray-100 text-gray-600 border-gray-200"
                                                 : "bg-purple-800 text-purple-300 border-purple-700")
                                         }
-                                    >Action</th>
+                                    >Action
+                                    </th>
                                 }
                             </tr>
                         </thead>
                         <tbody>
-                            {Event.map((item) => (
-                                <tr key={item.id}>
-                                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                                        <span
-                                            className={
-                                                "font-bold " +
-                                                +(color === "light" ? "text-gray-700" : "text-white")
+                            {
+                                expenses.length > 0 ?
+                                    expenses.map((expense) => (
+                                        <tr key={expense.id}>
+                                            <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                                <span
+                                                    className={
+                                                        "font-bold " +
+                                                        +(color === "light" ? "text-gray-700" : "text-white")
+                                                    }
+                                                >
+                                                    {expense.title}
+                                                </span>
+                                            </th>
+                                            <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                                Rp. {formatMoney(expense.cost)}
+                                            </td>
+                                            <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                                {expense.repeat ? expense.repeat : "One time"}
+                                            </td>
+                                            <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                                <div className="flex items-center">
+                                                    <span className="mr-2">{expense.start_date ? expense.start_date : expense.createdAt}</span>
+                                                </div>
+                                            </td>
+                                            <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                                <div className="flex items-center">
+                                                    <span className="mr-2">{expense.limit_date ? expense.limit_date : expense.createdAt}</span>
+                                                </div>
+                                            </td>
+                                            {action &&
+                                                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                                    <button
+                                                        className="flex items-center p-3 btn-danger duration-300 transition transform hover:scale-105 focus:scale-105"
+                                                        type="button"
+                                                        onClick={() => handleDelete(expense.id)}
+                                                    >
+                                                        <FaTrashAlt />
+                                                    </button>
+                                                </td>
                                             }
-                                        >
-                                            {item.title}
+                                        </tr>
+                                    )) :
+                                    <tr>
+                                        <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                            <span
+                                                className={
+                                                    "font-bold " +
+                                                    +(color === "light" ? "text-gray-700" : "text-white")
+                                                }
+                                            >
+                                                Yout don't have any expense!
                                         </span>
-                                    </th>
-                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                                        Rp. {formatMoney(item.extendedProps.cost)}
-                                    </td>
-                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                                        {item.extendedProps.repeat}
-                                    </td>
-                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                                        <div className="flex items-center">
-                                            <span className="mr-2">{item.rrule.dtstart}</span>
-                                        </div>
-                                    </td>
-                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                                        <div className="flex items-center">
-                                            <span className="mr-2">{item.rrule.until}</span>
-                                        </div>
-                                    </td>
-                                    {action &&
-                                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-right">
-                                            <TableDropdown color={color} id={item.id}/>
-                                        </td>
-                                    }
-                                </tr>
-                            ))}
+                                        </th>
+                                    </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -139,7 +221,20 @@ const CardHistory = ({ color, action }) => {
     );
 }
 
-export default CardHistory;
+const mapStateToProps = (state) => {
+    return {
+        expenses: state.expense.expensesUser,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getExpenses: () => dispatch(getExpensesActions()),
+        getExpensesTotal: () => dispatch(getExpenseTotalActions()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardHistory);
 
 CardHistory.defaultProps = {
     color: "light",

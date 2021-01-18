@@ -161,7 +161,7 @@ const deleteBudgetActions = () => {
                         })
                         .catch(error => {
                             const errorMsg = error.data.msg;
-                            dispatch({ type: budgetActionTypes.DELETE_BUDGET_SUCCESS, payload: errorMsg })
+                            dispatch({ type: budgetActionTypes.DELETE_BUDGET_ERROR, payload: errorMsg })
                             swalWithTWButton.fire({
                                 icon: 'error',
                                 title: 'Opps!',

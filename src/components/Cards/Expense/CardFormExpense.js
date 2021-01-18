@@ -105,7 +105,6 @@ const CardFormExpense = (props) => {
                                         Expense
                                     </label>
                                     <input
-                                        id="expense"
                                         type="text"
                                         name="title"
                                         className="px-3 py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition duration-150"
@@ -189,6 +188,7 @@ const CardFormExpense = (props) => {
                                         control={control}
                                         rules={{ required: false }}
                                     />
+                                    <div className=" px-1 text-xs text-gray-700">No need to input start and limit date, if you choose One time rule!</div>
                                 </div>
                             </div>
 
@@ -201,7 +201,6 @@ const CardFormExpense = (props) => {
                                         Start
                                     </label>
                                     <input
-                                        id="start_date"
                                         type="date"
                                         name="start_date"
                                         className="px-3 py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition duration-150"
@@ -219,7 +218,6 @@ const CardFormExpense = (props) => {
                                         Until
                                     </label>
                                     <input
-                                        id="limit_date"
                                         name="limit_date"
                                         type="date"
                                         className="px-3 py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition duration-150"

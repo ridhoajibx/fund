@@ -37,7 +37,7 @@ const getExpenseTotalActions = () => {
             } catch (error) {
                 console.log(error.response.data, 'cek error');
                 const errorMsg = error.response.data;
-                if (errorMsg.msg ) {
+                if (errorMsg.msg) {
                     dispatch({ type: expenseActionTypes.EXPENSE_BYBUDGET_FAIL, payload: errorMsg.msg });
                     swalWithTWButton.fire({
                         icon: 'error',
@@ -129,4 +129,90 @@ const addExpensesActions = (stateExpenses) => {
     }
 }
 
-export { getExpenseTotalActions, getExpensesActions, addExpensesActions, expenseActionTypes };
+const updateExpensesActions = (stateExpenses, id) => {
+    const auth = localStorage.getItem("auth");
+    const authObj = JSON.parse(auth);
+    const { token } = authObj;
+    if (token) {
+        const header = {
+            headers: {
+                'access_token': token
+            }
+        }
+        return async (dispatch) => {
+            try {
+                const res = await axios.put(`/expenses/edit/${id}`, stateExpenses, header);
+                // const { data } = res;
+                if (res.status === 200) {
+                    dispatch({ type: expenseActionTypes.UPDATE_EXPENSE_SUCCESS });
+                    swalWithTWButton.fire({
+                        icon: 'success',
+                        title: 'Great!',
+                        text: `New expense is updated!`
+                    });
+                } else {
+                    throw res;
+                }
+            } catch (error) {
+                const errorMsg = error.response.data;
+                if (errorMsg.msg) {
+                    dispatch({ type: expenseActionTypes.UPDATE_EXPENSE_FAIL, payload: errorMsg.msg })
+                    swalWithTWButton.fire({
+                        icon: 'error',
+                        title: 'Opps!',
+                        text: `${errorMsg.msg}`
+                    });
+                } else if (errorMsg.message === "jwt expired") {
+                    dispatch({ type: authActionTypes.USER_FAIL, payload: errorMsg.message });
+                }
+            }
+        }
+    }
+}
+
+// const deleteExpensesActions = (id) => {
+//     const auth = localStorage.getItem("auth");
+//     const authObj = JSON.parse(auth);
+//     const { token } = authObj;
+//     if (token) {
+//         const header = {
+//             headers: {
+//                 'access_token': token
+//             }
+//         }
+//         return (dispatch) => {
+//             swalWithTWButton.fire({
+//                 title: 'Delete!',
+//                 text: "Are you sure to delete your expense?",
+//                 icon: 'warning',
+//                 showCancelButton: true,
+//                 confirmButtonText: 'Yes, delete it!'
+//             }).then((result) => {
+//                 if (result.isConfirmed) {
+//                     axios.delete(`/expenses/delete/${id}`, header)
+//                         .then(response => {
+//                             dispatch({ type: expenseActionTypes.DELETE_EXPENSE_SUCCESS });
+//                             dispatch({ type: expenseActionTypes.DELETE_EXPENSE_SUCCESS });
+//                             swalWithTWButton.fire({
+//                                 title: 'Success',
+//                                 icon: 'success',
+//                                 text: 'Your expense has been deleted!'
+//                             })
+//                         })
+//                         .catch(error => {
+//                             const errorMsg = error.response.data.msg;
+//                             dispatch({ type: expenseActionTypes.DELETE_EXPENSE_FAIL })
+//                             swalWithTWButton.fire({
+//                                 icon: 'error',
+//                                 title: 'Opps!',
+//                                 text: `${errorMsg}`
+//                             });
+//                             console.log(errorMsg, 'cek error delete expense');
+//                         })
+//                 }
+//             })
+//         }
+//     }
+// }
+
+export { getExpenseTotalActions, getExpensesActions, addExpensesActions, updateExpensesActions, expenseActionTypes };
