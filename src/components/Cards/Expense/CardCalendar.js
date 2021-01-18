@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 import ModalExpense from '../../Modals/ModalExpense';
 
 const CardCalendar = (props) => {
-    const { expenses, getExpenses, getExpensesTotal } = props;
+    const { expenses, getExpenses } = props;
     const [events, setEvents] = useState();
     const [showExpense, setShowExpense] = useState(false);
     const [dataModal, setDataModal] = useState({});
@@ -24,8 +24,7 @@ const CardCalendar = (props) => {
 
     useEffect(() => {
         getExpenses();
-        getExpensesTotal();
-    }, [getExpenses, getExpensesTotal]);
+    }, [getExpenses]);
 
     useEffect(() => {
         if (expenses.length) {

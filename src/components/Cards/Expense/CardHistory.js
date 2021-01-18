@@ -8,8 +8,10 @@ import { connect } from 'react-redux';
 import { getExpensesActions, getExpenseTotalActions } from '../../../redux/actions/expenseActions';
 import { swalWithTWButton } from '../../Button/swalWithTWButton';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const CardHistory = (props) => {
+    const history = useHistory();
     const { color, action, expenses, getExpenses, getExpensesTotal } = props;
 
     const handleDelete = (id) => {
@@ -63,8 +65,8 @@ const CardHistory = (props) => {
 
     useEffect(() => {
         getExpenses();
-        getExpensesTotal();
-    }, [getExpenses, getExpensesTotal]);
+        getExpensesTotal(history);
+    }, [getExpenses, getExpensesTotal, history]);
 
     return (
         <>
@@ -230,7 +232,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getExpenses: () => dispatch(getExpensesActions()),
-        getExpensesTotal: () => dispatch(getExpenseTotalActions()),
+        getExpensesTotal: (history) => dispatch(getExpenseTotalActions(history)),
     }
 }
 

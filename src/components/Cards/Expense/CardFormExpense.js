@@ -5,6 +5,7 @@ import { Listbox } from '@headlessui/react';
 import { Controller, useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { addExpensesActions, getExpensesActions, getExpenseTotalActions } from '../../../redux/actions/expenseActions';
+import { useHistory } from 'react-router-dom';
 
 const repeats = [
     { id: 1, name: 'Select ...', value: '', unavailable: true },
@@ -15,6 +16,7 @@ const repeats = [
 ]
 
 const CardFormExpense = (props) => {
+    const history = useHistory();
     const {getExpenses, getExpenseTotal, addExpenses} = props;
     const [loading, setLoading] = useState(false);
     const {
@@ -51,13 +53,13 @@ const CardFormExpense = (props) => {
     useEffect(() => {
         let timer = setTimeout(() => {
             getExpenses();
-            getExpenseTotal();
+            getExpenseTotal(history);
             setLoading(false);
         }, 3000);
         return () => {
             clearTimeout(timer)
         }
-    }, [loading, getExpenses, getExpenseTotal]);
+    }, [loading, getExpenses, getExpenseTotal, history]);
 
     return (
         <>
@@ -246,7 +248,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addExpenses: (state) => dispatch(addExpensesActions(state)),
         getExpenses: () => dispatch(getExpensesActions()),
-        getExpenseTotal: () => dispatch(getExpenseTotalActions()),
+        getExpenseTotal: (history) => dispatch(getExpenseTotalActions(history)),
     }
 }
 

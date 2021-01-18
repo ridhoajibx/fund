@@ -7,13 +7,16 @@ import { connect } from 'react-redux';
 import { getBudgetActions } from '../../redux/actions/budgetActions';
 import { getExpenseTotalActions } from '../../redux/actions/expenseActions';
 import { swalWithTWButton } from '../Button/swalWithTWButton';
+import { useHistory } from 'react-router-dom';
 
 const HeaderStats = (props) => {
+    const history = useHistory();
     const { budget, getBudget, getExpenseTotal, expenseTotal } = props;
 
     const alert = useCallback(() => {
-        const percentage = parseInt(expenseTotal.percentageUsage)
-        if (percentage >= 95) {
+        let { total, budgetAmount } = expenseTotal;
+        const result = total / budgetAmount * (100);
+        if ( result >= 90) {
             swalWithTWButton.fire({
                 icon: 'warning',
                 title: 'expense',
@@ -24,8 +27,8 @@ const HeaderStats = (props) => {
     
     useEffect(() => {
         getBudget();
-        getExpenseTotal();
-    }, [getBudget, getExpenseTotal]);
+        getExpenseTotal(history);
+    }, [getBudget, getExpenseTotal, history]);
     
     useEffect(() => {
         if (expenseTotal) {
@@ -95,7 +98,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getBudget: () => dispatch(getBudgetActions()),
-        getExpenseTotal: () => dispatch(getExpenseTotalActions()),
+        getExpenseTotal: (history) => dispatch(getExpenseTotalActions(history)),
     }
 }
 

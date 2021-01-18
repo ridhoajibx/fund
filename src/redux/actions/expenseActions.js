@@ -15,7 +15,7 @@ const expenseActionTypes = {
     DELETE_EXPENSE_FAIL: "DELETE_EXPENSE_FAIL",
 }
 
-const getExpenseTotalActions = () => {
+const getExpenseTotalActions = (history) => {
     const auth = localStorage.getItem("auth");
     const authObj = JSON.parse(auth);
     const { token } = authObj;
@@ -37,13 +37,19 @@ const getExpenseTotalActions = () => {
             } catch (error) {
                 console.log(error.response.data, 'cek error');
                 const errorMsg = error.response.data;
-                if (errorMsg.msg) {
+                if (errorMsg.msg === "Please enable budget") {
                     dispatch({ type: expenseActionTypes.EXPENSE_BYBUDGET_FAIL, payload: errorMsg.msg });
                     swalWithTWButton.fire({
-                        icon: 'error',
+                        icon: 'warning',
                         title: 'Opps!',
-                        text: errorMsg.msg
-                    });
+                        text: `You dont have any budget yet! Please input your new budget`,
+                        showCancelButton: true,
+                        confirmButtonText: 'Go to budget'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            history.push('/budgets');
+                        }
+                    })
                 } else if (errorMsg.message === "jwt expired") {
                     dispatch({ type: authActionTypes.USER_FAIL, payload: errorMsg.message });
                 }

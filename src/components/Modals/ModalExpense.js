@@ -4,6 +4,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { FaEdit, FaSpinner, FaTimes, FaTimesCircle } from 'react-icons/fa';
 import NumberFormat from 'react-number-format';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { getExpensesActions, getExpenseTotalActions, updateExpensesActions } from '../../redux/actions/expenseActions';
 
 const repeats = [
@@ -15,6 +16,7 @@ const repeats = [
 ]
 
 const ModalExpense = (props) => {
+    const history = useHistory();
     const { updateExpense, getExpenses, getExpenseTotal, handleEventClick, dataModal } = props;
     const { event } = dataModal;
     const [loading, setLoading] = useState(false);
@@ -51,13 +53,13 @@ const ModalExpense = (props) => {
     useEffect(() => {
         let timer = setTimeout(() => {
             getExpenses();
-            getExpenseTotal();
+            getExpenseTotal(history);
             setLoading(false);
         }, 3000);
         return () => {
             clearTimeout(timer)
         }
-    }, [loading, getExpenses, getExpenseTotal]);
+    }, [loading, getExpenses, getExpenseTotal, history]);
     return (
         <>
             <div
@@ -249,7 +251,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         updateExpense: (state, id) => dispatch(updateExpensesActions(state, id)),
         getExpenses: () => dispatch(getExpensesActions()),
-        getExpenseTotal: () => dispatch(getExpenseTotalActions()),
+        getExpenseTotal: (history) => dispatch(getExpenseTotalActions(history)),
     }
 }
 
